@@ -18,7 +18,7 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
 
-SCHEMA_VERSION = "1"
+SCHEMA_VERSION: Literal["1"] = "1"
 
 FlawCode = Literal["RUSH", "DRAG", "HESITATE", "MONO", "FADE", "SKIP", "FILLER"]
 FLAW_CODES: tuple[FlawCode, ...] = ("RUSH", "DRAG", "HESITATE", "MONO", "FADE", "SKIP", "FILLER")

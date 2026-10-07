@@ -1,0 +1,123 @@
+# SpeakQuest rubric v1
+#
+# Every number that turns measurements into findings or scores lives here.
+# Changing any value is a rubric change: bump `version` so stored results can
+# always be traced back to the rules that produced them (system design §5.4).
+#
+# Thresholds start from the system design (§5.3) and were checked on the
+# development scripts only (data/manifest.csv, split=dev). See
+# docs/EVALUATION.md for the held-out numbers.
+
+version: "1.0.0"
+
+features:
+  # Local speech rate is syllables per second over a sliding window of
+  # matched words.
+  rate_window_words: 3
+  # A take's per-word rate is divided by its global rate ratio against the
+  # reference so a naturally faster reader is not flagged everywhere. The
+  # ratio is clamped so that a take that is rushed (or dragged) *throughout*
+  # still surfaces: outside this band the excess is left in.
+  global_rate_normalization: [0.85, 1.18]
+  # Gaps between words shorter than this are not pauses (coarticulation,
+  # aligner jitter).
+  min_pause_ms: 120
+  # RMS frame settings for pause refinement and loudness.
+  frame_ms: 20
+  # Frames this far below the take's speech level count as silence.
+  silence_rel_db: -30
+  pitch_floor_hz: 70
+  pitch_ceiling_hz: 450
+  # Untranscribed voiced sound inside a gap of at least this length is
+  # reported as a vocalisation (likely a filler the aligner cleaned up).
+  vocalization_min_ms: 180
+  vocalization_max_ms: 1500
+  vocalization_min_voiced_ratio: 0.5
+
+rules:
+  RUSH:
+    # Local rate > 1.35x reference over >= 3 matched words.
+    rate_ratio_above: 1.35
+    min_words: 3
+    severity_bands: [1.35, 1.6, 2.0]      # ratio >= band[i] -> severity i+1
+  DRAG:
+    # Local rate < 0.7x reference over >= 3 matched words.
+    rate_ratio_below: 0.70
+    min_words: 3
+    severity_bands: [0.70, 0.55, 0.42]    # ratio <= band[i] -> severity i+1
+  HESITATE:
+    # Pause > 600 ms where the reference pauses < 250 ms.
+    pause_ms_above: 600
+    reference_pause_ms_below: 250
+    severity_bands: [600, 1000, 1800]     # pause_ms >= band[i] -> severity i+1
+  MONO:
+    # Phrase pitch SD < 50% of the reference phrase.
+    sd_ratio_below: 0.50
+    # Reference phrases flatter than this carry no contour to compare with.
+    min_reference_sd_st: 1.0
+    # Need this much voiced speech in the phrase to trust the SD.
+    min_voiced_frames: 25
+    min_phrase_words: 3
+    severity_bands: [0.50, 0.35, 0.20]    # ratio <= band[i] -> severity i+1
+  FADE:
+    # Last 2 words of a phrase > 6 dB below the speaker's mean.
+    last_words: 2
+    db_below_mean: 6.0
+    # Guard: if the reference drops just as much there, it's the script's
+    # cadence, not a flaw.
+    reference_margin_db: 3.0
+    severity_bands: [6.0, 10.0, 15.0]     # drop_db >= band[i] -> severity i+1
+  SKIP:
+    # Deletion in the script diff. Severity by number of skipped tokens.
+    severity_bands: [1, 2, 4]
+  FILLER:
+    filler_words: [um, uh, er, erm, ah, hmm, mm, uhm, umm, like]
+    # "like" counts only when it is not in the script at that point, which
+    # the diff guarantees for insertions.
+    min_confidence: 0.0
+    # Insertions that are neither filler words nor repeats are usually
+    # aligner noise; they are flagged only when this confident.
+    other_insert_min_confidence: 0.85
+    severity_bands: [1, 2, 3]             # tokens in the run
+
+# Which score dimension each flaw costs.
+dimensions:
+  RUSH: pace
+  DRAG: pace
+  HESITATE: pauses
+  MONO: pitch
+  FADE: volume
+  SKIP: accuracy
+  FILLER: accuracy
+
+# Points deducted from a dimension (starting at 100, floored at 0) per
+# finding, by severity.
+penalties:
+  RUSH: { 1: 8, 2: 15, 3: 25 }
+  DRAG: { 1: 8, 2: 15, 3: 25 }
+  HESITATE: { 1: 7, 2: 14, 3: 22 }
+  MONO: { 1: 10, 2: 18, 3: 28 }
+  FADE: { 1: 8, 2: 15, 3: 24 }
+  SKIP: { 1: 8, 2: 15, 3: 25 }
+  FILLER: { 1: 5, 2: 10, 3: 16 }
+
+# Overall score: weighted mean of the five dimensions, rounded half-up.
+overall_weights:
+  pace: 1.0
+  pauses: 1.0
+  pitch: 1.0
+  volume: 1.0
+  accuracy: 1.0
+
+audio:
+  min_duration_s: 1.5
+  max_duration_s: 180
+  max_bytes: 10485760
+  # Peak below this is a dead microphone.
+  silent_peak_dbfs: -60
+  # Mean speech level below this cannot be measured reliably.
+  quiet_mean_dbfs: -50
+  sample_rate: 16000
+  # Fraction of script tokens that must be matched for the take to count as
+  # a reading of this script at all.
+  min_script_coverage: 0.35
