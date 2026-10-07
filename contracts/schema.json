@@ -971,6 +971,12 @@
           ],
           "default": null,
           "title": "Pitch Sd St"
+        },
+        "voiced_frames": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Voiced Frames",
+          "type": "integer"
         }
       },
       "required": [

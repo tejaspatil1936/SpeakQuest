@@ -131,6 +131,7 @@ class PhraseStat(_Model):
     start: Seconds
     end: Seconds
     pitch_sd_st: float | None = None
+    voiced_frames: int = Field(default=0, ge=0)
 
 
 class TakeAnalysis(_Model):
