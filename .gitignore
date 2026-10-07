@@ -1,0 +1,71 @@
+# --- Secrets & local configuration -------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.vercel/
+.aws/
+
+# --- Terraform ----------------------------------------------------------------
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+tfplan*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+*.auto.tfvars
+terraform.tfvars
+!*.tfvars.example
+
+# --- Python -------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# --- Node / web ---------------------------------------------------------------
+node_modules/
+web/dist/
+web/.vite/
+*.tsbuildinfo
+playwright-report/
+test-results/
+
+# --- Audio & generated artefacts (never commit recordings) --------------------
+*.wav
+*.webm
+*.mp3
+*.m4a
+*.mp4
+*.ogg
+*.flac
+*.opus
+data/audio/
+data/generated/
+eval/reports/*.local.*
+.local/
+.models/
+.cache/
+
+# --- Editors / OS ---------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+*.swp
