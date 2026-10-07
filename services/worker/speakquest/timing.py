@@ -1,0 +1,226 @@
+"""Word timing: aligner adapters and time-span helpers.
+
+Amazon Transcribe is the primary timestamp source. In the cloud the
+transcription job runs as its own Step Functions state, so the Analyze step
+only *parses* Transcribe's JSON (:func:`parse_transcribe_json`). Other
+aligners implement :class:`Aligner` and produce the same :class:`Transcript`,
+so the rest of the pipeline cannot tell them apart and an alternative (the
+local faster-whisper adapter, or WhisperX) can be evaluated without touching
+diff, features, findings or scoring.
+"""
+
+from __future__ import annotations
+
+import json
+import os
+import threading
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, ClassVar, Protocol
+
+from speakquest.contracts import TimedWord, Transcript
+from speakquest.errors import AnalysisError
+from speakquest.tokens import normalize_word
+
+
+class Aligner(Protocol):
+    name: str
+
+    def transcribe(self, wav: Path, language: str) -> Transcript: ...
+
+
+# --------------------------------------------------------------------------- Amazon Transcribe
+
+
+def parse_transcribe_json(doc: dict[str, Any], language: str = "en-US") -> Transcript:
+    """Convert an Amazon Transcribe output document into a :class:`Transcript`.
+
+    Punctuation items carry no timestamps and are dropped; each pronunciation
+    item keeps its top alternative.
+    """
+    status = doc.get("status")
+    if status not in (None, "COMPLETED"):
+        raise AnalysisError("TRANSCRIBE_FAILED", f"job status {status}", stage="TRANSCRIBE")
+    try:
+        items = doc["results"]["items"]
+    except (KeyError, TypeError) as exc:
+        raise AnalysisError(
+            "TRANSCRIBE_FAILED", "malformed transcript", stage="TRANSCRIBE"
+        ) from exc
+    words: list[TimedWord] = []
+    for item in items:
+        if item.get("type") != "pronunciation":
+            continue
+        alt = (item.get("alternatives") or [{}])[0]
+        content = str(alt.get("content", "")).strip()
+        if not content or "start_time" not in item:
+            continue
+        conf = alt.get("confidence")
+        words.append(
+            TimedWord(
+                text=content,
+                start=float(item["start_time"]),
+                end=float(item["end_time"]),
+                confidence=min(1.0, max(0.0, float(conf))) if conf not in (None, "") else None,
+            )
+        )
+    return Transcript(aligner="amazon-transcribe", language=language, words=words)
+
+
+@dataclass
+class TranscribeFileAligner:
+    """Reads a Transcribe output JSON that the workflow already produced."""
+
+    transcript_path: Path
+    name: str = "amazon-transcribe"
+
+    def transcribe(self, wav: Path, language: str) -> Transcript:
+        doc = json.loads(self.transcript_path.read_text())
+        return parse_transcribe_json(doc, language)
+
+
+# --------------------------------------------------------------------------- fixtures
+
+
+@dataclass
+class WordsFileAligner:
+    """Replays a saved :class:`Transcript` (``words.json``) — used for seeded
+    references and deterministic tests."""
+
+    words_path: Path
+    name: str = "words-file"
+
+    def transcribe(self, wav: Path, language: str) -> Transcript:
+        return Transcript.model_validate_json(self.words_path.read_text())
+
+
+# --------------------------------------------------------------------------- faster-whisper
+
+# Whisper tends to "clean up" disfluencies. A verbatim-style prompt makes it
+# keep fillers (system design §5.1 step 4). The script is deliberately *not*
+# used as a prompt: that would make the recogniser hallucinate skipped words.
+_VERBATIM_PROMPT = "Umm, let me think like, hmm... Okay, uh, here's what I'm, like, thinking."
+
+
+class FasterWhisperAligner:
+    """Local CPU aligner (CTranslate2 Whisper with DTW word timestamps).
+
+    Used when Amazon Transcribe is not reachable, and as the comparison
+    aligner in the evaluation harness.
+    """
+
+    _models: ClassVar[dict[str, Any]] = {}
+    _lock: ClassVar[threading.Lock] = threading.Lock()
+
+    def __init__(self, model: str | None = None, compute_type: str = "int8"):
+        self.model_name = model or os.environ.get("SPEAKQUEST_WHISPER_MODEL", "base.en")
+        self.compute_type = compute_type
+        self.name = f"faster-whisper:{self.model_name}"
+
+    def _model(self) -> Any:
+        with self._lock:
+            if self.model_name not in self._models:
+                try:
+                    from faster_whisper import WhisperModel  # noqa: PLC0415 - optional extra
+                except ImportError as exc:  # pragma: no cover - depends on extras
+                    raise AnalysisError(
+                        "INTERNAL",
+                        "faster-whisper not installed (uv sync --extra asr)",
+                        stage="TRANSCRIBE",
+                    ) from exc
+                cache = os.environ.get("SPEAKQUEST_MODEL_DIR", str(Path(".models").resolve()))
+                self._models[self.model_name] = WhisperModel(
+                    self.model_name,
+                    device="cpu",
+                    compute_type=self.compute_type,
+                    download_root=cache,
+                    cpu_threads=min(4, os.cpu_count() or 1),
+                )
+            return self._models[self.model_name]
+
+    def transcribe(self, wav: Path, language: str) -> Transcript:
+        lang = language.split("-", maxsplit=1)[0]
+        try:
+            segments, _info = self._model().transcribe(
+                str(wav),
+                language=lang,
+                word_timestamps=True,
+                beam_size=5,
+                temperature=0.0,
+                condition_on_previous_text=False,
+                initial_prompt=_VERBATIM_PROMPT,
+                vad_filter=False,
+            )
+            words = [
+                TimedWord(
+                    text=w.word.strip(),
+                    start=round(max(0.0, w.start), 3),
+                    end=round(max(w.start, w.end), 3),
+                    confidence=round(min(1.0, max(0.0, w.probability)), 4),
+                )
+                for seg in segments
+                for w in (seg.words or [])
+                if w.word.strip()
+            ]
+        except AnalysisError:
+            raise
+        except Exception as exc:
+            raise AnalysisError("TRANSCRIBE_FAILED", str(exc)[:300], stage="TRANSCRIBE") from exc
+        return Transcript(aligner=self.name, language=language, words=words)
+
+
+def get_aligner(name: str, **kwargs: Any) -> Aligner:
+    if name in ("faster-whisper", "whisper"):
+        return FasterWhisperAligner(**kwargs)
+    if name == "transcribe-file":
+        return TranscribeFileAligner(**kwargs)
+    if name == "words-file":
+        return WordsFileAligner(**kwargs)
+    raise ValueError(f"unknown aligner {name!r}")
+
+
+# --------------------------------------------------------------------------- spoken tokens
+
+
+@dataclass(frozen=True)
+class SpokenToken:
+    """A normalised token with timing. One recognised word can expand into
+    several tokens ("2026" → twenty twenty six); its span is split evenly."""
+
+    norm: str
+    text: str
+    start: float
+    end: float
+    confidence: float | None
+    source_word: int
+
+
+def spoken_tokens(transcript: Transcript) -> list[SpokenToken]:
+    out: list[SpokenToken] = []
+    for idx, word in enumerate(transcript.words):
+        norms = normalize_word(word.text)
+        if not norms:
+            continue
+        step = (word.end - word.start) / len(norms)
+        for k, norm in enumerate(norms):
+            out.append(
+                SpokenToken(
+                    norm=norm,
+                    text=word.text if len(norms) == 1 else norm,
+                    start=round(word.start + k * step, 3),
+                    end=round(word.start + (k + 1) * step, 3),
+                    confidence=word.confidence,
+                    source_word=idx,
+                )
+            )
+    # Aligners occasionally emit overlapping spans; clamp to keep time monotonic.
+    fixed: list[SpokenToken] = []
+    for raw in out:
+        tok = raw
+        if fixed and tok.start < fixed[-1].end:
+            start = fixed[-1].end
+            tok = SpokenToken(
+                tok.norm, tok.text, start, max(start, tok.end), tok.confidence, tok.source_word
+            )
+        fixed.append(tok)
+    return fixed
