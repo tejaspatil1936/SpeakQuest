@@ -84,6 +84,7 @@ ignore = [
   "RUF001",
   "RUF002",
   "RUF003",
+  "SIM905",  # "a b c".split() reads better than list literals for word sequences
 ]
 
 [tool.ruff.lint.per-file-ignores]
