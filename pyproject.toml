@@ -77,6 +77,7 @@ src = ["services/worker", "services/api", "services/explain", "eval", "tests"]
 select = ["E", "F", "W", "I", "B", "UP", "SIM", "RUF", "PL", "N"]
 ignore = [
   "PLR0913",  # analysis functions legitimately take many measurements
+  "PLR0917",
   "PLR2004",  # rubric constants are named in YAML, literals in tests are fine
   "PLR0911",
   "PLR0912",
