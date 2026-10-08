@@ -1,0 +1,92 @@
+# SpeakQuest challenge catalogue.
+#
+# `split` decides the evaluation role of each script: rubric thresholds are
+# tuned on `dev` scripts only and detection quality is reported on `heldout`
+# scripts only (system design §5.5). Scripts are original text written for
+# this project.
+
+challenges:
+  - id: deadline
+    title: The Deadline
+    difficulty: 1
+    split: dev
+    flaw_targets: [RUSH, HESITATE]
+    cue: Steady through the middle. Don't sprint at the finish line.
+    script: >-
+      We ship the final build before the deadline, then we rest for a while
+      and celebrate the launch together.
+
+  - id: weather-desk
+    title: Weather Desk
+    difficulty: 1
+    split: dev
+    flaw_targets: [MONO, FADE]
+    cue: Lift the forecast. Keep the last word as loud as the first.
+    script: >-
+      Clouds clear by noon across the valley. Expect a warm afternoon, a light
+      breeze from the west, and a cool, quiet evening under open skies.
+
+  - id: station-ident
+    title: Station Ident
+    difficulty: 1
+    split: dev
+    flaw_targets: [FILLER, RUSH]
+    cue: Clean and warm. No ums between the call sign and the promise.
+    script: >-
+      You are listening to the late show on 91.4. Stay with us, because the
+      next hour belongs to the music you asked for.
+
+  - id: product-pitch
+    title: Thirty-Second Pitch
+    difficulty: 2
+    split: dev
+    flaw_targets: [DRAG, MONO]
+    cue: Sell the problem first. Let the price land, don't let it sag.
+    script: >-
+      Most teams lose an hour every day searching for files. Our tool finds
+      them in seconds, learns how you work, and keeps everything in one place.
+      Try it free for 30 days.
+
+  - id: gallery-four
+    title: Gallery Four
+    difficulty: 2
+    split: dev
+    flaw_targets: [SKIP, HESITATE]
+    cue: Every detail matters to the listener. Don't drop the small words.
+    script: >-
+      This painting was finished in 1889, during a single week of rain. Look
+      closely at the left corner, where the artist hid a small blue bird among
+      the reeds.
+
+  - id: cabin-briefing
+    title: Cabin Briefing
+    difficulty: 2
+    split: heldout
+    flaw_targets: [RUSH, FADE]
+    cue: They have heard it before. Make them hear it again, all the way through.
+    script: >-
+      Please make sure your seat belt is fastened and your bag is stowed under
+      the seat in front of you. In the unlikely event of a loss of pressure,
+      masks will drop from above.
+
+  - id: the-toast
+    title: The Toast
+    difficulty: 3
+    split: heldout
+    flaw_targets: [HESITATE, MONO, FILLER]
+    cue: Tell it like a story you love. The names are the payoff.
+    script: >-
+      Ten years ago, two strangers missed the same train. They waited
+      together, argued about coffee, and never really stopped talking. Please
+      raise your glasses to Maya and Sam.
+
+  - id: closing-argument
+    title: Closing Argument
+    difficulty: 3
+    split: heldout
+    flaw_targets: [DRAG, SKIP, FADE]
+    cue: Slow is not the same as heavy. Land the last line, don't lose it.
+    script: >-
+      The evidence does not ask you to guess. It asks you to look at the
+      timeline, the receipts, and the silence that followed. When you do, only
+      one conclusion remains.
