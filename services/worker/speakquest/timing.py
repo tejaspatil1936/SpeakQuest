@@ -20,6 +20,7 @@ from typing import Any, ClassVar, Protocol
 
 from speakquest.contracts import TimedWord, Transcript
 from speakquest.errors import AnalysisError
+from speakquest.normalize import load_wav
 from speakquest.tokens import normalize_word
 
 
@@ -102,6 +103,9 @@ class WordsFileAligner:
 _VERBATIM_PROMPT = "Umm, let me think like, hmm... Okay, uh, here's what I'm, like, thinking."
 
 
+WHISPER_SR = 16000
+
+
 class FasterWhisperAligner:
     """Local CPU aligner (CTranslate2 Whisper with DTW word timestamps).
 
@@ -140,9 +144,16 @@ class FasterWhisperAligner:
 
     def transcribe(self, wav: Path, language: str) -> Transcript:
         lang = language.split("-", maxsplit=1)[0]
+        # Decode with our own loader: the pipeline always hands over the
+        # normalised 16 kHz WAV, and this sidesteps faster-whisper's PyAV path.
+        samples, sr = load_wav(wav)
+        if sr != WHISPER_SR:
+            raise AnalysisError(
+                "INTERNAL", f"aligner needs {WHISPER_SR} Hz audio, got {sr}", stage="TRANSCRIBE"
+            )
         try:
             segments, _info = self._model().transcribe(
-                str(wav),
+                samples,
                 language=lang,
                 word_timestamps=True,
                 beam_size=5,
@@ -169,7 +180,84 @@ class FasterWhisperAligner:
         return Transcript(aligner=self.name, language=language, words=words)
 
 
+# --------------------------------------------------------------------------- Vosk (Kaldi)
+
+
+class VoskAligner:
+    """Local CPU aligner using a Kaldi model through Vosk.
+
+    HMM decoding places word boundaries on the acoustics, which in our
+    measurements is far tighter than Whisper's attention-based timestamps
+    (see docs/EVALUATION.md), and it runs in ~200 MB of RAM. This is the
+    default stand-in for Amazon Transcribe when Transcribe is unavailable.
+    """
+
+    _models: ClassVar[dict[str, Any]] = {}
+    _lock: ClassVar[threading.Lock] = threading.Lock()
+
+    def __init__(self, model_path: str | None = None):
+        default = (
+            Path(os.environ.get("SPEAKQUEST_MODEL_DIR", ".models"))
+            / "vosk"
+            / ("vosk-model-small-en-us-0.15")
+        )
+        self.model_path = model_path or os.environ.get("SPEAKQUEST_VOSK_MODEL", str(default))
+        self.name = f"vosk:{Path(self.model_path).name}"
+
+    def _model(self) -> Any:
+        with self._lock:
+            if self.model_path not in self._models:
+                try:
+                    import vosk  # noqa: PLC0415 - optional extra
+                except ImportError as exc:  # pragma: no cover - depends on extras
+                    raise AnalysisError(
+                        "INTERNAL", "vosk not installed (uv sync --extra asr)", stage="TRANSCRIBE"
+                    ) from exc
+                if not Path(self.model_path).is_dir():
+                    raise AnalysisError(
+                        "INTERNAL",
+                        f"vosk model missing at {self.model_path} (run `make models`)",
+                        stage="TRANSCRIBE",
+                    )
+                vosk.SetLogLevel(-1)
+                self._models[self.model_path] = vosk.Model(self.model_path)
+            return self._models[self.model_path]
+
+    def transcribe(self, wav: Path, language: str) -> Transcript:
+        import vosk  # noqa: PLC0415 - optional extra
+
+        samples, sr = load_wav(wav)
+        pcm = (samples * 32767).clip(-32768, 32767).astype("<i2").tobytes()
+        try:
+            rec = vosk.KaldiRecognizer(self._model(), sr)
+            rec.SetWords(True)
+            results: list[dict[str, Any]] = []
+            step = sr // 2 * 2  # half a second of 16-bit samples
+            for i in range(0, len(pcm), step):
+                if rec.AcceptWaveform(pcm[i : i + step]):
+                    results.append(json.loads(rec.Result()))
+            results.append(json.loads(rec.FinalResult()))
+        except AnalysisError:
+            raise
+        except Exception as exc:
+            raise AnalysisError("TRANSCRIBE_FAILED", str(exc)[:300], stage="TRANSCRIBE") from exc
+        words = [
+            TimedWord(
+                text=str(w["word"]),
+                start=round(float(w["start"]), 3),
+                end=round(float(w["end"]), 3),
+                confidence=round(min(1.0, max(0.0, float(w.get("conf", 1.0)))), 4),
+            )
+            for r in results
+            for w in r.get("result", [])
+            if str(w.get("word", "")).strip()
+        ]
+        return Transcript(aligner=self.name, language=language, words=words)
+
+
 def get_aligner(name: str, **kwargs: Any) -> Aligner:
+    if name == "vosk":
+        return VoskAligner(**kwargs)
     if name in ("faster-whisper", "whisper"):
         return FasterWhisperAligner(**kwargs)
     if name == "transcribe-file":
