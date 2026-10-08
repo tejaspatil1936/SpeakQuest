@@ -36,7 +36,7 @@ _CURRENCY = {"$": ("dollar", "dollars"), "£": ("pound", "pounds"), "€": ("eur
 # "1,000" survive intact.
 _PHRASE_BREAK = re.compile(r"[;:!?…—]+|[,.]+(?=\s|$)|\s+-\s+|\n+")
 _TOKEN = re.compile(
-    r"(?P<cur>[$£€])?(?P<num>\d[\d,]*(?:\.\d+)?)(?P<suf>st|nd|rd|th|%|s)?|[^\W\d_]+(?:['’][^\W\d_]+)*",
+    r"(?P<cur>[$£€])?(?P<num>\d+(?:,\d{3})*(?:\.\d+)?)(?P<suf>st|nd|rd|th|%|s)?|[^\W\d_]+(?:['’][^\W\d_]+)*",
     re.UNICODE,
 )
 

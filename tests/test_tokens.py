@@ -42,6 +42,8 @@ def test_cardinal(n: int, words: str) -> None:
         ("$1", ["one", "dollar"]),
         ("3.5", ["three", "point", "five"]),
         ("10,000", ["ten", "thousand"]),
+        ("1889,", ["eighteen", "eighty", "nine"]),
+        ("1,5", ["one", "five"]),
         ("café", ["cafe"]),
         ("—", []),
     ],
