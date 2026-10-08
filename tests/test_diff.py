@@ -52,11 +52,17 @@ def test_repetition_and_filler_classification() -> None:
     assert kinds == {1: "repeat", 4: "filler", 7: "insert"}
 
 
-def test_coverage_counts_matches_and_subs() -> None:
-    script = "one two three four".split()
-    assert coverage(align(script, "one two three four".split()), 4) == 1.0
-    assert coverage(align(script, "one four".split()), 4) == 0.5
-    assert coverage([], 0) == 0.0
+def test_coverage_counts_matches_and_near_misses_only() -> None:
+    script = "one two three deadline".split()
+
+    def cov(spoken: str) -> float:
+        return coverage(align(script, spoken.split()), script, spoken.split())
+
+    assert cov("one two three deadline") == 1.0
+    assert cov("one deadline") == 0.5
+    assert cov("one two three deadlines") == 1.0
+    assert cov("cats dogs fish birds") == 0.0
+    assert coverage([], [], []) == 0.0
 
 
 def test_empty_inputs() -> None:

@@ -85,12 +85,22 @@ def align(
     return ops
 
 
-def coverage(ops: Sequence[AlignOp], script_len: int) -> float:
-    """Fraction of script tokens the speaker actually said (match or near-match)."""
-    if script_len == 0:
+def coverage(ops: Sequence[AlignOp], script: Sequence[str], spoken: Sequence[str]) -> float:
+    """Fraction of script tokens the speaker actually said.
+
+    Exact matches and near-misses count; arbitrary substitutions do not, or
+    reading a different text of the same length would look like full coverage.
+    """
+    if not script:
         return 0.0
-    hits = sum(1 for op in ops if op.op in ("match", "sub"))
-    return hits / script_len
+    hits = 0
+    for op in ops:
+        if op.script_index is None or op.take_index is None:
+            continue
+        a, b = script[op.script_index], spoken[op.take_index]
+        if op.op == "match" or (op.op == "sub" and _similar(a, b)):
+            hits += 1
+    return hits / len(script)
 
 
 def classify_insertions(
