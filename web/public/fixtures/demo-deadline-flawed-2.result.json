@@ -1,0 +1,1050 @@
+{
+ "schema_version": "1",
+ "analysis_id": "demo-deadline-flawed-2",
+ "challenge_id": "deadline",
+ "created_at": "2026-10-15T09:00:00Z",
+ "versions": {
+  "rubric_version": "1.0.0",
+  "worker_image_digest": "local",
+  "transcribe_language": "en-US",
+  "aligner": "vosk:vosk-model-small-en-us-0.15",
+  "model_id": null
+ },
+ "script": {
+  "text": "We ship the final build before the deadline, then we rest for a while and celebrate the launch together.",
+  "tokens": [
+   {
+    "index": 0,
+    "norm": "we",
+    "display": "We",
+    "phrase": 0
+   },
+   {
+    "index": 1,
+    "norm": "ship",
+    "display": "ship",
+    "phrase": 0
+   },
+   {
+    "index": 2,
+    "norm": "the",
+    "display": "the",
+    "phrase": 0
+   },
+   {
+    "index": 3,
+    "norm": "final",
+    "display": "final",
+    "phrase": 0
+   },
+   {
+    "index": 4,
+    "norm": "build",
+    "display": "build",
+    "phrase": 0
+   },
+   {
+    "index": 5,
+    "norm": "before",
+    "display": "before",
+    "phrase": 0
+   },
+   {
+    "index": 6,
+    "norm": "the",
+    "display": "the",
+    "phrase": 0
+   },
+   {
+    "index": 7,
+    "norm": "deadline",
+    "display": "deadline",
+    "phrase": 0
+   },
+   {
+    "index": 8,
+    "norm": "then",
+    "display": "then",
+    "phrase": 1
+   },
+   {
+    "index": 9,
+    "norm": "we",
+    "display": "we",
+    "phrase": 1
+   },
+   {
+    "index": 10,
+    "norm": "rest",
+    "display": "rest",
+    "phrase": 1
+   },
+   {
+    "index": 11,
+    "norm": "for",
+    "display": "for",
+    "phrase": 1
+   },
+   {
+    "index": 12,
+    "norm": "a",
+    "display": "a",
+    "phrase": 1
+   },
+   {
+    "index": 13,
+    "norm": "while",
+    "display": "while",
+    "phrase": 1
+   },
+   {
+    "index": 14,
+    "norm": "and",
+    "display": "and",
+    "phrase": 1
+   },
+   {
+    "index": 15,
+    "norm": "celebrate",
+    "display": "celebrate",
+    "phrase": 1
+   },
+   {
+    "index": 16,
+    "norm": "the",
+    "display": "the",
+    "phrase": 1
+   },
+   {
+    "index": 17,
+    "norm": "launch",
+    "display": "launch",
+    "phrase": 1
+   },
+   {
+    "index": 18,
+    "norm": "together",
+    "display": "together",
+    "phrase": 1
+   }
+  ],
+  "phrase_count": 2
+ },
+ "take": {
+  "duration_s": 8.376,
+  "words": [
+   {
+    "index": 0,
+    "text": "we",
+    "norm": "we",
+    "start": 0.3,
+    "end": 0.51,
+    "kind": "match",
+    "script_index": 0,
+    "syllables": 1,
+    "rate_ratio": 0.87,
+    "loudness_db": 3.3,
+    "pitch_st": 1.67,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f1"
+    ]
+   },
+   {
+    "index": 1,
+    "text": "ship",
+    "norm": "ship",
+    "start": 0.51,
+    "end": 0.87,
+    "kind": "match",
+    "script_index": 1,
+    "syllables": 1,
+    "rate_ratio": 0.87,
+    "loudness_db": 1.3,
+    "pitch_st": -13.86,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f1"
+    ]
+   },
+   {
+    "index": 2,
+    "text": "the",
+    "norm": "the",
+    "start": 0.87,
+    "end": 0.99,
+    "kind": "match",
+    "script_index": 2,
+    "syllables": 1,
+    "rate_ratio": 0.835,
+    "loudness_db": -2.8,
+    "pitch_st": 1.35,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f1"
+    ]
+   },
+   {
+    "index": 3,
+    "text": "final",
+    "norm": "final",
+    "start": 0.99,
+    "end": 1.44,
+    "kind": "match",
+    "script_index": 3,
+    "syllables": 2,
+    "rate_ratio": 0.927,
+    "loudness_db": 1.4,
+    "pitch_st": 0.24,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f1"
+    ]
+   },
+   {
+    "index": 4,
+    "text": "build",
+    "norm": "build",
+    "start": 1.44,
+    "end": 1.86,
+    "kind": "match",
+    "script_index": 4,
+    "syllables": 1,
+    "rate_ratio": 0.882,
+    "loudness_db": 2.4,
+    "pitch_st": -0.78,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f1"
+    ]
+   },
+   {
+    "index": 5,
+    "text": "before",
+    "norm": "before",
+    "start": 1.89,
+    "end": 2.31,
+    "kind": "match",
+    "script_index": 5,
+    "syllables": 2,
+    "rate_ratio": 0.927,
+    "loudness_db": 1.7,
+    "pitch_st": 1.07,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f1"
+    ]
+   },
+   {
+    "index": 6,
+    "text": "the",
+    "norm": "the",
+    "start": 2.31,
+    "end": 2.43,
+    "kind": "match",
+    "script_index": 6,
+    "syllables": 1,
+    "rate_ratio": 0.971,
+    "loudness_db": -5.0,
+    "pitch_st": 2.85,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f1",
+     "f2"
+    ]
+   },
+   {
+    "index": 7,
+    "text": "deadline",
+    "norm": "deadline",
+    "start": 2.43,
+    "end": 3.03,
+    "kind": "match",
+    "script_index": 7,
+    "syllables": 2,
+    "rate_ratio": 0.918,
+    "loudness_db": -11.0,
+    "pitch_st": -1.78,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f1",
+     "f2"
+    ]
+   },
+   {
+    "index": 8,
+    "text": "then",
+    "norm": "then",
+    "start": 3.33,
+    "end": 3.69,
+    "kind": "match",
+    "script_index": 8,
+    "syllables": 1,
+    "rate_ratio": 0.916,
+    "loudness_db": 4.5,
+    "pitch_st": 2.11,
+    "pause_before_ms": 380,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 9,
+    "text": "we",
+    "norm": "we",
+    "start": 4.53,
+    "end": 4.71,
+    "kind": "match",
+    "script_index": 9,
+    "syllables": 1,
+    "rate_ratio": 0.691,
+    "loudness_db": 2.7,
+    "pitch_st": 2.58,
+    "pause_before_ms": 860,
+    "finding_ids": [
+     "f3",
+     "f4"
+    ]
+   },
+   {
+    "index": 10,
+    "text": "rest",
+    "norm": "rest",
+    "start": 4.71,
+    "end": 5.19,
+    "kind": "match",
+    "script_index": 10,
+    "syllables": 1,
+    "rate_ratio": 0.769,
+    "loudness_db": -0.2,
+    "pitch_st": -0.9,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 11,
+    "text": "for",
+    "norm": "for",
+    "start": 5.19,
+    "end": 5.34,
+    "kind": "match",
+    "script_index": 11,
+    "syllables": 1,
+    "rate_ratio": 0.784,
+    "loudness_db": -4.3,
+    "pitch_st": 0.72,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 12,
+    "text": "a",
+    "norm": "a",
+    "start": 5.34,
+    "end": 5.52,
+    "kind": "match",
+    "script_index": 12,
+    "syllables": 1,
+    "rate_ratio": 0.974,
+    "loudness_db": 4.7,
+    "pitch_st": 1.31,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 13,
+    "text": "while",
+    "norm": "while",
+    "start": 5.52,
+    "end": 6.06,
+    "kind": "match",
+    "script_index": 13,
+    "syllables": 2,
+    "rate_ratio": 0.911,
+    "loudness_db": 1.2,
+    "pitch_st": -1.49,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 14,
+    "text": "and",
+    "norm": "and",
+    "start": 6.06,
+    "end": 6.27,
+    "kind": "match",
+    "script_index": 14,
+    "syllables": 1,
+    "rate_ratio": 0.882,
+    "loudness_db": -1.1,
+    "pitch_st": -0.14,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 15,
+    "text": "celebrate",
+    "norm": "celebrate",
+    "start": 6.27,
+    "end": 6.96,
+    "kind": "match",
+    "script_index": 15,
+    "syllables": 3,
+    "rate_ratio": 0.82,
+    "loudness_db": 2.7,
+    "pitch_st": 1.15,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 16,
+    "text": "the",
+    "norm": "the",
+    "start": 6.96,
+    "end": 7.05,
+    "kind": "match",
+    "script_index": 16,
+    "syllables": 1,
+    "rate_ratio": 0.824,
+    "loudness_db": -0.6,
+    "pitch_st": -0.09,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 17,
+    "text": "launch",
+    "norm": "launch",
+    "start": 7.05,
+    "end": 7.47,
+    "kind": "match",
+    "script_index": 17,
+    "syllables": 1,
+    "rate_ratio": 0.874,
+    "loudness_db": 0.0,
+    "pitch_st": -0.26,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 18,
+    "text": "together",
+    "norm": "together",
+    "start": 7.47,
+    "end": 8.01,
+    "kind": "match",
+    "script_index": 18,
+    "syllables": 3,
+    "rate_ratio": 0.874,
+    "loudness_db": -1.0,
+    "pitch_st": -2.66,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   }
+  ],
+  "pauses": [
+   {
+    "start": 2.98,
+    "end": 3.36,
+    "ms": 380,
+    "before_word": 8
+   },
+   {
+    "start": 3.7,
+    "end": 4.56,
+    "ms": 860,
+    "before_word": 9
+   }
+  ],
+  "phrases": [
+   {
+    "phrase": 0,
+    "start": 0.3,
+    "end": 3.03,
+    "pitch_sd_st": 2.02,
+    "voiced_frames": 173
+   },
+   {
+    "phrase": 1,
+    "start": 3.33,
+    "end": 8.01,
+    "pitch_sd_st": 1.54,
+    "voiced_frames": 270
+   }
+  ],
+  "vocalizations": [],
+  "syllables_per_s": 4.173,
+  "rate_ratio_global": 0.742,
+  "pitch_median_hz": 191.8,
+  "loudness_mean_db": -16.5
+ },
+ "reference": {
+  "duration_s": 5.766,
+  "words": [
+   {
+    "index": 0,
+    "text": "we",
+    "norm": "we",
+    "start": 0.3,
+    "end": 0.45,
+    "kind": "match",
+    "script_index": 0,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 0.0,
+    "pitch_st": 1.71,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 1,
+    "text": "ship",
+    "norm": "ship",
+    "start": 0.45,
+    "end": 0.72,
+    "kind": "match",
+    "script_index": 1,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -1.4,
+    "pitch_st": 6.88,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 2,
+    "text": "the",
+    "norm": "the",
+    "start": 0.72,
+    "end": 0.81,
+    "kind": "match",
+    "script_index": 2,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -5.8,
+    "pitch_st": -0.61,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 3,
+    "text": "final",
+    "norm": "final",
+    "start": 0.81,
+    "end": 1.11,
+    "kind": "match",
+    "script_index": 3,
+    "syllables": 2,
+    "rate_ratio": null,
+    "loudness_db": 2.8,
+    "pitch_st": 4.96,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 4,
+    "text": "build",
+    "norm": "build",
+    "start": 1.11,
+    "end": 1.5,
+    "kind": "match",
+    "script_index": 4,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -0.4,
+    "pitch_st": -4.66,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 5,
+    "text": "before",
+    "norm": "before",
+    "start": 1.5,
+    "end": 1.8,
+    "kind": "match",
+    "script_index": 5,
+    "syllables": 2,
+    "rate_ratio": null,
+    "loudness_db": -1.2,
+    "pitch_st": -2.1,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 6,
+    "text": "the",
+    "norm": "the",
+    "start": 1.8,
+    "end": 1.89,
+    "kind": "match",
+    "script_index": 6,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -5.1,
+    "pitch_st": -3.69,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 7,
+    "text": "deadline",
+    "norm": "deadline",
+    "start": 1.89,
+    "end": 2.4,
+    "kind": "match",
+    "script_index": 7,
+    "syllables": 2,
+    "rate_ratio": null,
+    "loudness_db": -2.4,
+    "pitch_st": -6.64,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 8,
+    "text": "then",
+    "norm": "then",
+    "start": 2.67,
+    "end": 2.88,
+    "kind": "match",
+    "script_index": 8,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 5.8,
+    "pitch_st": 3.59,
+    "pause_before_ms": 300,
+    "finding_ids": []
+   },
+   {
+    "index": 9,
+    "text": "we",
+    "norm": "we",
+    "start": 2.88,
+    "end": 3.0,
+    "kind": "match",
+    "script_index": 9,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 2.9,
+    "pitch_st": 4.1,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 10,
+    "text": "rest",
+    "norm": "rest",
+    "start": 3.0,
+    "end": 3.27,
+    "kind": "match",
+    "script_index": 10,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 2.5,
+    "pitch_st": 4.63,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 11,
+    "text": "for",
+    "norm": "for",
+    "start": 3.27,
+    "end": 3.39,
+    "kind": "match",
+    "script_index": 11,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -0.9,
+    "pitch_st": 3.81,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 12,
+    "text": "a",
+    "norm": "a",
+    "start": 3.39,
+    "end": 3.54,
+    "kind": "match",
+    "script_index": 12,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 2.2,
+    "pitch_st": 3.35,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 13,
+    "text": "while",
+    "norm": "while",
+    "start": 3.54,
+    "end": 3.99,
+    "kind": "match",
+    "script_index": 13,
+    "syllables": 2,
+    "rate_ratio": null,
+    "loudness_db": 0.4,
+    "pitch_st": -3.85,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 14,
+    "text": "and",
+    "norm": "and",
+    "start": 3.99,
+    "end": 4.11,
+    "kind": "match",
+    "script_index": 14,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -3.2,
+    "pitch_st": -4.71,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 15,
+    "text": "celebrate",
+    "norm": "celebrate",
+    "start": 4.11,
+    "end": 4.62,
+    "kind": "match",
+    "script_index": 15,
+    "syllables": 3,
+    "rate_ratio": null,
+    "loudness_db": 2.3,
+    "pitch_st": -1.33,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 16,
+    "text": "the",
+    "norm": "the",
+    "start": 4.62,
+    "end": 4.68,
+    "kind": "match",
+    "script_index": 16,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 1.0,
+    "pitch_st": 1.73,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 17,
+    "text": "launch",
+    "norm": "launch",
+    "start": 4.68,
+    "end": 4.95,
+    "kind": "match",
+    "script_index": 17,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 1.7,
+    "pitch_st": 2.81,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 18,
+    "text": "together",
+    "norm": "together",
+    "start": 4.95,
+    "end": 5.4,
+    "kind": "match",
+    "script_index": 18,
+    "syllables": 3,
+    "rate_ratio": null,
+    "loudness_db": -1.3,
+    "pitch_st": -1.96,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   }
+  ],
+  "pauses": [
+   {
+    "start": 2.4,
+    "end": 2.7,
+    "ms": 300,
+    "before_word": 8
+   }
+  ],
+  "phrases": [
+   {
+    "phrase": 0,
+    "start": 0.3,
+    "end": 2.4,
+    "pitch_sd_st": 4.43,
+    "voiced_frames": 155
+   },
+   {
+    "phrase": 1,
+    "start": 2.67,
+    "end": 5.4,
+    "pitch_sd_st": 3.65,
+    "voiced_frames": 207
+   }
+  ],
+  "vocalizations": [],
+  "syllables_per_s": 5.625,
+  "rate_ratio_global": null,
+  "pitch_median_hz": 187.5,
+  "loudness_mean_db": -15.2
+ },
+ "alignment": [
+  {
+   "op": "match",
+   "script_index": 0,
+   "take_index": 0
+  },
+  {
+   "op": "match",
+   "script_index": 1,
+   "take_index": 1
+  },
+  {
+   "op": "match",
+   "script_index": 2,
+   "take_index": 2
+  },
+  {
+   "op": "match",
+   "script_index": 3,
+   "take_index": 3
+  },
+  {
+   "op": "match",
+   "script_index": 4,
+   "take_index": 4
+  },
+  {
+   "op": "match",
+   "script_index": 5,
+   "take_index": 5
+  },
+  {
+   "op": "match",
+   "script_index": 6,
+   "take_index": 6
+  },
+  {
+   "op": "match",
+   "script_index": 7,
+   "take_index": 7
+  },
+  {
+   "op": "match",
+   "script_index": 8,
+   "take_index": 8
+  },
+  {
+   "op": "match",
+   "script_index": 9,
+   "take_index": 9
+  },
+  {
+   "op": "match",
+   "script_index": 10,
+   "take_index": 10
+  },
+  {
+   "op": "match",
+   "script_index": 11,
+   "take_index": 11
+  },
+  {
+   "op": "match",
+   "script_index": 12,
+   "take_index": 12
+  },
+  {
+   "op": "match",
+   "script_index": 13,
+   "take_index": 13
+  },
+  {
+   "op": "match",
+   "script_index": 14,
+   "take_index": 14
+  },
+  {
+   "op": "match",
+   "script_index": 15,
+   "take_index": 15
+  },
+  {
+   "op": "match",
+   "script_index": 16,
+   "take_index": 16
+  },
+  {
+   "op": "match",
+   "script_index": 17,
+   "take_index": 17
+  },
+  {
+   "op": "match",
+   "script_index": 18,
+   "take_index": 18
+  }
+ ],
+ "findings": [
+  {
+   "id": "f1",
+   "code": "MONO",
+   "dimension": "pitch",
+   "start": 0.3,
+   "end": 3.03,
+   "words": [
+    "we",
+    "ship",
+    "the",
+    "final",
+    "build",
+    "before",
+    "the",
+    "deadline"
+   ],
+   "evidence": {
+    "pitch_sd_st": 2.0,
+    "reference_pitch_sd_st": 4.4,
+    "ratio": 0.46
+   },
+   "severity": 1,
+   "rubric_version": "1.0.0",
+   "script_span": [
+    0,
+    7
+   ]
+  },
+  {
+   "id": "f2",
+   "code": "FADE",
+   "dimension": "volume",
+   "start": 2.31,
+   "end": 3.03,
+   "words": [
+    "the",
+    "deadline"
+   ],
+   "evidence": {
+    "drop_db": 8.0,
+    "reference_drop_db": 3.8
+   },
+   "severity": 1,
+   "rubric_version": "1.0.0",
+   "script_span": [
+    6,
+    7
+   ]
+  },
+  {
+   "id": "f3",
+   "code": "MONO",
+   "dimension": "pitch",
+   "start": 3.33,
+   "end": 8.01,
+   "words": [
+    "then",
+    "we",
+    "rest",
+    "for",
+    "a",
+    "while",
+    "and",
+    "celebrate",
+    "the",
+    "launch",
+    "together"
+   ],
+   "evidence": {
+    "pitch_sd_st": 1.5,
+    "reference_pitch_sd_st": 3.6,
+    "ratio": 0.42
+   },
+   "severity": 1,
+   "rubric_version": "1.0.0",
+   "script_span": [
+    8,
+    18
+   ]
+  },
+  {
+   "id": "f4",
+   "code": "HESITATE",
+   "dimension": "pauses",
+   "start": 3.7,
+   "end": 4.56,
+   "words": [
+    "then",
+    "we"
+   ],
+   "evidence": {
+    "pause_ms": 860,
+    "reference_pause_ms": 0
+   },
+   "severity": 1,
+   "rubric_version": "1.0.0",
+   "script_span": [
+    8,
+    9
+   ]
+  }
+ ],
+ "penalties": [
+  {
+   "finding_id": "f1",
+   "dimension": "pitch",
+   "points": 10.0
+  },
+  {
+   "finding_id": "f2",
+   "dimension": "volume",
+   "points": 8.0
+  },
+  {
+   "finding_id": "f3",
+   "dimension": "pitch",
+   "points": 10.0
+  },
+  {
+   "finding_id": "f4",
+   "dimension": "pauses",
+   "points": 7.0
+  }
+ ],
+ "scores": {
+  "pace": 100,
+  "pauses": 93,
+  "pitch": 80,
+  "volume": 92,
+  "accuracy": 100,
+  "overall": 93
+ },
+ "coaching": null,
+ "warnings": []
+}

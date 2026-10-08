@@ -1,0 +1,1204 @@
+{
+ "schema_version": "1",
+ "analysis_id": "demo-weather-desk-clean-ryan",
+ "challenge_id": "weather-desk",
+ "created_at": "2026-10-15T09:00:00Z",
+ "versions": {
+  "rubric_version": "1.0.0",
+  "worker_image_digest": "local",
+  "transcribe_language": "en-US",
+  "aligner": "vosk:vosk-model-small-en-us-0.15",
+  "model_id": null
+ },
+ "script": {
+  "text": "Clouds clear by noon across the valley. Expect a warm afternoon, a light breeze from the west, and a cool, quiet evening under open skies.",
+  "tokens": [
+   {
+    "index": 0,
+    "norm": "clouds",
+    "display": "Clouds",
+    "phrase": 0
+   },
+   {
+    "index": 1,
+    "norm": "clear",
+    "display": "clear",
+    "phrase": 0
+   },
+   {
+    "index": 2,
+    "norm": "by",
+    "display": "by",
+    "phrase": 0
+   },
+   {
+    "index": 3,
+    "norm": "noon",
+    "display": "noon",
+    "phrase": 0
+   },
+   {
+    "index": 4,
+    "norm": "across",
+    "display": "across",
+    "phrase": 0
+   },
+   {
+    "index": 5,
+    "norm": "the",
+    "display": "the",
+    "phrase": 0
+   },
+   {
+    "index": 6,
+    "norm": "valley",
+    "display": "valley",
+    "phrase": 0
+   },
+   {
+    "index": 7,
+    "norm": "expect",
+    "display": "Expect",
+    "phrase": 1
+   },
+   {
+    "index": 8,
+    "norm": "a",
+    "display": "a",
+    "phrase": 1
+   },
+   {
+    "index": 9,
+    "norm": "warm",
+    "display": "warm",
+    "phrase": 1
+   },
+   {
+    "index": 10,
+    "norm": "afternoon",
+    "display": "afternoon",
+    "phrase": 1
+   },
+   {
+    "index": 11,
+    "norm": "a",
+    "display": "a",
+    "phrase": 2
+   },
+   {
+    "index": 12,
+    "norm": "light",
+    "display": "light",
+    "phrase": 2
+   },
+   {
+    "index": 13,
+    "norm": "breeze",
+    "display": "breeze",
+    "phrase": 2
+   },
+   {
+    "index": 14,
+    "norm": "from",
+    "display": "from",
+    "phrase": 2
+   },
+   {
+    "index": 15,
+    "norm": "the",
+    "display": "the",
+    "phrase": 2
+   },
+   {
+    "index": 16,
+    "norm": "west",
+    "display": "west",
+    "phrase": 2
+   },
+   {
+    "index": 17,
+    "norm": "and",
+    "display": "and",
+    "phrase": 3
+   },
+   {
+    "index": 18,
+    "norm": "a",
+    "display": "a",
+    "phrase": 3
+   },
+   {
+    "index": 19,
+    "norm": "cool",
+    "display": "cool",
+    "phrase": 3
+   },
+   {
+    "index": 20,
+    "norm": "quiet",
+    "display": "quiet",
+    "phrase": 4
+   },
+   {
+    "index": 21,
+    "norm": "evening",
+    "display": "evening",
+    "phrase": 4
+   },
+   {
+    "index": 22,
+    "norm": "under",
+    "display": "under",
+    "phrase": 4
+   },
+   {
+    "index": 23,
+    "norm": "open",
+    "display": "open",
+    "phrase": 4
+   },
+   {
+    "index": 24,
+    "norm": "skies",
+    "display": "skies",
+    "phrase": 4
+   }
+  ],
+  "phrase_count": 5
+ },
+ "take": {
+  "duration_s": 9.117,
+  "words": [
+   {
+    "index": 0,
+    "text": "clouds",
+    "norm": "clouds",
+    "start": 0.3,
+    "end": 0.72,
+    "kind": "match",
+    "script_index": 0,
+    "syllables": 1,
+    "rate_ratio": 0.895,
+    "loudness_db": 1.5,
+    "pitch_st": 2.34,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 1,
+    "text": "clear",
+    "norm": "clear",
+    "start": 0.72,
+    "end": 0.99,
+    "kind": "match",
+    "script_index": 1,
+    "syllables": 1,
+    "rate_ratio": 0.895,
+    "loudness_db": 1.4,
+    "pitch_st": 0.5,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 2,
+    "text": "by",
+    "norm": "by",
+    "start": 0.99,
+    "end": 1.23,
+    "kind": "match",
+    "script_index": 2,
+    "syllables": 1,
+    "rate_ratio": 1.126,
+    "loudness_db": 2.0,
+    "pitch_st": 0.15,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 3,
+    "text": "noon",
+    "norm": "noon",
+    "start": 1.23,
+    "end": 1.41,
+    "kind": "match",
+    "script_index": 3,
+    "syllables": 1,
+    "rate_ratio": 1.067,
+    "loudness_db": 0.1,
+    "pitch_st": 1.37,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 4,
+    "text": "across",
+    "norm": "across",
+    "start": 1.41,
+    "end": 1.77,
+    "kind": "match",
+    "script_index": 4,
+    "syllables": 2,
+    "rate_ratio": 1.145,
+    "loudness_db": -0.1,
+    "pitch_st": 0.72,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 5,
+    "text": "the",
+    "norm": "the",
+    "start": 1.77,
+    "end": 1.86,
+    "kind": "match",
+    "script_index": 5,
+    "syllables": 1,
+    "rate_ratio": 0.925,
+    "loudness_db": -4.2,
+    "pitch_st": -4.83,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 6,
+    "text": "valley",
+    "norm": "valley",
+    "start": 1.86,
+    "end": 2.28,
+    "kind": "match",
+    "script_index": 6,
+    "syllables": 2,
+    "rate_ratio": 0.968,
+    "loudness_db": 0.1,
+    "pitch_st": -4.71,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 7,
+    "text": "expect",
+    "norm": "expect",
+    "start": 2.73,
+    "end": 3.15,
+    "kind": "match",
+    "script_index": 7,
+    "syllables": 2,
+    "rate_ratio": 0.879,
+    "loudness_db": 0.3,
+    "pitch_st": 4.06,
+    "pause_before_ms": 520,
+    "finding_ids": []
+   },
+   {
+    "index": 8,
+    "text": "a",
+    "norm": "a",
+    "start": 3.18,
+    "end": 3.39,
+    "kind": "match",
+    "script_index": 8,
+    "syllables": 1,
+    "rate_ratio": 0.878,
+    "loudness_db": 2.9,
+    "pitch_st": 1.11,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 9,
+    "text": "warm",
+    "norm": "warm",
+    "start": 3.39,
+    "end": 3.72,
+    "kind": "match",
+    "script_index": 9,
+    "syllables": 1,
+    "rate_ratio": 0.873,
+    "loudness_db": 2.5,
+    "pitch_st": 1.24,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 10,
+    "text": "afternoon",
+    "norm": "afternoon",
+    "start": 3.72,
+    "end": 4.29,
+    "kind": "match",
+    "script_index": 10,
+    "syllables": 3,
+    "rate_ratio": 1.021,
+    "loudness_db": -3.3,
+    "pitch_st": -7.04,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 11,
+    "text": "a",
+    "norm": "a",
+    "start": 4.53,
+    "end": 4.65,
+    "kind": "match",
+    "script_index": 11,
+    "syllables": 1,
+    "rate_ratio": 1.176,
+    "loudness_db": 3.3,
+    "pitch_st": 4.74,
+    "pause_before_ms": 300,
+    "finding_ids": []
+   },
+   {
+    "index": 12,
+    "text": "light",
+    "norm": "light",
+    "start": 4.65,
+    "end": 4.83,
+    "kind": "match",
+    "script_index": 12,
+    "syllables": 1,
+    "rate_ratio": 1.505,
+    "loudness_db": 2.4,
+    "pitch_st": 2.14,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 13,
+    "text": "breeze",
+    "norm": "breeze",
+    "start": 4.83,
+    "end": 5.13,
+    "kind": "match",
+    "script_index": 13,
+    "syllables": 1,
+    "rate_ratio": 1.41,
+    "loudness_db": -2.5,
+    "pitch_st": -2.77,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 14,
+    "text": "from",
+    "norm": "from",
+    "start": 5.13,
+    "end": 5.28,
+    "kind": "match",
+    "script_index": 14,
+    "syllables": 1,
+    "rate_ratio": 1.182,
+    "loudness_db": -3.2,
+    "pitch_st": -4.12,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 15,
+    "text": "the",
+    "norm": "the",
+    "start": 5.28,
+    "end": 5.37,
+    "kind": "match",
+    "script_index": 15,
+    "syllables": 1,
+    "rate_ratio": 1.039,
+    "loudness_db": -1.5,
+    "pitch_st": -5.31,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 16,
+    "text": "west",
+    "norm": "west",
+    "start": 5.37,
+    "end": 5.76,
+    "kind": "match",
+    "script_index": 16,
+    "syllables": 1,
+    "rate_ratio": 1.028,
+    "loudness_db": -1.7,
+    "pitch_st": -7.38,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 17,
+    "text": "and",
+    "norm": "and",
+    "start": 5.97,
+    "end": 6.12,
+    "kind": "match",
+    "script_index": 17,
+    "syllables": 1,
+    "rate_ratio": 1.018,
+    "loudness_db": -6.6,
+    "pitch_st": -6.16,
+    "pause_before_ms": 300,
+    "finding_ids": []
+   },
+   {
+    "index": 18,
+    "text": "a",
+    "norm": "a",
+    "start": 6.15,
+    "end": 6.27,
+    "kind": "match",
+    "script_index": 18,
+    "syllables": 1,
+    "rate_ratio": 1.018,
+    "loudness_db": 2.9,
+    "pitch_st": 1.94,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 19,
+    "text": "cool",
+    "norm": "cool",
+    "start": 6.27,
+    "end": 6.66,
+    "kind": "match",
+    "script_index": 19,
+    "syllables": 1,
+    "rate_ratio": 1.131,
+    "loudness_db": 0.7,
+    "pitch_st": 7.93,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 20,
+    "text": "quiet",
+    "norm": "quiet",
+    "start": 6.87,
+    "end": 7.17,
+    "kind": "match",
+    "script_index": 20,
+    "syllables": 1,
+    "rate_ratio": 1.075,
+    "loudness_db": 1.7,
+    "pitch_st": 5.92,
+    "pause_before_ms": 300,
+    "finding_ids": []
+   },
+   {
+    "index": 21,
+    "text": "evening",
+    "norm": "evening",
+    "start": 7.17,
+    "end": 7.56,
+    "kind": "match",
+    "script_index": 21,
+    "syllables": 3,
+    "rate_ratio": 0.841,
+    "loudness_db": -3.8,
+    "pitch_st": -3.11,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 22,
+    "text": "under",
+    "norm": "under",
+    "start": 7.59,
+    "end": 7.89,
+    "kind": "match",
+    "script_index": 22,
+    "syllables": 2,
+    "rate_ratio": 0.789,
+    "loudness_db": 2.4,
+    "pitch_st": 0.99,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 23,
+    "text": "open",
+    "norm": "open",
+    "start": 7.89,
+    "end": 8.19,
+    "kind": "match",
+    "script_index": 23,
+    "syllables": 2,
+    "rate_ratio": 0.854,
+    "loudness_db": 2.6,
+    "pitch_st": 0.53,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 24,
+    "text": "skies",
+    "norm": "skies",
+    "start": 8.19,
+    "end": 8.76,
+    "kind": "match",
+    "script_index": 24,
+    "syllables": 1,
+    "rate_ratio": 0.854,
+    "loudness_db": 0.1,
+    "pitch_st": -0.26,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   }
+  ],
+  "pauses": [
+   {
+    "start": 2.22,
+    "end": 2.74,
+    "ms": 520,
+    "before_word": 7
+   },
+   {
+    "start": 4.24,
+    "end": 4.54,
+    "ms": 300,
+    "before_word": 11
+   },
+   {
+    "start": 5.7,
+    "end": 6.0,
+    "ms": 300,
+    "before_word": 17
+   },
+   {
+    "start": 6.6,
+    "end": 6.9,
+    "ms": 300,
+    "before_word": 20
+   }
+  ],
+  "phrases": [
+   {
+    "phrase": 0,
+    "start": 0.3,
+    "end": 2.28,
+    "pitch_sd_st": 3.32,
+    "voiced_frames": 143
+   },
+   {
+    "phrase": 1,
+    "start": 2.73,
+    "end": 4.29,
+    "pitch_sd_st": 4.04,
+    "voiced_frames": 106
+   },
+   {
+    "phrase": 2,
+    "start": 4.53,
+    "end": 5.76,
+    "pitch_sd_st": 3.67,
+    "voiced_frames": 87
+   },
+   {
+    "phrase": 3,
+    "start": 5.97,
+    "end": 6.66,
+    "pitch_sd_st": 6.65,
+    "voiced_frames": 40
+   },
+   {
+    "phrase": 4,
+    "start": 6.87,
+    "end": 8.76,
+    "pitch_sd_st": 3.52,
+    "voiced_frames": 129
+   }
+  ],
+  "vocalizations": [],
+  "syllables_per_s": 4.83,
+  "rate_ratio_global": 1.081,
+  "pitch_median_hz": 164.6,
+  "loudness_mean_db": -13.9
+ },
+ "reference": {
+  "duration_s": 9.825,
+  "words": [
+   {
+    "index": 0,
+    "text": "clouds",
+    "norm": "clouds",
+    "start": 0.3,
+    "end": 0.69,
+    "kind": "match",
+    "script_index": 0,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 1.8,
+    "pitch_st": 6.35,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 1,
+    "text": "clear",
+    "norm": "clear",
+    "start": 0.69,
+    "end": 0.99,
+    "kind": "match",
+    "script_index": 1,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -1.2,
+    "pitch_st": 3.07,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 2,
+    "text": "by",
+    "norm": "by",
+    "start": 0.99,
+    "end": 1.2,
+    "kind": "match",
+    "script_index": 2,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 0.9,
+    "pitch_st": -0.04,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 3,
+    "text": "noon",
+    "norm": "noon",
+    "start": 1.2,
+    "end": 1.53,
+    "kind": "match",
+    "script_index": 3,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 0.2,
+    "pitch_st": -0.49,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 4,
+    "text": "across",
+    "norm": "across",
+    "start": 1.53,
+    "end": 1.89,
+    "kind": "match",
+    "script_index": 4,
+    "syllables": 2,
+    "rate_ratio": null,
+    "loudness_db": -2.6,
+    "pitch_st": 3.71,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 5,
+    "text": "the",
+    "norm": "the",
+    "start": 1.89,
+    "end": 1.98,
+    "kind": "match",
+    "script_index": 5,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -1.8,
+    "pitch_st": -0.38,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 6,
+    "text": "valley",
+    "norm": "valley",
+    "start": 1.98,
+    "end": 2.37,
+    "kind": "match",
+    "script_index": 6,
+    "syllables": 2,
+    "rate_ratio": null,
+    "loudness_db": -2.8,
+    "pitch_st": -4.65,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 7,
+    "text": "expect",
+    "norm": "expect",
+    "start": 2.88,
+    "end": 3.33,
+    "kind": "match",
+    "script_index": 7,
+    "syllables": 2,
+    "rate_ratio": null,
+    "loudness_db": -0.5,
+    "pitch_st": 7.65,
+    "pause_before_ms": 540,
+    "finding_ids": []
+   },
+   {
+    "index": 8,
+    "text": "a",
+    "norm": "a",
+    "start": 3.36,
+    "end": 3.48,
+    "kind": "match",
+    "script_index": 8,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 3.6,
+    "pitch_st": 1.36,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 9,
+    "text": "warm",
+    "norm": "warm",
+    "start": 3.48,
+    "end": 3.81,
+    "kind": "match",
+    "script_index": 9,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 2.9,
+    "pitch_st": -1.22,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 10,
+    "text": "afternoon",
+    "norm": "afternoon",
+    "start": 3.81,
+    "end": 4.38,
+    "kind": "match",
+    "script_index": 10,
+    "syllables": 3,
+    "rate_ratio": null,
+    "loudness_db": 2.3,
+    "pitch_st": -0.94,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 11,
+    "text": "a",
+    "norm": "a",
+    "start": 4.68,
+    "end": 4.86,
+    "kind": "match",
+    "script_index": 11,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 4.8,
+    "pitch_st": 6.02,
+    "pause_before_ms": 320,
+    "finding_ids": []
+   },
+   {
+    "index": 12,
+    "text": "light",
+    "norm": "light",
+    "start": 4.86,
+    "end": 5.16,
+    "kind": "match",
+    "script_index": 12,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 1.7,
+    "pitch_st": 5.3,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 13,
+    "text": "breeze",
+    "norm": "breeze",
+    "start": 5.19,
+    "end": 5.64,
+    "kind": "match",
+    "script_index": 13,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -1.9,
+    "pitch_st": -3.52,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 14,
+    "text": "from",
+    "norm": "from",
+    "start": 5.64,
+    "end": 5.82,
+    "kind": "match",
+    "script_index": 14,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -2.3,
+    "pitch_st": -2.6,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 15,
+    "text": "the",
+    "norm": "the",
+    "start": 5.82,
+    "end": 5.88,
+    "kind": "match",
+    "script_index": 15,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -2.5,
+    "pitch_st": -2.75,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 16,
+    "text": "west",
+    "norm": "west",
+    "start": 5.88,
+    "end": 6.33,
+    "kind": "match",
+    "script_index": 16,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -3.9,
+    "pitch_st": -7.45,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 17,
+    "text": "and",
+    "norm": "and",
+    "start": 6.6,
+    "end": 6.78,
+    "kind": "match",
+    "script_index": 17,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 0.5,
+    "pitch_st": -2.07,
+    "pause_before_ms": 360,
+    "finding_ids": []
+   },
+   {
+    "index": 18,
+    "text": "a",
+    "norm": "a",
+    "start": 6.78,
+    "end": 6.9,
+    "kind": "match",
+    "script_index": 18,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 4.1,
+    "pitch_st": 4.4,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 19,
+    "text": "cool",
+    "norm": "cool",
+    "start": 6.9,
+    "end": 7.32,
+    "kind": "match",
+    "script_index": 19,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -0.2,
+    "pitch_st": -3.92,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 20,
+    "text": "quiet",
+    "norm": "quiet",
+    "start": 7.59,
+    "end": 7.98,
+    "kind": "match",
+    "script_index": 20,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 1.8,
+    "pitch_st": 7.64,
+    "pause_before_ms": 320,
+    "finding_ids": []
+   },
+   {
+    "index": 21,
+    "text": "evening",
+    "norm": "evening",
+    "start": 7.98,
+    "end": 8.37,
+    "kind": "match",
+    "script_index": 21,
+    "syllables": 3,
+    "rate_ratio": null,
+    "loudness_db": -0.6,
+    "pitch_st": 0.05,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 22,
+    "text": "and",
+    "norm": "and",
+    "start": 8.37,
+    "end": 8.52,
+    "kind": "sub",
+    "script_index": 22,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 0.7,
+    "pitch_st": 0.02,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 23,
+    "text": "open",
+    "norm": "open",
+    "start": 8.61,
+    "end": 8.85,
+    "kind": "match",
+    "script_index": 23,
+    "syllables": 2,
+    "rate_ratio": null,
+    "loudness_db": -0.4,
+    "pitch_st": 0.4,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 24,
+    "text": "skies",
+    "norm": "skies",
+    "start": 8.85,
+    "end": 9.45,
+    "kind": "match",
+    "script_index": 24,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": -4.5,
+    "pitch_st": -6.08,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   }
+  ],
+  "pauses": [
+   {
+    "start": 2.34,
+    "end": 2.88,
+    "ms": 540,
+    "before_word": 7
+   },
+   {
+    "start": 4.36,
+    "end": 4.68,
+    "ms": 320,
+    "before_word": 11
+   },
+   {
+    "start": 6.28,
+    "end": 6.64,
+    "ms": 360,
+    "before_word": 17
+   },
+   {
+    "start": 7.3,
+    "end": 7.62,
+    "ms": 320,
+    "before_word": 20
+   }
+  ],
+  "phrases": [
+   {
+    "phrase": 0,
+    "start": 0.3,
+    "end": 2.37,
+    "pitch_sd_st": 3.63,
+    "voiced_frames": 156
+   },
+   {
+    "phrase": 1,
+    "start": 2.88,
+    "end": 4.38,
+    "pitch_sd_st": 3.42,
+    "voiced_frames": 99
+   },
+   {
+    "phrase": 2,
+    "start": 4.68,
+    "end": 6.33,
+    "pitch_sd_st": 5.33,
+    "voiced_frames": 115
+   },
+   {
+    "phrase": 3,
+    "start": 6.6,
+    "end": 7.32,
+    "pitch_sd_st": 5.19,
+    "voiced_frames": 54
+   },
+   {
+    "phrase": 4,
+    "start": 7.59,
+    "end": 9.45,
+    "pitch_sd_st": 4.06,
+    "voiced_frames": 144
+   }
+  ],
+  "vocalizations": [],
+  "syllables_per_s": 4.336,
+  "rate_ratio_global": null,
+  "pitch_median_hz": 179.1,
+  "loudness_mean_db": -15.3
+ },
+ "alignment": [
+  {
+   "op": "match",
+   "script_index": 0,
+   "take_index": 0
+  },
+  {
+   "op": "match",
+   "script_index": 1,
+   "take_index": 1
+  },
+  {
+   "op": "match",
+   "script_index": 2,
+   "take_index": 2
+  },
+  {
+   "op": "match",
+   "script_index": 3,
+   "take_index": 3
+  },
+  {
+   "op": "match",
+   "script_index": 4,
+   "take_index": 4
+  },
+  {
+   "op": "match",
+   "script_index": 5,
+   "take_index": 5
+  },
+  {
+   "op": "match",
+   "script_index": 6,
+   "take_index": 6
+  },
+  {
+   "op": "match",
+   "script_index": 7,
+   "take_index": 7
+  },
+  {
+   "op": "match",
+   "script_index": 8,
+   "take_index": 8
+  },
+  {
+   "op": "match",
+   "script_index": 9,
+   "take_index": 9
+  },
+  {
+   "op": "match",
+   "script_index": 10,
+   "take_index": 10
+  },
+  {
+   "op": "match",
+   "script_index": 11,
+   "take_index": 11
+  },
+  {
+   "op": "match",
+   "script_index": 12,
+   "take_index": 12
+  },
+  {
+   "op": "match",
+   "script_index": 13,
+   "take_index": 13
+  },
+  {
+   "op": "match",
+   "script_index": 14,
+   "take_index": 14
+  },
+  {
+   "op": "match",
+   "script_index": 15,
+   "take_index": 15
+  },
+  {
+   "op": "match",
+   "script_index": 16,
+   "take_index": 16
+  },
+  {
+   "op": "match",
+   "script_index": 17,
+   "take_index": 17
+  },
+  {
+   "op": "match",
+   "script_index": 18,
+   "take_index": 18
+  },
+  {
+   "op": "match",
+   "script_index": 19,
+   "take_index": 19
+  },
+  {
+   "op": "match",
+   "script_index": 20,
+   "take_index": 20
+  },
+  {
+   "op": "match",
+   "script_index": 21,
+   "take_index": 21
+  },
+  {
+   "op": "match",
+   "script_index": 22,
+   "take_index": 22
+  },
+  {
+   "op": "match",
+   "script_index": 23,
+   "take_index": 23
+  },
+  {
+   "op": "match",
+   "script_index": 24,
+   "take_index": 24
+  }
+ ],
+ "findings": [],
+ "penalties": [],
+ "scores": {
+  "pace": 100,
+  "pauses": 100,
+  "pitch": 100,
+  "volume": 100,
+  "accuracy": 100,
+  "overall": 100
+ },
+ "coaching": null,
+ "warnings": []
+}

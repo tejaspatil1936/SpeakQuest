@@ -1,0 +1,60 @@
+{
+  "fixtures": [
+    {
+      "analysisId": "demo-deadline-flawed-2",
+      "challengeId": "deadline",
+      "clip": "deadline__flawed-2",
+      "overall": 93,
+      "codes": [
+        "MONO",
+        "FADE",
+        "MONO",
+        "HESITATE"
+      ]
+    },
+    {
+      "analysisId": "demo-deadline-flawed-4",
+      "challengeId": "deadline",
+      "clip": "deadline__flawed-4",
+      "overall": 92,
+      "codes": [
+        "MONO",
+        "DRAG",
+        "SKIP",
+        "MONO",
+        "FILLER"
+      ]
+    },
+    {
+      "analysisId": "demo-gallery-four-flawed-1",
+      "challengeId": "gallery-four",
+      "clip": "gallery-four__flawed-1",
+      "overall": 97,
+      "codes": [
+        "SKIP"
+      ]
+    },
+    {
+      "analysisId": "demo-the-toast-flawed-2",
+      "challengeId": "the-toast",
+      "clip": "the-toast__flawed-2",
+      "overall": 79,
+      "codes": [
+        "DRAG",
+        "MONO",
+        "FILLER",
+        "MONO",
+        "MONO",
+        "MONO",
+        "MONO"
+      ]
+    },
+    {
+      "analysisId": "demo-weather-desk-clean-ryan",
+      "challengeId": "weather-desk",
+      "clip": "weather-desk__clean-ryan",
+      "overall": 100,
+      "codes": []
+    }
+  ]
+}

@@ -69,3 +69,6 @@ eval/reports/*.local.*
 !.vscode/extensions.json
 .DS_Store
 *.swp
+
+# Synthetic TTS demo fixtures (not user recordings) are small and committed.
+!web/public/fixtures/*.ogg

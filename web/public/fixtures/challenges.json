@@ -1,0 +1,126 @@
+{
+  "challenges": [
+    {
+      "id": "deadline",
+      "title": "The Deadline",
+      "script": "We ship the final build before the deadline, then we rest for a while and celebrate the launch together.",
+      "difficulty": 1,
+      "flaw_targets": [
+        "RUSH",
+        "HESITATE"
+      ],
+      "language": "en-US",
+      "cue": "Steady through the middle. Don't sprint at the finish line.",
+      "reference_duration_s": 5.766,
+      "reference_audio_url": "/fixtures/deadline.reference.ogg",
+      "reference_ready": true
+    },
+    {
+      "id": "weather-desk",
+      "title": "Weather Desk",
+      "script": "Clouds clear by noon across the valley. Expect a warm afternoon, a light breeze from the west, and a cool, quiet evening under open skies.",
+      "difficulty": 1,
+      "flaw_targets": [
+        "MONO",
+        "FADE"
+      ],
+      "language": "en-US",
+      "cue": "Lift the forecast. Keep the last word as loud as the first.",
+      "reference_duration_s": 9.825,
+      "reference_audio_url": "/fixtures/weather-desk.reference.ogg",
+      "reference_ready": true
+    },
+    {
+      "id": "station-ident",
+      "title": "Station Ident",
+      "script": "You are listening to the late show on 91.4. Stay with us, because the next hour belongs to the music you asked for.",
+      "difficulty": 1,
+      "flaw_targets": [
+        "FILLER",
+        "RUSH"
+      ],
+      "language": "en-US",
+      "cue": "Clean and warm. No ums between the call sign and the promise.",
+      "reference_duration_s": 7.589,
+      "reference_audio_url": "/fixtures/station-ident.reference.ogg",
+      "reference_ready": true
+    },
+    {
+      "id": "product-pitch",
+      "title": "Thirty-Second Pitch",
+      "script": "Most teams lose an hour every day searching for files. Our tool finds them in seconds, learns how you work, and keeps everything in one place. Try it free for 30 days.",
+      "difficulty": 2,
+      "flaw_targets": [
+        "DRAG",
+        "MONO"
+      ],
+      "language": "en-US",
+      "cue": "Sell the problem first. Let the price land, don't let it sag.",
+      "reference_duration_s": 11.17,
+      "reference_audio_url": "/fixtures/product-pitch.reference.ogg",
+      "reference_ready": true
+    },
+    {
+      "id": "gallery-four",
+      "title": "Gallery Four",
+      "script": "This painting was finished in 1889, during a single week of rain. Look closely at the left corner, where the artist hid a small blue bird among the reeds.",
+      "difficulty": 2,
+      "flaw_targets": [
+        "SKIP",
+        "HESITATE"
+      ],
+      "language": "en-US",
+      "cue": "Every detail matters to the listener. Don't drop the small words.",
+      "reference_duration_s": 9.485,
+      "reference_audio_url": "/fixtures/gallery-four.reference.ogg",
+      "reference_ready": true
+    },
+    {
+      "id": "cabin-briefing",
+      "title": "Cabin Briefing",
+      "script": "Please make sure your seat belt is fastened and your bag is stowed under the seat in front of you. In the unlikely event of a loss of pressure, masks will drop from above.",
+      "difficulty": 2,
+      "flaw_targets": [
+        "RUSH",
+        "FADE"
+      ],
+      "language": "en-US",
+      "cue": "They have heard it before. Make them hear it again, all the way through.",
+      "reference_duration_s": 9.633,
+      "reference_audio_url": "/fixtures/cabin-briefing.reference.ogg",
+      "reference_ready": true
+    },
+    {
+      "id": "the-toast",
+      "title": "The Toast",
+      "script": "Ten years ago, two strangers missed the same train. They waited together, argued about coffee, and never really stopped talking. Please raise your glasses to Maya and Sam.",
+      "difficulty": 3,
+      "flaw_targets": [
+        "HESITATE",
+        "MONO",
+        "FILLER"
+      ],
+      "language": "en-US",
+      "cue": "Tell it like a story you love. The names are the payoff.",
+      "reference_duration_s": 11.069,
+      "reference_audio_url": "/fixtures/the-toast.reference.ogg",
+      "reference_ready": true
+    },
+    {
+      "id": "closing-argument",
+      "title": "Closing Argument",
+      "script": "The evidence does not ask you to guess. It asks you to look at the timeline, the receipts, and the silence that followed. When you do, only one conclusion remains.",
+      "difficulty": 3,
+      "flaw_targets": [
+        "DRAG",
+        "SKIP",
+        "FADE"
+      ],
+      "language": "en-US",
+      "cue": "Slow is not the same as heavy. Land the last line, don't lose it.",
+      "reference_duration_s": 10.511,
+      "reference_audio_url": "/fixtures/closing-argument.reference.ogg",
+      "reference_ready": true
+    }
+  ]
+}
