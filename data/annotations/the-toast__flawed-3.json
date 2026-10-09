@@ -6,21 +6,21 @@
   "split": "heldout",
   "sample_rate": 22050,
   "duration_s": 10.453,
-  "audio_sha256": "d1615242b34515ed76317910e8ea8246903fe433a9aaf8a6c56e47296d151ea2",
+  "audio_sha256": "b59621892e96028b10f6949ba6481959ea7d5e04a745336373e03820d18e4f4f",
   "generator": {
     "name": "piper-phoneme-splice",
-    "version": "2",
+    "version": "3",
     "noise_scale": 0.0,
     "noise_w_scale": 0.0
   },
   "flaws": [
     {
       "code": "FADE",
-      "start": 3.708,
-      "end": 4.323,
+      "start": 9.544,
+      "end": 10.043,
       "script_span": [
-        10,
-        11
+        26,
+        27
       ],
       "params": {
         "start_db": -8.0,

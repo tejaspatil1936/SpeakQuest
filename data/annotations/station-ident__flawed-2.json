@@ -5,37 +5,39 @@
   "voice": "en_US-amy-medium",
   "split": "dev",
   "sample_rate": 22050,
-  "duration_s": 9.18,
-  "audio_sha256": "a3b950e58f0818bebebec74a8fb885df6d3ec69d394d7362c4c652f4cfbb4f44",
+  "duration_s": 10.619,
+  "audio_sha256": "9da3a45b9bc8fbabe5124d55fb84d496ac294db2fa69104daddddc7b0397ab3d",
   "generator": {
     "name": "piper-phoneme-splice",
-    "version": "2",
+    "version": "3",
     "noise_scale": 0.0,
     "noise_w_scale": 0.0
   },
   "flaws": [
     {
-      "code": "MONO",
-      "start": 0.36,
-      "end": 3.901,
+      "code": "HESITATE",
+      "start": 4.784,
+      "end": 6.142,
       "script_span": [
-        0,
-        11
+        12,
+        13
       ],
       "params": {
-        "keep": 0.12
+        "pause_s": 1.3
       }
     },
     {
       "code": "RUSH",
-      "start": 7.707,
-      "end": 8.776,
+      "start": 8.845,
+      "end": 9.414,
       "script_span": [
-        21,
-        25
+        20,
+        23
       ],
       "params": {
-        "length_scale": 0.65
+        "target_speed": 1.57,
+        "achieved_speed": 1.551,
+        "length_scale": 0.637
       }
     }
   ],
@@ -143,132 +145,132 @@
     {
       "token": 13,
       "edge": "start",
-      "time": 4.842
+      "time": 6.142
     },
     {
       "token": 13,
       "edge": "end",
-      "time": 4.97
+      "time": 6.27
     },
     {
       "token": 14,
       "edge": "start",
-      "time": 5.017
+      "time": 6.317
     },
     {
       "token": 14,
       "edge": "end",
-      "time": 5.388
+      "time": 6.688
     },
     {
       "token": 15,
       "edge": "start",
-      "time": 5.728
+      "time": 7.028
     },
     {
       "token": 15,
       "edge": "end",
-      "time": 6.146
+      "time": 7.446
     },
     {
       "token": 16,
       "edge": "start",
-      "time": 6.193
+      "time": 7.493
     },
     {
       "token": 16,
       "edge": "end",
-      "time": 6.251
-    },
-    {
-      "token": 17,
-      "edge": "start",
-      "time": 6.274
-    },
-    {
-      "token": 17,
-      "edge": "end",
-      "time": 6.564
-    },
-    {
-      "token": 18,
-      "edge": "start",
-      "time": 6.611
-    },
-    {
-      "token": 18,
-      "edge": "end",
-      "time": 6.889
-    },
-    {
-      "token": 19,
-      "edge": "start",
-      "time": 6.97
-    },
-    {
-      "token": 19,
-      "edge": "end",
-      "time": 7.47
-    },
-    {
-      "token": 20,
-      "edge": "start",
       "time": 7.551
     },
     {
+      "token": 17,
+      "edge": "start",
+      "time": 7.574
+    },
+    {
+      "token": 17,
+      "edge": "end",
+      "time": 7.864
+    },
+    {
+      "token": 18,
+      "edge": "start",
+      "time": 7.911
+    },
+    {
+      "token": 18,
+      "edge": "end",
+      "time": 8.189
+    },
+    {
+      "token": 19,
+      "edge": "start",
+      "time": 8.27
+    },
+    {
+      "token": 19,
+      "edge": "end",
+      "time": 8.77
+    },
+    {
+      "token": 20,
+      "edge": "start",
+      "time": 8.845
+    },
+    {
       "token": 20,
       "edge": "end",
-      "time": 7.667
+      "time": 8.926
     },
     {
       "token": 21,
       "edge": "start",
-      "time": 7.707
+      "time": 8.95
     },
     {
       "token": 21,
       "edge": "end",
-      "time": 7.754
+      "time": 8.996
     },
     {
       "token": 22,
       "edge": "start",
-      "time": 7.777
+      "time": 9.019
     },
     {
       "token": 22,
       "edge": "end",
-      "time": 8.056
+      "time": 9.275
     },
     {
       "token": 23,
       "edge": "start",
-      "time": 8.079
+      "time": 9.298
     },
     {
       "token": 23,
       "edge": "end",
-      "time": 8.195
+      "time": 9.414
     },
     {
       "token": 24,
       "edge": "start",
-      "time": 8.242
+      "time": 9.454
     },
     {
       "token": 24,
       "edge": "end",
-      "time": 8.509
+      "time": 9.837
     },
     {
       "token": 25,
       "edge": "start",
-      "time": 8.543
+      "time": 9.872
     },
     {
       "token": 25,
       "edge": "end",
-      "time": 8.776
+      "time": 10.209
     }
   ]
 }

@@ -5,34 +5,34 @@
   "voice": "en_US-amy-medium",
   "split": "heldout",
   "sample_rate": 22050,
-  "duration_s": 12.776,
-  "audio_sha256": "5eb5af377060cc19f562323ec94338045adf217bf3cef5af3d91b9385c0f2f4f",
+  "duration_s": 11.966,
+  "audio_sha256": "161ce096d76e30aa1f42d22c0a0ecdda2ef9aee92200a7aaa8d4c8ce490cb235",
   "generator": {
     "name": "piper-phoneme-splice",
-    "version": "2",
+    "version": "3",
     "noise_scale": 0.0,
     "noise_w_scale": 0.0
   },
   "flaws": [
     {
-      "code": "HESITATE",
-      "start": 1.428,
-      "end": 2.319,
+      "code": "MONO",
+      "start": 6.375,
+      "end": 9.069,
       "script_span": [
-        3,
-        4
+        20,
+        28
       ],
       "params": {
-        "pause_s": 0.81
+        "keep": 0.17
       }
     },
     {
       "code": "FADE",
-      "start": 9.275,
-      "end": 9.879,
+      "start": 10.79,
+      "end": 11.556,
       "script_span": [
-        27,
-        28
+        32,
+        33
       ],
       "params": {
         "start_db": -8.0,
@@ -84,302 +84,302 @@
     {
       "token": 4,
       "edge": "start",
-      "time": 2.319
+      "time": 1.509
     },
     {
       "token": 4,
       "edge": "end",
-      "time": 2.528
+      "time": 1.718
     },
     {
       "token": 5,
       "edge": "start",
-      "time": 2.575
+      "time": 1.765
     },
     {
       "token": 5,
       "edge": "end",
-      "time": 2.853
+      "time": 2.043
     },
     {
       "token": 6,
       "edge": "start",
-      "time": 2.923
+      "time": 2.113
     },
     {
       "token": 6,
       "edge": "end",
-      "time": 3.028
+      "time": 2.218
     },
     {
       "token": 7,
       "edge": "start",
-      "time": 3.062
+      "time": 2.252
     },
     {
       "token": 7,
       "edge": "end",
-      "time": 3.608
+      "time": 2.798
     },
     {
       "token": 8,
       "edge": "start",
-      "time": 3.655
+      "time": 2.845
     },
     {
       "token": 8,
       "edge": "end",
-      "time": 3.782
+      "time": 2.972
     },
     {
       "token": 9,
       "edge": "start",
-      "time": 3.817
+      "time": 3.007
     },
     {
       "token": 9,
       "edge": "end",
-      "time": 3.933
+      "time": 3.123
     },
     {
       "token": 10,
       "edge": "start",
-      "time": 3.991
+      "time": 3.181
     },
     {
       "token": 10,
       "edge": "end",
-      "time": 4.293
+      "time": 3.483
     },
     {
       "token": 11,
       "edge": "start",
-      "time": 4.363
+      "time": 3.553
     },
     {
       "token": 11,
       "edge": "end",
-      "time": 4.479
+      "time": 3.669
     },
     {
       "token": 12,
       "edge": "start",
-      "time": 4.525
+      "time": 3.715
     },
     {
       "token": 12,
       "edge": "end",
-      "time": 4.839
+      "time": 4.029
     },
     {
       "token": 13,
       "edge": "start",
-      "time": 4.92
+      "time": 4.11
     },
     {
       "token": 13,
       "edge": "end",
-      "time": 5.21
+      "time": 4.4
     },
     {
       "token": 14,
       "edge": "start",
-      "time": 5.257
+      "time": 4.447
     },
     {
       "token": 14,
       "edge": "end",
-      "time": 5.315
+      "time": 4.505
     },
     {
       "token": 15,
       "edge": "start",
-      "time": 5.408
+      "time": 4.598
     },
     {
       "token": 15,
       "edge": "end",
-      "time": 5.651
+      "time": 4.841
     },
     {
       "token": 16,
       "edge": "start",
-      "time": 5.698
+      "time": 4.888
     },
     {
       "token": 16,
       "edge": "end",
-      "time": 5.837
+      "time": 5.027
     },
     {
       "token": 17,
       "edge": "start",
-      "time": 5.884
+      "time": 5.074
     },
     {
       "token": 17,
       "edge": "end",
-      "time": 6.197
+      "time": 5.387
     },
     {
       "token": 18,
       "edge": "start",
-      "time": 6.232
+      "time": 5.422
     },
     {
       "token": 18,
       "edge": "end",
-      "time": 6.325
+      "time": 5.515
     },
     {
       "token": 19,
       "edge": "start",
-      "time": 6.383
+      "time": 5.573
     },
     {
       "token": 19,
       "edge": "end",
-      "time": 6.615
+      "time": 5.805
     },
     {
       "token": 20,
       "edge": "start",
-      "time": 7.185
+      "time": 6.375
     },
     {
       "token": 20,
       "edge": "end",
-      "time": 7.406
+      "time": 6.596
     },
     {
       "token": 21,
       "edge": "start",
-      "time": 7.452
+      "time": 6.642
     },
     {
       "token": 21,
       "edge": "end",
-      "time": 7.545
+      "time": 6.735
     },
     {
       "token": 22,
       "edge": "start",
-      "time": 7.615
+      "time": 6.805
     },
     {
       "token": 22,
       "edge": "end",
-      "time": 8.114
+      "time": 7.304
     },
     {
       "token": 23,
       "edge": "start",
-      "time": 8.16
+      "time": 7.35
     },
     {
       "token": 23,
       "edge": "end",
-      "time": 8.509
+      "time": 7.699
     },
     {
       "token": 24,
       "edge": "start",
-      "time": 8.59
+      "time": 7.78
     },
     {
       "token": 24,
       "edge": "end",
-      "time": 8.671
+      "time": 7.861
     },
     {
       "token": 25,
       "edge": "start",
-      "time": 8.718
+      "time": 7.908
     },
     {
       "token": 25,
       "edge": "end",
-      "time": 8.869
+      "time": 8.059
     },
     {
       "token": 26,
       "edge": "start",
-      "time": 8.915
+      "time": 8.105
     },
     {
       "token": 26,
       "edge": "end",
-      "time": 9.252
+      "time": 8.442
     },
     {
       "token": 27,
       "edge": "start",
-      "time": 9.275
+      "time": 8.465
     },
     {
       "token": 27,
       "edge": "end",
-      "time": 9.345
+      "time": 8.535
     },
     {
       "token": 28,
       "edge": "start",
-      "time": 9.403
+      "time": 8.593
     },
     {
       "token": 28,
       "edge": "end",
-      "time": 9.879
+      "time": 9.069
     },
     {
       "token": 29,
       "edge": "start",
-      "time": 10.219
+      "time": 9.409
     },
     {
       "token": 29,
       "edge": "end",
-      "time": 10.753
+      "time": 9.943
     },
     {
       "token": 30,
       "edge": "start",
-      "time": 10.834
+      "time": 10.024
     },
     {
       "token": 30,
       "edge": "end",
-      "time": 11.124
+      "time": 10.314
     },
     {
       "token": 31,
       "edge": "start",
-      "time": 11.159
+      "time": 10.349
     },
     {
       "token": 31,
       "edge": "end",
-      "time": 11.542
+      "time": 10.732
     },
     {
       "token": 32,
       "edge": "start",
-      "time": 11.6
+      "time": 10.79
     },
     {
       "token": 32,
       "edge": "end",
-      "time": 11.798
+      "time": 10.988
     },
     {
       "token": 33,
       "edge": "start",
-      "time": 11.867
+      "time": 11.057
     },
     {
       "token": 33,
       "edge": "end",
-      "time": 12.366
+      "time": 11.556
     }
   ]
 }

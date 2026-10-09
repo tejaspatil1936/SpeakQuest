@@ -5,26 +5,24 @@
   "voice": "en_US-ryan-medium",
   "split": "dev",
   "sample_rate": 22050,
-  "duration_s": 10.879,
-  "audio_sha256": "c3d7371ee38e381d4a83c04f917609304b769817da6b49ee22d5817c97641178",
+  "duration_s": 11.569,
+  "audio_sha256": "ee1a4f80f14352f6c5c89b12f65db27f11e2d97e24b959b2a0713cea0839ea3f",
   "generator": {
     "name": "piper-phoneme-splice",
-    "version": "2",
+    "version": "3",
     "noise_scale": 0.0,
     "noise_w_scale": 0.0
   },
   "flaws": [
     {
-      "code": "FADE",
-      "start": 6.077,
-      "end": 6.448,
-      "script_span": [
-        18,
-        19
-      ],
+      "code": "FILLER",
+      "start": 9.34,
+      "end": 9.769,
+      "script_span": null,
       "params": {
-        "start_db": -8.0,
-        "end_db": -20.0
+        "filler": "um",
+        "target_s": 0.41,
+        "achieved_s": 0.43
       }
     }
   ],
@@ -302,52 +300,52 @@
     {
       "token": 27,
       "edge": "start",
-      "time": 9.239
+      "time": 9.928
     },
     {
       "token": 27,
       "edge": "end",
-      "time": 9.308
+      "time": 9.998
     },
     {
       "token": 28,
       "edge": "start",
-      "time": 9.367
+      "time": 10.056
     },
     {
       "token": 28,
       "edge": "end",
-      "time": 9.575
+      "time": 10.265
     },
     {
       "token": 29,
       "edge": "start",
-      "time": 9.61
+      "time": 10.3
     },
     {
       "token": 29,
       "edge": "end",
-      "time": 9.726
+      "time": 10.416
     },
     {
       "token": 30,
       "edge": "start",
-      "time": 9.808
+      "time": 10.497
     },
     {
       "token": 30,
       "edge": "end",
-      "time": 10.052
+      "time": 10.741
     },
     {
       "token": 31,
       "edge": "start",
-      "time": 10.11
+      "time": 10.799
     },
     {
       "token": 31,
       "edge": "end",
-      "time": 10.469
+      "time": 11.159
     }
   ]
 }

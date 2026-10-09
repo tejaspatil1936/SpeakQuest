@@ -5,25 +5,24 @@
   "voice": "en_US-ryan-medium",
   "split": "heldout",
   "sample_rate": 22050,
-  "duration_s": 9.366,
-  "audio_sha256": "ed9dfa26efb876512a2e530e6bc621a807de148c30978d215965b5841c713e0c",
+  "duration_s": 10.102,
+  "audio_sha256": "30a93fd291f13def10112e11046d32b4cea285f3fca34500b6933e820917f2f6",
   "generator": {
     "name": "piper-phoneme-splice",
-    "version": "2",
+    "version": "3",
     "noise_scale": 0.0,
     "noise_w_scale": 0.0
   },
   "flaws": [
     {
-      "code": "MONO",
-      "start": 0.36,
-      "end": 4.528,
-      "script_span": [
-        0,
-        19
-      ],
+      "code": "FILLER",
+      "start": 8.778,
+      "end": 9.254,
+      "script_span": null,
       "params": {
-        "keep": 0.18
+        "filler": "erm",
+        "target_s": 0.48,
+        "achieved_s": 0.476
       }
     }
   ],
@@ -361,12 +360,12 @@
     {
       "token": 33,
       "edge": "start",
-      "time": 8.677
+      "time": 9.413
     },
     {
       "token": 33,
       "edge": "end",
-      "time": 8.956
+      "time": 9.692
     }
   ]
 }

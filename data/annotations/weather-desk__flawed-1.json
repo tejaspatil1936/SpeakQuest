@@ -6,24 +6,24 @@
   "split": "dev",
   "sample_rate": 22050,
   "duration_s": 9.117,
-  "audio_sha256": "fc778da7bc3221a5b3dde014d63d98ec48f58660d8132b23677c4bcc0ac8aee8",
+  "audio_sha256": "af48868ad74d04b1e05c5fef4d8034fc1bf3438afd557f5383e33233f81857e0",
   "generator": {
     "name": "piper-phoneme-splice",
-    "version": "2",
+    "version": "3",
     "noise_scale": 0.0,
     "noise_w_scale": 0.0
   },
   "flaws": [
     {
       "code": "MONO",
-      "start": 6.919,
-      "end": 8.707,
+      "start": 0.36,
+      "end": 2.194,
       "script_span": [
-        20,
-        24
+        0,
+        6
       ],
       "params": {
-        "keep": 0.16
+        "keep": 0.22
       }
     }
   ],

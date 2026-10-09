@@ -9,7 +9,7 @@
   "audio_sha256": "f2a5fee2ac9024cf68589437a2b61924dc54cc80151f42080aeac20a7968e8e4",
   "generator": {
     "name": "piper-phoneme-splice",
-    "version": "2",
+    "version": "3",
     "noise_scale": 0.0,
     "noise_w_scale": 0.0
   },

@@ -5,38 +5,35 @@
   "voice": "en_US-amy-medium",
   "split": "dev",
   "sample_rate": 22050,
-  "duration_s": 8.375,
-  "audio_sha256": "e22e403f8dd905a04646aeb818471476587a61e240be790c0b1674753c669b15",
+  "duration_s": 8.435,
+  "audio_sha256": "cd8a9acb081d63cc4c9de4fbbddd17072ef6299603c7152f8f854d2ef59e11d3",
   "generator": {
     "name": "piper-phoneme-splice",
-    "version": "2",
+    "version": "3",
     "noise_scale": 0.0,
     "noise_w_scale": 0.0
   },
   "flaws": [
     {
-      "code": "FADE",
-      "start": 2.357,
-      "end": 3.03,
+      "code": "SKIP",
+      "start": 1.466,
+      "end": 1.466,
       "script_span": [
-        6,
-        7
+        4,
+        4
       ],
-      "params": {
-        "start_db": -8.0,
-        "end_db": -20.0
-      }
+      "params": {}
     },
     {
       "code": "HESITATE",
-      "start": 3.649,
-      "end": 4.599,
+      "start": 5.768,
+      "end": 7.166,
       "script_span": [
-        8,
-        9
+        16,
+        17
       ],
       "params": {
-        "pause_s": 0.88
+        "pause_s": 1.34
       }
     }
   ],
@@ -82,154 +79,144 @@
       "time": 1.428
     },
     {
-      "token": 4,
-      "edge": "start",
-      "time": 1.509
-    },
-    {
-      "token": 4,
-      "edge": "end",
-      "time": 1.846
-    },
-    {
       "token": 5,
       "edge": "start",
-      "time": 1.904
+      "time": 1.503
     },
     {
       "token": 5,
       "edge": "end",
-      "time": 2.31
+      "time": 1.91
     },
     {
       "token": 6,
       "edge": "start",
-      "time": 2.357
+      "time": 1.956
     },
     {
       "token": 6,
       "edge": "end",
-      "time": 2.415
+      "time": 2.014
     },
     {
       "token": 7,
       "edge": "start",
-      "time": 2.461
+      "time": 2.061
     },
     {
       "token": 7,
       "edge": "end",
-      "time": 3.03
+      "time": 2.63
     },
     {
       "token": 8,
       "edge": "start",
-      "time": 3.37
+      "time": 2.97
     },
     {
       "token": 8,
       "edge": "end",
-      "time": 3.649
+      "time": 3.248
     },
     {
       "token": 9,
       "edge": "start",
-      "time": 4.599
+      "time": 3.318
     },
     {
       "token": 9,
       "edge": "end",
-      "time": 4.726
+      "time": 3.446
     },
     {
       "token": 10,
       "edge": "start",
-      "time": 4.773
+      "time": 3.492
     },
     {
       "token": 10,
       "edge": "end",
-      "time": 5.133
+      "time": 3.852
     },
     {
       "token": 11,
       "edge": "start",
-      "time": 5.179
+      "time": 3.898
     },
     {
       "token": 11,
       "edge": "end",
-      "time": 5.33
+      "time": 4.049
     },
     {
       "token": 12,
       "edge": "start",
-      "time": 5.376
+      "time": 4.096
     },
     {
       "token": 12,
       "edge": "end",
-      "time": 5.539
+      "time": 4.258
     },
     {
       "token": 13,
       "edge": "start",
-      "time": 5.609
+      "time": 4.328
     },
     {
       "token": 13,
       "edge": "end",
-      "time": 6.027
+      "time": 4.746
     },
     {
       "token": 14,
       "edge": "start",
-      "time": 6.085
+      "time": 4.804
     },
     {
       "token": 14,
       "edge": "end",
-      "time": 6.247
+      "time": 4.966
     },
     {
       "token": 15,
       "edge": "start",
-      "time": 6.305
+      "time": 5.025
     },
     {
       "token": 15,
       "edge": "end",
-      "time": 6.944
+      "time": 5.663
     },
     {
       "token": 16,
       "edge": "start",
-      "time": 6.99
+      "time": 5.71
     },
     {
       "token": 16,
       "edge": "end",
-      "time": 7.048
+      "time": 5.768
     },
     {
       "token": 17,
       "edge": "start",
-      "time": 7.106
+      "time": 7.166
     },
     {
       "token": 17,
       "edge": "end",
-      "time": 7.466
+      "time": 7.526
     },
     {
       "token": 18,
       "edge": "start",
-      "time": 7.501
+      "time": 7.56
     },
     {
       "token": 18,
       "edge": "end",
-      "time": 7.965
+      "time": 8.025
     }
   ]
 }

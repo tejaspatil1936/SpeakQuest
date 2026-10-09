@@ -46,7 +46,7 @@ from speakquest.challenges import CatalogueEntry, load_catalogue
 from speakquest.contracts import FlawCode
 from speakquest.tokens import normalize_word
 
-GENERATOR_VERSION = "2"
+GENERATOR_VERSION = "3"
 REFERENCE_VOICE = "en_US-lessac-medium"
 PARTICIPANT_VOICES = ("en_US-ryan-medium", "en_US-amy-medium")
 PHRASE_GAP_S = {",": 0.32, ";": 0.4, ":": 0.4, ".": 0.55, "!": 0.55, "?": 0.55}
@@ -341,12 +341,13 @@ def _place(
     if code in ("RUSH", "DRAG"):
         span = min(len(ws) - 1, rng.choice([4, 5]))
         start = rng.randint(0, len(ws) - span)
-        scale = (
-            round(rng.uniform(0.55, 0.68), 2)
+        # Target speed relative to the same voice's natural reading of the span.
+        speed = (
+            round(rng.uniform(1.45, 1.8), 2)
             if code == "RUSH"
-            else round(rng.uniform(1.55, 1.85), 2)
+            else round(rng.uniform(0.55, 0.68), 2)
         )
-        return Flaw(code, p, ws[start], ws[start + span - 1], {"length_scale": scale})
+        return Flaw(code, p, ws[start], ws[start + span - 1], {"target_speed": speed})
     if code == "HESITATE":
         k = rng.randint(1, len(ws) - 1)
         return Flaw(code, p, ws[k], ws[k], {"pause_s": round(rng.uniform(0.8, 1.4), 2)})
@@ -364,7 +365,7 @@ def _place(
         p,
         ws[k],
         ws[k],
-        {"filler": rng.choice(["um", "uh"]), "length_scale": round(rng.uniform(1.8, 2.6), 2)},
+        {"filler": rng.choice(["um", "erm"]), "target_s": round(rng.uniform(0.3, 0.55), 2)},
     )
 
 
@@ -446,7 +447,20 @@ def render_phrase(
     tokens = (words[flaw.a].first_token, words[flaw.b].last_token)
 
     if flaw.code in ("RUSH", "DRAG"):
-        alt = synth.phrase(plan.voice, items, final, float(flaw.params["length_scale"]))
+        # VITS does not scale durations linearly (ceil rounding, predictor
+        # response), so iterate the length scale until the span's achieved
+        # speed relative to the natural reading is within 3 % of the target.
+        target = float(flaw.params["target_speed"])
+        natural_len = sp[flaw.b][1] - sp[flaw.a][0]
+        scale = 1 / target
+        for _ in range(6):
+            alt = synth.phrase(plan.voice, items, final, scale)
+            achieved = natural_len / (alt.spans[flaw.b][1] - alt.spans[flaw.a][0])
+            if abs(achieved / target - 1) <= 0.03:
+                break
+            scale *= achieved / target
+        flaw.params["achieved_speed"] = round(achieved, 3)
+        flaw.params["length_scale"] = round(scale, 3)
         head = cut(natural, 0.0, sp[flaw.a][0], sr)
         middle = cut(alt, alt.spans[flaw.a][0], alt.spans[flaw.b][1], sr)
         after = [i for i in ws if i > flaw.b]
@@ -504,10 +518,17 @@ def render_phrase(
         junction = (out.spans[prev][1] + out.spans[after[0]][0]) / 2
         return out, [("SKIP", junction, junction, tokens)]
 
-    # FILLER: a drawn-out "um"/"uh" inserted before word a.
-    filler = synth.phrase(
-        plan.voice, [(-1, str(flaw.params["filler"]))], ",", float(flaw.params["length_scale"])
-    )
+    # FILLER: a drawn-out "um"/"erm" inserted before word a, stretched to a
+    # realistic duration (synthesised alone it is a ~0.1 s blip).
+    want = float(flaw.params["target_s"])
+    scale = 2.0
+    for _ in range(6):
+        filler = synth.phrase(plan.voice, [(-1, str(flaw.params["filler"]))], ",", scale)
+        got = len(filler.audio) / sr - 2 * EDGE_MARGIN_S
+        if abs(got / want - 1) <= 0.05:
+            break
+        scale *= want / max(got, 1e-3)
+    flaw.params["achieved_s"] = round(got, 3)
     filler = Rendered(filler.audio, {})
     k = flaw.a
     prev = ws[ws.index(k) - 1]
