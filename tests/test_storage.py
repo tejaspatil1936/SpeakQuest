@@ -41,6 +41,9 @@ def test_local_presigned_urls_enforce_method_type_and_expiry(tmp_path: Path) -> 
     assert not st.verify("GET", "results/x.json", _query(expired))
     assert st.verify("GET", "results/x.json", _query(st.presign_get("results/x.json", 60)))
     assert int(q["e"]) <= time.time() + 301
+    sized = _query(st.presign_put("uploads/s/c.webm", "audio/webm", 300, content_length=1234))
+    assert st.verify("PUT", "uploads/s/c.webm", sized, "audio/webm", 1234)
+    assert not st.verify("PUT", "uploads/s/c.webm", sized, "audio/webm", 9999)
 
 
 @mock_aws
@@ -58,6 +61,8 @@ def test_s3_adapter_against_moto(tmp_path: Path) -> None:
     assert st.download("work/a/f.bin", tmp_path / "out.bin").read_bytes() == b"abc"
     with pytest.raises(StorageMissingError):
         st.download("work/none", tmp_path / "x")
-    put_url = st.presign_put("uploads/s/a.webm", "audio/webm", 300)
-    assert "X-Amz-Signature" in put_url and "content-type" in put_url.lower()
+    put_url = st.presign_put("uploads/s/a.webm", "audio/webm", 300, content_length=2048)
+    assert "X-Amz-Signature" in put_url
+    signed = put_url.lower().split("x-amz-signedheaders=")[1].split("&")[0]
+    assert "content-type" in signed and "content-length" in signed
     assert "X-Amz-Expires=600" in st.presign_get("results/a/result.json", 600)

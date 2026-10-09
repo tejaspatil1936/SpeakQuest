@@ -26,7 +26,9 @@ class Storage(Protocol):
     def exists(self, key: str) -> bool: ...
     def download(self, key: str, dest: Path) -> Path: ...
     def upload(self, src: Path, key: str, content_type: str = ...) -> None: ...
-    def presign_put(self, key: str, content_type: str, expires: int) -> str: ...
+    def presign_put(
+        self, key: str, content_type: str, expires: int, content_length: int | None = None
+    ) -> str: ...
     def presign_get(self, key: str, expires: int) -> str: ...
     def size(self, key: str) -> int | None: ...
 
@@ -99,11 +101,18 @@ class S3Storage:
     def upload(self, src: Path, key: str, content_type: str = "application/octet-stream") -> None:
         self.client.upload_file(str(src), self.bucket, key, ExtraArgs={"ContentType": content_type})
 
-    def presign_put(self, key: str, content_type: str, expires: int) -> str:
+    def presign_put(
+        self, key: str, content_type: str, expires: int, content_length: int | None = None
+    ) -> str:
+        # Content-Type and Content-Length are signed headers: S3 rejects a PUT
+        # whose type or size differs from what POST /uploads validated.
+        params: dict[str, Any] = {"Bucket": self.bucket, "Key": key, "ContentType": content_type}
+        if content_length is not None:
+            params["ContentLength"] = content_length
         return str(
             self.client.generate_presigned_url(
                 "put_object",
-                Params={"Bucket": self.bucket, "Key": key, "ContentType": content_type},
+                Params=params,
                 ExpiresIn=expires,
                 HttpMethod="PUT",
             )
@@ -175,29 +184,45 @@ class LocalStorage:
     def upload(self, src: Path, key: str, content_type: str = "application/octet-stream") -> None:
         self.put_bytes(key, src.read_bytes(), content_type)
 
-    def _sign(self, method: str, key: str, expires_at: int, content_type: str) -> str:
-        msg = f"{method}\n{key}\n{expires_at}\n{content_type}".encode()
+    def _sign(self, method: str, key: str, expires_at: int, content_type: str, length: str) -> str:
+        msg = f"{method}\n{key}\n{expires_at}\n{content_type}\n{length}".encode()
         digest = hmac.new(self.secret, msg, hashlib.sha256).digest()
         return base64.urlsafe_b64encode(digest).decode().rstrip("=")
 
-    def _url(self, method: str, key: str, expires: int, content_type: str = "") -> str:
+    def _url(
+        self, method: str, key: str, expires: int, content_type: str = "", length: int | None = None
+    ) -> str:
         expires_at = int(time.time()) + expires
-        query = {
+        size = "" if length is None else str(length)
+        query: dict[str, str | int] = {
             "m": method,
             "e": expires_at,
-            "s": self._sign(method, key, expires_at, content_type),
+            "s": self._sign(method, key, expires_at, content_type, size),
         }
         if content_type:
             query["ct"] = content_type
+        if size:
+            query["len"] = size
         return f"{self.base_url}/_storage/{quote(key)}?{urlencode(query)}"
 
-    def presign_put(self, key: str, content_type: str, expires: int) -> str:
-        return self._url("PUT", key, expires, content_type)
+    def presign_put(
+        self, key: str, content_type: str, expires: int, content_length: int | None = None
+    ) -> str:
+        return self._url("PUT", key, expires, content_type, content_length)
 
     def presign_get(self, key: str, expires: int) -> str:
         return self._url("GET", key, expires)
 
-    def verify(self, method: str, key: str, query: dict[str, str], content_type: str = "") -> bool:
+    def verify(
+        self,
+        method: str,
+        key: str,
+        query: dict[str, str],
+        content_type: str = "",
+        content_length: int | None = None,
+    ) -> bool:
+        """Check a signed URL the way S3 would: method, expiry, signature and,
+        for uploads, the exact Content-Type and Content-Length that were signed."""
         try:
             expires_at = int(query["e"])
         except (KeyError, ValueError):
@@ -205,7 +230,10 @@ class LocalStorage:
         if query.get("m") != method or expires_at < time.time():
             return False
         signed_ct = query.get("ct", "")
+        signed_len = query.get("len", "")
         if method == "PUT" and signed_ct != content_type:
             return False
-        expected = self._sign(method, key, expires_at, signed_ct)
+        if method == "PUT" and signed_len and signed_len != str(content_length):
+            return False
+        expected = self._sign(method, key, expires_at, signed_ct, signed_len)
         return hmac.compare_digest(expected, query.get("s", ""))
