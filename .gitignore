@@ -72,3 +72,6 @@ eval/reports/*.local.*
 
 # Synthetic TTS demo fixtures (not user recordings) are small and committed.
 !web/public/fixtures/*.ogg
+
+# Agent tooling worktrees
+.claude/worktrees/
