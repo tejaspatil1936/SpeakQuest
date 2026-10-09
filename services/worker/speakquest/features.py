@@ -281,7 +281,7 @@ def measure(
 
     matched = [w for w in words if w.kind in ("match", "sub")]
     total_syll = sum(w.syllables for w in matched)
-    talk_time = articulation_time(matched, pauses)
+    talk_time = articulation_time(matched, pauses, min_pause_ms=cfg.rate_pause_ms)
     return TakeAnalysis(
         duration_s=round(duration, 3),
         words=words,
@@ -332,15 +332,24 @@ def find_vocalizations(
 
 
 def articulation_time(
-    words: Sequence[WordMeasure], pauses: Sequence[Pause], exclude: Sequence[WordMeasure] = ()
+    words: Sequence[WordMeasure],
+    pauses: Sequence[Pause],
+    exclude: Sequence[WordMeasure] = (),
+    min_pause_ms: int = 0,
 ) -> float:
-    """Span from first to last word, minus pauses and excluded words inside it."""
+    """Span from first to last word, minus pauses and excluded words inside it.
+
+    Only pauses of at least ``min_pause_ms`` are removed: shorter silences are
+    stop closures and micro-gaps that lengthen with slow speech and belong to
+    the speaking time.
+    """
     if not words:
         return 0.0
     start, end = words[0].start, words[-1].end
     t = end - start
     for p in pauses:
-        t -= max(0.0, min(p.end, end) - max(p.start, start))
+        if p.ms >= min_pause_ms:
+            t -= max(0.0, min(p.end, end) - max(p.start, start))
     for w in exclude:
         if start < w.start and w.end < end:
             t -= w.end - w.start
@@ -354,15 +363,19 @@ def _by_script(analysis: TakeAnalysis) -> dict[int, WordMeasure]:
     return {w.script_index: w for w in analysis.words if w.script_index is not None}
 
 
-def _window_time(
-    analysis: TakeAnalysis, script_ids: Sequence[int], index: dict[int, WordMeasure]
+def span_time(
+    analysis: TakeAnalysis,
+    script_ids: Sequence[int],
+    index: dict[int, WordMeasure],
+    min_pause_ms: int,
 ) -> float:
+    """Speaking time for a run of script words (pauses and insertions removed)."""
     first, last = index[script_ids[0]], index[script_ids[-1]]
     inserted = [
         w for w in analysis.words if w.script_index is None and first.start < w.start < last.end
     ]
     span = [first, last]
-    return articulation_time(span, analysis.pauses, inserted)
+    return articulation_time(span, analysis.pauses, inserted, min_pause_ms)
 
 
 def common_runs(take: TakeAnalysis, ref: TakeAnalysis) -> list[list[int]]:
@@ -390,14 +403,9 @@ def compare_rates(take: TakeAnalysis, ref: TakeAnalysis, cfg: FeatureConfig) -> 
     if not shared:
         return take
 
-    t_total = sum(_window_time(take, run, t_idx) for run in runs)
-    r_total = sum(_window_time(ref, run, r_idx) for run in runs)
-    global_ratio = r_total / t_total if t_total > 0 else 1.0
-    lo, hi = cfg.global_rate_normalization
-    norm = min(max(global_ratio, lo), hi)
-
+    gap = cfg.rate_pause_ms
     half = cfg.rate_window_words // 2
-    ratios: dict[int, float] = {}
+    raw: dict[int, float] = {}
     for run in runs:
         if len(run) < 2:
             continue
@@ -406,10 +414,22 @@ def compare_rates(take: TakeAnalysis, ref: TakeAnalysis, cfg: FeatureConfig) -> 
             b = min(len(run), a + cfg.rate_window_words)
             a = max(0, b - cfg.rate_window_words)
             window = run[a:b]
-            tt = _window_time(take, window, t_idx)
-            rt = _window_time(ref, window, r_idx)
+            tt = span_time(take, window, t_idx, gap)
+            rt = span_time(ref, window, r_idx, gap)
             if tt > 0.02 and rt > 0.02:
-                ratios[run[p]] = (rt / tt) / norm
+                raw[run[p]] = rt / tt
+
+    # The speaker's typical pace relative to the reference: the median window
+    # ratio, so a rushed or dragged stretch does not shift it.
+    if raw:
+        global_ratio = float(np.median(list(raw.values())))
+    else:
+        t_total = sum(span_time(take, run, t_idx, gap) for run in runs)
+        r_total = sum(span_time(ref, run, r_idx, gap) for run in runs)
+        global_ratio = r_total / t_total if t_total > 0 else 1.0
+    lo, hi = cfg.global_rate_normalization
+    norm = min(max(global_ratio, lo), hi)
+    ratios = {j: r / norm for j, r in raw.items()}
 
     updated = [
         w.model_copy(update={"rate_ratio": round(ratios[w.script_index], 3)})

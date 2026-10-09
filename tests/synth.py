@@ -74,7 +74,9 @@ def render(
     return samples, Transcript(aligner="synthetic", language=language, words=timed)
 
 
-def reference_words(rate: float = 1.0, f_scale: float = 1.0, amp: float = 0.3) -> list[W]:
+def reference_words(
+    rate: float = 1.0, f_scale: float = 1.0, amp: float = 0.3, contour: float = 1.0
+) -> list[W]:
     """A clean, expressive reading: rising-falling contour inside each phrase."""
     info = tokenize_script(SCRIPT)
     out: list[W] = []
@@ -83,7 +85,8 @@ def reference_words(rate: float = 1.0, f_scale: float = 1.0, amp: float = 0.3) -
         pos = by_phrase.get(tok.phrase, 0)
         by_phrase[tok.phrase] = pos + 1
         # Zig-zag contour: ~ +/- 4 semitones around the speaker's centre.
-        base = 150 * f_scale * 2 ** ((4 if pos % 2 == 0 else -3) / 12 - pos * 0.15 / 12)
+        step = (4 if pos % 2 == 0 else -3) * contour
+        base = 150 * f_scale * 2 ** (step / 12 - pos * 0.15 / 12)
         first_in_phrase = pos == 0 and tok.phrase > 0
         out.append(
             W(

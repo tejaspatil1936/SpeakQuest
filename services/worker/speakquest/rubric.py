@@ -35,6 +35,7 @@ class FeatureConfig(BaseModel):
     rate_window_words: int = Field(ge=1)
     global_rate_normalization: tuple[float, float]
     min_pause_ms: int = Field(ge=0)
+    rate_pause_ms: int = Field(ge=0)
     frame_ms: int = Field(ge=5, le=100)
     silence_rel_db: float = Field(lt=0)
     pitch_floor_hz: float = Field(gt=0)

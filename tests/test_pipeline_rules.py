@@ -118,6 +118,19 @@ def test_monotone(reference: TakeAnalysis) -> None:
     assert f.script_span == (8, 18)
 
 
+def test_naturally_flatter_speaker_is_not_monotone(reference: TakeAnalysis) -> None:
+    # Moves pitch only 40 % as much as the reference, evenly in every phrase.
+    words = reference_words(rate=0.92, f_scale=1.45, amp=0.2, contour=0.4)
+    assert "MONO" not in codes(run(words, reference))
+
+
+def test_flat_throughout_is_one_whole_take_finding(reference: TakeAnalysis) -> None:
+    words = [replace(w, f0=200.0, f1=200.0) for w in participant()]
+    monos = [f for f in run(words, reference).findings if f.code == "MONO"]
+    assert len(monos) == 1
+    assert monos[0].evidence["scope"] == "whole take"
+
+
 def test_fade(reference: TakeAnalysis) -> None:
     words = with_changes(participant(), [6, 7], amp=0.035)
     result = run(words, reference)

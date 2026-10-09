@@ -22,6 +22,11 @@ features:
   # Gaps between words shorter than this are not pauses (coarticulation,
   # aligner jitter).
   min_pause_ms: 120
+  # Only pauses at least this long are removed from speaking time when rates
+  # are compared. Shorter silences are stop closures and micro-gaps that
+  # stretch with slow speech; removing them hid dragged stretches on the dev
+  # set.
+  rate_pause_ms: 250
   # RMS frame settings for pause refinement and loudness.
   frame_ms: 20
   # Frames this far below the take's speech level count as silence.
@@ -38,11 +43,15 @@ rules:
   RUSH:
     # Local rate > 1.35x reference over >= 3 matched words.
     rate_ratio_above: 1.35
+    # A stretch may extend through words above this looser bound; the whole
+    # stretch is then re-measured and must exceed rate_ratio_above.
+    extend_above: 1.20
     min_words: 3
     severity_bands: [1.35, 1.6, 2.0]      # ratio >= band[i] -> severity i+1
   DRAG:
     # Local rate < 0.7x reference over >= 3 matched words.
     rate_ratio_below: 0.70
+    extend_below: 0.82
     min_words: 3
     severity_bands: [0.70, 0.55, 0.42]    # ratio <= band[i] -> severity i+1
   HESITATE:
@@ -51,14 +60,22 @@ rules:
     reference_pause_ms_below: 250
     severity_bands: [600, 1000, 1800]     # pause_ms >= band[i] -> severity i+1
   MONO:
-    # Phrase pitch SD < 50% of the reference phrase.
-    sd_ratio_below: 0.50
+    # Phrase pitch SD relative to the reference phrase, divided by the
+    # speaker's median phrase ratio ("per speaker", system design §5.2).
+    # The design's initial 0.50 flagged a naturally flatter voice's ordinary
+    # phrases on the dev set; 0.40 separates them from flattened phrases.
+    sd_ratio_below: 0.40
+    # The per-speaker divisor never drops below this, so a take that is flat
+    # everywhere is still compared with the reference.
+    speaker_normalization_floor: 0.30
+    # Median ratio below this: the whole take is monotone (one finding).
+    whole_take_below: 0.25
     # Reference phrases flatter than this carry no contour to compare with.
     min_reference_sd_st: 1.0
     # Need this much voiced speech in the phrase to trust the SD.
     min_voiced_frames: 25
     min_phrase_words: 3
-    severity_bands: [0.50, 0.35, 0.20]    # ratio <= band[i] -> severity i+1
+    severity_bands: [0.40, 0.25, 0.12]    # ratio <= band[i] -> severity i+1
   FADE:
     # Last 2 words of a phrase > 6 dB below the speaker's mean.
     last_words: 2
@@ -71,7 +88,9 @@ rules:
     # Deletion in the script diff. Severity by number of skipped tokens.
     severity_bands: [1, 2, 4]
   FILLER:
-    filler_words: [um, uh, er, erm, ah, hmm, mm, uhm, umm, like]
+    # Includes how recognisers commonly render hesitation sounds ("oh",
+    # "ah"): an inserted "oh" that is not in the script is still a filler.
+    filler_words: [um, uh, er, erm, ah, oh, eh, huh, hm, hmm, mm, mhm, uhm, umm, like]
     # "like" counts only when it is not in the script at that point, which
     # the diff guarantees for insertions.
     min_confidence: 0.0

@@ -40,7 +40,8 @@ def test_v1_loads_and_matches_design_thresholds() -> None:
     assert r.rule("DRAG")["rate_ratio_below"] == 0.70
     assert r.rule("HESITATE")["pause_ms_above"] == 600
     assert r.rule("HESITATE")["reference_pause_ms_below"] == 250
-    assert r.rule("MONO")["sd_ratio_below"] == 0.50
+    # Tuned on the dev split from the design's initial 0.50 (see rubric comment).
+    assert r.rule("MONO")["sd_ratio_below"] == 0.40
     assert r.rule("FADE")["db_below_mean"] == 6.0
     assert r.audio.max_bytes == 10 * 1024 * 1024
     assert r.audio.max_duration_s == 180

@@ -16,11 +16,12 @@ from speakquest.contracts import (
     EvidenceValue,
     Finding,
     FlawCode,
+    PhraseStat,
     ScriptInfo,
     TakeAnalysis,
     WordMeasure,
 )
-from speakquest.features import articulation_time, common_runs
+from speakquest.features import common_runs, span_time
 from speakquest.rubric import Rubric
 
 
@@ -53,6 +54,9 @@ def _pace(
     out: list[_Draft] = []
     t_idx = {w.script_index: w for w in take.words if w.script_index is not None}
     r_idx = {w.script_index: w for w in ref.words if w.script_index is not None}
+    lo, hi = rubric.features.global_rate_normalization
+    g_raw = take.rate_ratio_global if take.rate_ratio_global is not None else 1.0
+    norm = min(max(g_raw, lo), hi)
 
     for code, key, direction in (
         ("RUSH", "rate_ratio_above", "above"),
@@ -60,40 +64,57 @@ def _pace(
     ):
         rule = rubric.rule(code)  # type: ignore[arg-type]
         thr = float(rule[key])
+        low = float(rule["extend_above" if direction == "above" else "extend_below"])
         min_words = int(rule["min_words"])
+        gap = rubric.features.rate_pause_ms
+
+        def beyond(value: float | None, limit: float, up: bool = direction == "above") -> bool:
+            return value is not None and (value > limit if up else value < limit)
+
+        # Hysteresis: a stretch starts where windowed ratios pass a looser
+        # bound and must contain at least one word past the real threshold.
+        # The stretch is then re-measured as a whole (reference time / take
+        # time for exactly those words), which undoes the window's blurring
+        # at the stretch edges, and only that number is compared with the rule.
         for run in common_runs(take, ref):
-            current: list[int] = []
-            for j in [*run, None]:
-                ratio = t_idx[j].rate_ratio if j is not None else None
-                hit = ratio is not None and (ratio > thr if direction == "above" else ratio < thr)
-                if hit and j is not None:
-                    current.append(j)
+            vals = [t_idx[j].rate_ratio for j in run]
+            i = 0
+            while i < len(run):
+                if not beyond(vals[i], low):
+                    i += 1
                     continue
-                if len(current) >= min_words:
-                    tw = [t_idx[k] for k in current]
-                    rw = [r_idx[k] for k in current]
-                    ratios = [w.rate_ratio for w in tw if w.rate_ratio is not None]
-                    mean_ratio = sum(ratios) / len(ratios)
-                    syl = sum(w.syllables for w in tw)
-                    t_time = articulation_time(tw, take.pauses)
-                    r_time = articulation_time(rw, ref.pauses)
-                    out.append(
-                        _Draft(
-                            code=code,  # type: ignore[arg-type]
-                            start=tw[0].start,
-                            end=tw[-1].end,
-                            words=[_display(script, k) for k in current],
-                            evidence={
-                                "rate_ratio": _r(mean_ratio),
-                                "syllables_per_s": _r(syl / t_time, 1) if t_time else 0.0,
-                                "reference_syllables_per_s": _r(syl / r_time, 1) if r_time else 0.0,
-                            },
-                            severity=rubric.severity(code, mean_ratio, direction),  # type: ignore[arg-type]
-                            script_span=(current[0], current[-1]),
-                            take_words=[w.index for w in tw],
-                        )
+                j = i
+                while j < len(run) and beyond(vals[j], low):
+                    j += 1
+                seg = run[i:j]
+                i = j
+                if len(seg) < min_words or not any(beyond(v, thr) for v in vals[i - len(seg) : i]):
+                    continue
+                t_time = span_time(take, seg, t_idx, gap)
+                r_time = span_time(ref, seg, r_idx, gap)
+                if t_time <= 0 or r_time <= 0:
+                    continue
+                seg_ratio = (r_time / t_time) / norm
+                if not beyond(seg_ratio, thr):
+                    continue
+                tw = [t_idx[k] for k in seg]
+                syl = sum(w.syllables for w in tw)
+                out.append(
+                    _Draft(
+                        code=code,  # type: ignore[arg-type]
+                        start=tw[0].start,
+                        end=tw[-1].end,
+                        words=[_display(script, k) for k in seg],
+                        evidence={
+                            "rate_ratio": _r(seg_ratio),
+                            "syllables_per_s": _r(syl / t_time, 1),
+                            "reference_syllables_per_s": _r(syl / r_time, 1),
+                        },
+                        severity=rubric.severity(code, seg_ratio, direction),  # type: ignore[arg-type]
+                        script_span=(seg[0], seg[-1]),
+                        take_words=[w.index for w in tw],
                     )
-                current = []
+                )
 
     # A take that is rushed or dragged *throughout* is absorbed by the clamped
     # global normalisation only up to the clamp; beyond the rule threshold it
@@ -180,9 +201,15 @@ def _phrase_words(take: TakeAnalysis, phrase: int, script: ScriptInfo) -> list[W
 def _monotone(
     take: TakeAnalysis, ref: TakeAnalysis, script: ScriptInfo, rubric: Rubric
 ) -> list[_Draft]:
+    """Phrase pitch variability against the reference, per speaker.
+
+    Voices differ in how much they move pitch at all, so each phrase's SD
+    ratio is divided by the speaker's *median* phrase ratio (floored, so a
+    take that is flat throughout still surfaces) before the threshold.
+    """
     rule = rubric.rule("MONO")
     ref_phrases = {p.phrase: p for p in ref.phrases}
-    out: list[_Draft] = []
+    eligible: list[tuple[PhraseStat, PhraseStat, list[WordMeasure], float]] = []
     for p in take.phrases:
         rp = ref_phrases.get(p.phrase)
         members = _phrase_words(take, p.phrase, script)
@@ -195,7 +222,33 @@ def _monotone(
             or p.voiced_frames < int(rule["min_voiced_frames"])
         ):
             continue
-        ratio = p.pitch_sd_st / rp.pitch_sd_st
+        eligible.append((p, rp, members, p.pitch_sd_st / rp.pitch_sd_st))
+    if not eligible:
+        return []
+    ratios = sorted(r for *_, r in eligible)
+    speaker = (
+        ratios[len(ratios) // 2]
+        if len(ratios) % 2
+        else (ratios[len(ratios) // 2 - 1] + ratios[len(ratios) // 2]) / 2
+    )
+    norm = min(max(speaker, float(rule["speaker_normalization_floor"])), 1.0)
+    out: list[_Draft] = []
+    if speaker < float(rule["whole_take_below"]):
+        first, last = eligible[0][2], eligible[-1][2]
+        out.append(
+            _Draft(
+                code="MONO",
+                start=first[0].start,
+                end=last[-1].end,
+                words=[],
+                evidence={"ratio": _r(speaker), "scope": "whole take"},
+                severity=rubric.severity("MONO", speaker, "below"),
+                script_span=(first[0].script_index or 0, last[-1].script_index or 0),
+            )
+        )
+        return out
+    for p, rp, members, raw in eligible:
+        ratio = raw / norm
         if ratio >= float(rule["sd_ratio_below"]):
             continue
         out.append(
@@ -207,8 +260,8 @@ def _monotone(
                     _display(script, w.script_index) for w in members if w.script_index is not None
                 ],
                 evidence={
-                    "pitch_sd_st": _r(p.pitch_sd_st, 1),
-                    "reference_pitch_sd_st": _r(rp.pitch_sd_st, 1),
+                    "pitch_sd_st": _r(p.pitch_sd_st or 0.0, 1),
+                    "reference_pitch_sd_st": _r(rp.pitch_sd_st or 0.0, 1),
                     "ratio": _r(ratio),
                 },
                 severity=rubric.severity("MONO", ratio, "below"),
