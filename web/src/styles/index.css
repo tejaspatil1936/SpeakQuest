@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------------
+ * On Air tokens (system design §10.2, §10.4). These five colours are the
+ * only colours in the product. --tally means "recording" or "wrong" — never
+ * decoration.
+ * --------------------------------------------------------------------- */
+:root,
+:root[data-theme="paper"] {
+  --paper: #f1ece2;
+  --ink: #121212;
+  --ink-2: #6b665e;
+  --tally: #e1342a;
+  --rule: #121212;
+  color-scheme: light;
+}
+
+:root[data-theme="booth"] {
+  --paper: #0f0f0d;
+  --ink: #ede8de;
+  --ink-2: #8c877e;
+  --tally: #ff4a3d;
+  --rule: #ede8de;
+  color-scheme: dark;
+}
+
+:root {
+  --t-mega: clamp(6rem, 18vw, 16rem);
+  --t-xl: clamp(3rem, 8vw, 7rem);
+  --t-l: clamp(1.75rem, 3.5vw, 2.75rem);
+  --t-body: 1.125rem;
+  --t-label: 0.75rem;
+  --gutter: clamp(1rem, 3vw, 2.5rem);
+}
+
+@layer base {
+  html {
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: var(--t-body);
+    line-height: 1.5;
+    font-optical-sizing: auto;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+  button {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+@layer components {
+  /* Mono labels: uppercase, tracked, tabular. */
+  .label {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: var(--t-label);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+  }
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  /* Tall condensed display headings. */
+  .display {
+    font-family: "Archivo", "Arial Narrow", sans-serif;
+    font-variation-settings: "wdth" 62, "wght" 800;
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+  }
+  /* Wide stamps. */
+  .wide {
+    font-family: "Archivo", sans-serif;
+    font-variation-settings: "wdth" 125, "wght" 700;
+  }
+  .voice {
+    font-family: "Newsreader", Georgia, serif;
+    font-style: italic;
+  }
+  .rule-t {
+    border-top: 1px solid var(--rule);
+  }
+  .rule-b {
+    border-bottom: 1px solid var(--rule);
+  }
+  .rule-l {
+    border-left: 1px solid var(--rule);
+  }
+  .rule-2 {
+    border-top: 2px solid var(--rule);
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid var(--rule);
+    padding: 0.7rem 1.1rem;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: var(--t-label);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: transparent;
+    cursor: pointer;
+    min-height: 44px;
+  }
+  .btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn[disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .btn[disabled]:hover {
+    background: transparent;
+    color: inherit;
+  }
+  .btn-solid {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-solid:hover {
+    background: transparent;
+    color: var(--ink);
+  }
+  .kbd {
+    display: inline-block;
+    border: 1px solid currentColor;
+    padding: 0 0.35em;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.7rem;
+    line-height: 1.5;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .hatch {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      var(--tally) 0 1.5px,
+      transparent 1.5px 6px
+    );
+  }
+}
+
+/* ------------------------------------------------------------------------
+ * Flaw underline patterns: each code has its own pattern so a flaw is
+ * readable without colour (§10.8).
+ * --------------------------------------------------------------------- */
+.flaw {
+  text-decoration-color: var(--tally);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
+  text-decoration-line: underline;
+  text-decoration-skip-ink: none;
+}
+.flaw-RUSH { text-decoration-style: double; }
+.flaw-DRAG { text-decoration-style: dashed; }
+.flaw-HESITATE { text-decoration-style: dotted; text-decoration-thickness: 3px; }
+.flaw-MONO { text-decoration-style: solid; }
+.flaw-FADE { text-decoration-style: dashed; text-decoration-thickness: 1px; }
+.flaw-FILLER { text-decoration-style: wavy; text-decoration-thickness: 1.5px; }
+.flaw-SKIP { text-decoration-line: line-through; text-decoration-color: var(--ink-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

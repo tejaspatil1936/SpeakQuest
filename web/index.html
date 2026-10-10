@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="SpeakQuest — read the script, hear exactly where your delivery differs, and practise the fix." />
+    <meta name="theme-color" content="#F1ECE2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0F0F0D" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap"
+    />
+    <title>SpeakQuest — On Air</title>
+    <script>
+      // Apply the stored theme before first paint so Booth users never see Paper flash.
+      (function () {
+        try {
+          var stored = localStorage.getItem("sq.theme");
+          var dark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.dataset.theme = stored === "paper" || stored === "booth" ? stored : dark ? "booth" : "paper";
+        } catch (e) {
+          document.documentElement.dataset.theme = "paper";
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
