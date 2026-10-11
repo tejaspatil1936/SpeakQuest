@@ -113,7 +113,7 @@ export default function MePage() {
             </Link>
           </p>
         ) : (
-          <div className="mt-4 overflow-x-auto">
+          <div className="mt-4 overflow-x-auto" data-scroll-x tabIndex={0} role="region" aria-label="Takes table, scrolls sideways on small screens">
             <table className="mono w-full min-w-[560px] border-collapse text-sm">
               <thead>
                 <tr className="label border-b-2 border-rule text-left">

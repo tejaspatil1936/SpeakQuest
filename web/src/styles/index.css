@@ -65,6 +65,11 @@
     font: inherit;
     color: inherit;
   }
+  /* Grid items default to min-width:auto, which lets one long word or
+     no-wrap label widen the whole editorial grid on a phone. */
+  .grid > * {
+    min-width: 0;
+  }
 }
 
 @layer components {

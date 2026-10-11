@@ -19,7 +19,7 @@ function PauseGap({ ms, em }: { ms: number; em: number }) {
   return (
     <span aria-hidden="true" className="relative inline-block align-baseline" style={{ width: `${em}em` }}>
       <span className="absolute inset-x-1 top-1/2 border-t border-ink-2" />
-      <span className="mono absolute left-1/2 top-[-0.2em] -translate-x-1/2 whitespace-nowrap text-[0.7rem] leading-none text-ink-2">
+      <span className="mono absolute left-1/2 top-[calc(50%+0.2em)] -translate-x-1/2 whitespace-nowrap text-[0.65rem] leading-none text-ink-2">
         {pauseLabel(ms)}
       </span>
     </span>

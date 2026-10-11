@@ -130,7 +130,7 @@ export const Waveform = forwardRef<
         role="img"
         aria-label={`Waveform of your take${duration ? `, ${duration.toFixed(1)} seconds` : ""}, with ${findings.length} flagged ranges hatched`}
       />
-      <figcaption className="label mt-2 flex justify-between text-ink-2">
+      <figcaption className="label mt-2 flex flex-wrap justify-between gap-x-6 gap-y-1 text-ink-2">
         <span>{state === "loading" ? "Loading audio…" : state === "error" ? "Audio unavailable" : "Your take"}</span>
         <span>Hatched = flagged · click to jump</span>
       </figcaption>
