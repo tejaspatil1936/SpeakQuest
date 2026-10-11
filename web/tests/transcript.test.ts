@@ -2,6 +2,7 @@ import { readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 import { AnalysisResult, type Finding } from "../src/api/schema";
 import { findingHeadline } from "../src/lib/copy";
+import { groupReferenceByPhrase, groupTakeByPhrase, stepFinding } from "../src/lib/phrases";
 import {
   buildReferenceLine,
   buildTakeLine,
@@ -96,6 +97,25 @@ describe("buildTakeLine follows the alignment", () => {
   test("reference line is in spoken order", () => {
     const ref = buildReferenceLine(fixtures[0]!);
     expect(ref.map((w) => w.start)).toEqual([...ref.map((w) => w.start)].sort((a, b) => a - b));
+  });
+});
+
+describe("findings stepping and phrase grouping", () => {
+  test("arrow-key stepping clamps and enters from either end", () => {
+    expect(stepFinding(-1, 1, 3)).toBe(0);
+    expect(stepFinding(-1, -1, 3)).toBe(2);
+    expect(stepFinding(2, 1, 3)).toBe(2);
+    expect(stepFinding(0, -1, 3)).toBe(0);
+    expect(stepFinding(0, 1, 0)).toBe(-1);
+  });
+
+  test.each(fixtures.map((f) => [f.analysis_id, f] as const))("%s groups every item into a phrase", (_id, result) => {
+    const line = buildTakeLine(result);
+    const grouped = groupTakeByPhrase(line);
+    expect([...grouped.values()].flat()).toHaveLength(line.length);
+    expect(Math.max(...grouped.keys())).toBeLessThan(result.script.phrase_count);
+    const ref = groupReferenceByPhrase(result, buildReferenceLine(result));
+    expect([...ref.values()].flat()).toHaveLength(result.reference.words.length);
   });
 });
 
