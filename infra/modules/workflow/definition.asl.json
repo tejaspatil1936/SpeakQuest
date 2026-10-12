@@ -1,0 +1,206 @@
+{
+  "Comment": "SpeakQuest analysis of one take: normalize -> transcribe -> analyze -> explain -> persist (system design section 4).",
+  "StartAt": "Normalize",
+  "TimeoutSeconds": 1500,
+  "States": {
+    "Normalize": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${worker_arn}",
+        "Payload": { "step": "normalize", "state.$": "$" }
+      },
+      "ResultSelector": {
+        "normalizedKey.$": "$.Payload.normalizedKey",
+        "durationS.$": "$.Payload.durationS"
+      },
+      "ResultPath": "$.normalize",
+      "TimeoutSeconds": 310,
+      "Retry": [
+        {
+          "ErrorEquals": ["Lambda.ServiceException", "Lambda.AWSLambdaException", "Lambda.SdkClientException", "Lambda.TooManyRequestsException"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 2,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "ResultPath": "$.error", "Next": "MarkFailed" }],
+      "Next": "StartTranscribe"
+    },
+    "StartTranscribe": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::aws-sdk:transcribe:startTranscriptionJob",
+      "Parameters": {
+        "TranscriptionJobName.$": "States.Format('${name_prefix}-{}', $.analysisId)",
+        "LanguageCode.$": "$.language",
+        "MediaFormat": "wav",
+        "Media": {
+          "MediaFileUri.$": "States.Format('s3://${bucket}/{}', $.normalize.normalizedKey)"
+        },
+        "OutputBucketName": "${bucket}",
+        "OutputKey.$": "States.Format('transcripts/{}.json', $.analysisId)"
+      },
+      "ResultSelector": { "name.$": "$.TranscriptionJob.TranscriptionJobName" },
+      "ResultPath": "$.transcribeJob",
+      "Retry": [
+        {
+          "ErrorEquals": ["Transcribe.LimitExceededException", "Transcribe.InternalFailureException", "Transcribe.TranscribeException"],
+          "IntervalSeconds": 3,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "ResultPath": "$.error", "Next": "MarkFailed" }],
+      "Next": "InitPoll"
+    },
+    "InitPoll": {
+      "Type": "Pass",
+      "Result": { "polls": 0 },
+      "ResultPath": "$.poll",
+      "Next": "WaitTranscribe"
+    },
+    "WaitTranscribe": {
+      "Type": "Wait",
+      "Seconds": 5,
+      "Next": "CheckTranscribe"
+    },
+    "CheckTranscribe": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::aws-sdk:transcribe:getTranscriptionJob",
+      "Parameters": { "TranscriptionJobName.$": "$.transcribeJob.name" },
+      "ResultSelector": { "status.$": "$.TranscriptionJob.TranscriptionJobStatus" },
+      "ResultPath": "$.transcribeStatus",
+      "Retry": [
+        {
+          "ErrorEquals": ["Transcribe.LimitExceededException", "Transcribe.InternalFailureException"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "ResultPath": "$.error", "Next": "MarkFailed" }],
+      "Next": "TranscribeDone?"
+    },
+    "TranscribeDone?": {
+      "Type": "Choice",
+      "Choices": [
+        { "Variable": "$.transcribeStatus.status", "StringEquals": "COMPLETED", "Next": "Analyze" },
+        { "Variable": "$.transcribeStatus.status", "StringEquals": "FAILED", "Next": "TranscribeFailed" },
+        { "Variable": "$.poll.polls", "NumericGreaterThanEquals": ${max_polls}, "Next": "TranscribeTimedOut" }
+      ],
+      "Default": "CountPoll"
+    },
+    "CountPoll": {
+      "Type": "Pass",
+      "Parameters": { "polls.$": "States.MathAdd($.poll.polls, 1)" },
+      "ResultPath": "$.poll",
+      "Next": "WaitTranscribe"
+    },
+    "TranscribeFailed": {
+      "Type": "Pass",
+      "Parameters": { "Error": "TRANSCRIBE_FAILED", "Cause": "Amazon Transcribe reported FAILED" },
+      "ResultPath": "$.error",
+      "Next": "MarkFailed"
+    },
+    "TranscribeTimedOut": {
+      "Type": "Pass",
+      "Parameters": { "Error": "TRANSCRIBE_TIMEOUT", "Cause": "Transcription not finished after ${max_polls} polls" },
+      "ResultPath": "$.error",
+      "Next": "MarkFailed"
+    },
+    "Analyze": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${worker_arn}",
+        "Payload": { "step": "analyze", "state.$": "$" }
+      },
+      "ResultSelector": {
+        "analysisKey.$": "$.Payload.analysisKey",
+        "findingCount.$": "$.Payload.findingCount"
+      },
+      "ResultPath": "$.analyze",
+      "TimeoutSeconds": 310,
+      "Retry": [
+        {
+          "ErrorEquals": ["Lambda.ServiceException", "Lambda.AWSLambdaException", "Lambda.SdkClientException", "Lambda.TooManyRequestsException"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 2,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "ResultPath": "$.error", "Next": "MarkFailed" }],
+      "Next": "Explain"
+    },
+    "Explain": {
+      "Comment": "Coaching is best effort: any failure here continues to Persist, which falls back to template text.",
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${explain_arn}",
+        "Payload": { "state.$": "$" }
+      },
+      "ResultSelector": {
+        "coachingKey.$": "$.Payload.coachingKey",
+        "source.$": "$.Payload.source"
+      },
+      "ResultPath": "$.explain",
+      "TimeoutSeconds": 70,
+      "Retry": [
+        {
+          "ErrorEquals": ["Lambda.ServiceException", "Lambda.TooManyRequestsException"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 1,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "ResultPath": "$.explainError", "Next": "Persist" }],
+      "Next": "Persist"
+    },
+    "Persist": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${persist_arn}",
+        "Payload": { "step": "persist", "state.$": "$" }
+      },
+      "ResultSelector": { "resultKey.$": "$.Payload.resultKey" },
+      "ResultPath": "$.persist",
+      "TimeoutSeconds": 40,
+      "Retry": [
+        {
+          "ErrorEquals": ["Lambda.ServiceException", "Lambda.AWSLambdaException", "Lambda.SdkClientException", "Lambda.TooManyRequestsException"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "ResultPath": "$.error", "Next": "MarkFailed" }],
+      "End": true
+    },
+    "MarkFailed": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::lambda:invoke",
+      "Parameters": {
+        "FunctionName": "${persist_arn}",
+        "Payload": { "step": "fail", "state.$": "$" }
+      },
+      "ResultPath": "$.failed",
+      "TimeoutSeconds": 40,
+      "Retry": [
+        {
+          "ErrorEquals": ["States.ALL"],
+          "IntervalSeconds": 2,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Next": "Failed"
+    },
+    "Failed": {
+      "Type": "Fail",
+      "Error": "AnalysisFailed",
+      "Cause": "See the analysis item in DynamoDB for the error code and stage."
+    }
+  }
+}
