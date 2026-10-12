@@ -1,0 +1,16 @@
+# Copy to terraform.tfvars (gitignored) and fill in.
+env         = "dev"
+owner       = "your-name"
+alert_email = "you@example.com"
+region      = "us-east-1"
+
+# Set by `make deploy` after pushing the worker image:
+# worker_image_digest = "sha256:..."
+
+# Vercel (needs VERCEL_API_TOKEN in your shell):
+enable_frontend = false
+# vercel_project_name = "speakquest-dev"
+# frontend_demo_mode  = false
+
+# Extra CORS origins, e.g. Vercel preview URLs:
+# allowed_origins = ["https://speakquest-dev-git-feature-you.vercel.app"]
