@@ -62,7 +62,8 @@ export const AudioButton = forwardRef<
         }}
         aria-label={`${playing ? "Pause" : "Play"} ${label}`}
       >
-        <span aria-hidden="true">{playing ? "❚❚" : "▶"}</span>
+        {/* U+FE0E forces text presentation so the glyph never renders as an emoji. */}
+        <span aria-hidden="true">{playing ? "❚❚" : "▶︎"}</span>
         {label}
       </button>
       <span className="mono text-sm text-ink-2">{failed ? "unavailable" : `${time.toFixed(1)} s`}</span>
