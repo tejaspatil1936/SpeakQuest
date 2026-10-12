@@ -1,0 +1,9 @@
+# Only services/, rubric/ and build/worker-requirements.txt are needed.
+**
+!services/worker/speakquest/**
+!services/api/speakquest_api/**
+!services/explain/speakquest_explain/**
+!rubric/v1.yaml
+!build/worker-requirements.txt
+**/__pycache__
+**/*.pyc
