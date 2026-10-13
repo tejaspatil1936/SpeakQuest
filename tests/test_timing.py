@@ -63,3 +63,61 @@ def test_file_aligners_round_trip(tmp_path: Path) -> None:
     assert get_aligner("words-file", words_path=words).name == "words-file"
     with pytest.raises(ValueError):
         get_aligner("nope")
+
+
+def test_transcribe_job_aligner_polls_until_complete(tmp_path: Path) -> None:
+    import json as _json
+
+    from speakquest.timing import TranscribeJobAligner
+
+    wav = tmp_path / "ref.wav"
+    wav.write_bytes(b"RIFF....fake")
+
+    class S3:
+        def __init__(self) -> None:
+            self.objects: dict[str, bytes] = {}
+
+        def upload_file(self, src: str, bucket: str, key: str) -> None:
+            self.objects[key] = Path(src).read_bytes()
+
+        def get_object(self, Bucket: str, Key: str) -> dict:  # noqa: N803 - boto3 names
+            class Body:
+                def __init__(self, data: bytes) -> None:
+                    self.data = data
+
+                def read(self) -> bytes:
+                    return self.data
+
+            return {"Body": Body(self.objects[Key])}
+
+    class Transcribe:
+        def __init__(self, s3: S3, statuses: list[str]) -> None:
+            self.s3, self.statuses, self.started = s3, statuses, {}
+
+        def start_transcription_job(self, **kw: object) -> None:
+            self.started = kw
+            self.s3.objects[str(kw["OutputKey"])] = FIXTURE.read_bytes()
+
+        def get_transcription_job(self, TranscriptionJobName: str) -> dict:  # noqa: N803
+            return {"TranscriptionJob": {"TranscriptionJobStatus": self.statuses.pop(0)}}
+
+    s3 = S3()
+    tr = Transcribe(s3, ["QUEUED", "IN_PROGRESS", "COMPLETED"])
+    aligner = TranscribeJobAligner("bucket", "speakquest-dev", s3=s3, transcribe=tr, poll_s=0)
+    out = aligner.transcribe(wav, "en-US")
+    assert [w.text for w in out.words][:2] == ["Before", "the"]
+    assert str(tr.started["Media"]["MediaFileUri"]).startswith("s3://bucket/work/seed/")  # type: ignore[index]
+    assert _json.dumps(tr.started["LanguageCode"]) == '"en-US"'
+
+    stuck = Transcribe(s3, ["IN_PROGRESS"] * 3)
+    with pytest.raises(AnalysisError) as e:
+        TranscribeJobAligner(
+            "bucket", "p", s3=s3, transcribe=stuck, poll_s=0, max_polls=3
+        ).transcribe(wav, "en-US")
+    assert e.value.code == "TRANSCRIBE_TIMEOUT"
+    failed = Transcribe(s3, ["FAILED"])
+    with pytest.raises(AnalysisError) as e:
+        TranscribeJobAligner("bucket", "p", s3=s3, transcribe=failed, poll_s=0).transcribe(
+            wav, "en-US"
+        )
+    assert e.value.code == "TRANSCRIBE_FAILED"

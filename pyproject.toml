@@ -44,6 +44,7 @@ dev = [
 [project.scripts]
 speakquest-analyze = "speakquest.cli:main"
 speakquest-local = "speakquest_api.local.server:main"
+speakquest-cloud = "speakquest_api.cloud:main"
 speakquest-eval = "speakquest_eval.cli:main"
 
 [build-system]

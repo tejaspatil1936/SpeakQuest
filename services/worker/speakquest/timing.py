@@ -80,6 +80,65 @@ class TranscribeFileAligner:
         return parse_transcribe_json(doc, language)
 
 
+class TranscribeJobAligner:
+    """Runs a real Amazon Transcribe job (used when seeding references).
+
+    In the analysis workflow the job is started and polled by Step Functions
+    states instead; this adapter does the same from Python so reference
+    takes get the same timestamps as participants' takes.
+    """
+
+    name = "amazon-transcribe"
+
+    def __init__(
+        self,
+        bucket: str,
+        job_prefix: str,
+        region: str | None = None,
+        poll_s: float = 5.0,
+        max_polls: int = 40,
+        s3: Any = None,
+        transcribe: Any = None,
+    ):
+        import boto3  # noqa: PLC0415
+
+        self.bucket = bucket
+        self.job_prefix = job_prefix
+        self.poll_s = poll_s
+        self.max_polls = max_polls
+        self.s3: Any = s3 or boto3.client("s3", region_name=region)
+        self.transcribe_client: Any = transcribe or boto3.client("transcribe", region_name=region)
+
+    def transcribe(self, wav: Path, language: str) -> Transcript:
+        import hashlib  # noqa: PLC0415
+        import time  # noqa: PLC0415
+
+        digest = hashlib.sha256(wav.read_bytes()).hexdigest()[:12]
+        job = f"{self.job_prefix}-{digest}-{int(time.time())}"
+        media_key = f"work/seed/{job}.wav"
+        output_key = f"transcripts/seed/{job}.json"
+        self.s3.upload_file(str(wav), self.bucket, media_key)
+        self.transcribe_client.start_transcription_job(
+            TranscriptionJobName=job,
+            LanguageCode=language,
+            MediaFormat="wav",
+            Media={"MediaFileUri": f"s3://{self.bucket}/{media_key}"},
+            OutputBucketName=self.bucket,
+            OutputKey=output_key,
+        )
+        for _ in range(self.max_polls):
+            status = self.transcribe_client.get_transcription_job(TranscriptionJobName=job)[
+                "TranscriptionJob"
+            ]["TranscriptionJobStatus"]
+            if status == "COMPLETED":
+                body = self.s3.get_object(Bucket=self.bucket, Key=output_key)["Body"].read()
+                return parse_transcribe_json(json.loads(body), language)
+            if status == "FAILED":
+                raise AnalysisError("TRANSCRIBE_FAILED", job, stage="TRANSCRIBE")
+            time.sleep(self.poll_s)
+        raise AnalysisError("TRANSCRIBE_TIMEOUT", job, stage="TRANSCRIBE")
+
+
 # --------------------------------------------------------------------------- fixtures
 
 
