@@ -87,6 +87,11 @@ def test_record_upload_analyse_and_read_back(server: str) -> None:
     )
     assert status == 201
     up = json.loads(body)
+    # Browsers preflight the cross-origin PUT; it must be allowed.
+    status, headers, _ = http("OPTIONS", up["uploadUrl"], headers={
+        "access-control-request-method": "PUT",
+        "access-control-request-headers": "content-type"})
+    assert status == 204 and "PUT" in headers["access-control-allow-methods"]
     # A PUT that doesn't match the signed type is refused, like S3 would.
     assert http("PUT", up["uploadUrl"], raw=take, headers={"content-type": "audio/webm"})[0] == 403
     assert http("PUT", up["uploadUrl"], raw=take, headers=up["headers"])[0] == 200
