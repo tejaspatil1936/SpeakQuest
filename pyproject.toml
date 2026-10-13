@@ -36,7 +36,7 @@ dev = [
   "pytest-cov>=5.0",
   "ruff>=0.7",
   "mypy>=1.13",
-  "moto[s3,dynamodb,stepfunctions]>=5.0",
+  "moto[s3,dynamodb,stepfunctions,server]>=5.0",
   "types-PyYAML",
   "boto3-stubs[s3,dynamodb,stepfunctions,transcribe,bedrock-runtime]",
 ]
