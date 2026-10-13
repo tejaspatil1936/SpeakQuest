@@ -16,5 +16,8 @@ provider "aws" {
 # file in this repository. With enable_frontend = false the provider makes no
 # API calls.
 provider "vercel" {
-  team = var.vercel_team_id != "" ? var.vercel_team_id : null
+  # The provider refuses to configure without a token even when it manages
+  # nothing; an inert placeholder keeps AWS-only plans working.
+  api_token = var.enable_frontend ? null : "frontenddisabled00000000"
+  team      = var.vercel_team_id != "" ? var.vercel_team_id : null
 }
