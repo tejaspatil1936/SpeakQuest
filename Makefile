@@ -89,7 +89,7 @@ eval: ## evaluate detection on dev and held-out splits → eval/reports/
 
 # ------------------------------------------------------------------ local runtime
 
-.PHONY: local local-seed web smoke-worker
+.PHONY: local local-seed web smoke-worker e2e
 local-seed: ## pre-analyse references into .local/
 	$(PY) -m speakquest_api.local.server seed
 
@@ -99,6 +99,9 @@ local: ## run the API + storage + workflow locally (Bedrock coaching if AWS cred
 
 web: ## Vite dev server against the local API
 	VITE_API_URL=http://localhost:$(API_PORT) npm --prefix web run dev
+
+e2e: ## real browser (fake mic) → local API → workflow → playback
+	scripts/e2e-browser.sh
 
 smoke-worker: build-worker ## run the worker image as a Lambda against moto
 	$(PY) scripts/smoke_worker_image.py speakquest-worker:local
