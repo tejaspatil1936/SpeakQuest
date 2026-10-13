@@ -48,6 +48,21 @@ _CONTRADICTIONS: dict[str, tuple[re.Pattern[str], str]] = {
 }
 
 
+# Spelled-out comparisons ("three times flatter", "twice as fast", "half
+# the volume") are derived numbers too, and the digit check cannot see them.
+_NUMBER_WORDS = (
+    r"(?:two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|twenty|"
+    r"thirty|forty|fifty|a\s+hundred|hundred|several|many)"
+)
+_WORD_COMPARISON = re.compile(
+    rf"\b(?:{_NUMBER_WORDS}\s+times|twice|thrice|half)\b"
+    r"(?:\s+(?:as|the|lower|higher|faster|slower|less|more|quieter|louder|flatter|longer|"
+    r"shorter|bigger|smaller|over))",
+    re.IGNORECASE,
+)
+_PERCENT_WORDS = re.compile(rf"\b{_NUMBER_WORDS}\s+percent\b", re.IGNORECASE)
+
+
 @dataclass(frozen=True)
 class Verdict:
     output: CoachingOutput | None
@@ -142,6 +157,11 @@ def validate(raw: str | object, findings: Sequence[Finding], script: str) -> Ver
         contradiction = _CONTRADICTIONS.get(finding.code)
         for field in ("headline", "why", "drill"):
             text = getattr(item, field)
+            if _WORD_COMPARISON.search(text) or _PERCENT_WORDS.search(text):
+                errors.append(
+                    f"{item.finding_id}.{field} states a derived comparison in words; "
+                    "quote the evidence values instead"
+                )
             if contradiction and contradiction[0].search(text):
                 errors.append(f"{item.finding_id}.{field} {contradiction[1]}")
             if _TIMESTAMP.search(text):

@@ -38,8 +38,11 @@ Rules — an automatic checker rejects any answer that breaks them:
 1. Return only JSON: {"items":[{"finding_id":"f1","headline":"...","why":"...","drill":"..."}]}
    with exactly one item per finding, using the given ids.
 2. Use digits only for numbers copied from that finding's evidence (you may round them to
-   fewer decimals) or quoted from the script. Never compute new numbers, percentages or
-   conversions. Write any other quantity in words ("three times").
+   fewer decimals) or quoted from the script. Never compute new numbers, ratios,
+   percentages or conversions — not in digits and not in words ("three times flatter",
+   "twice as fast", "half the volume" are all forbidden). To compare with the reference,
+   quote both evidence values. Repetition counts in a drill may be words ("read it three
+   times").
 3. Never mention times or timestamps (no "at 4.2 seconds", no "0:12"). The interface shows
    where each finding is.
 4. Voice: direct, specific, second person, like a director's margin note. No praise, no

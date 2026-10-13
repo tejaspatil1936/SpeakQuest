@@ -137,6 +137,33 @@ def test_advice_must_match_the_finding_direction() -> None:
     assert validate(fine, findings, SCRIPT).ok
 
 
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Your pitch varies three times less than the reference.",
+        "You went twice as fast.",
+        "You used half the volume.",
+        "That was fifty percent quieter.",
+    ],
+)
+def test_spelled_out_comparisons_are_rejected(text: str) -> None:
+    payload = json.dumps({"items": [item("f1", "ok", why=text), item("f2", "ok")]})
+    errors = validate(payload, FINDINGS, SCRIPT).errors
+    assert any("derived comparison" in e for e in errors), errors
+
+
+def test_repetition_counts_in_words_are_fine() -> None:
+    payload = json.dumps(
+        {
+            "items": [
+                item("f1", "ok", drill="Read it three times, then once at the reference pace."),
+                item("f2", "ok"),
+            ]
+        }
+    )
+    assert validate(payload, FINDINGS, SCRIPT).ok
+
+
 def test_numbers_from_another_finding_are_not_allowed() -> None:
     payload = json.dumps({"items": [item("f1", "You paused 970 ms."), item("f2", "ok")]})
     assert not validate(payload, FINDINGS, SCRIPT).ok
