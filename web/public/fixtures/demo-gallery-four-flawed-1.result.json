@@ -8,7 +8,7 @@
   "worker_image_digest": "local",
   "transcribe_language": "en-US",
   "aligner": "vosk:vosk-model-small-en-us-0.15",
-  "model_id": null
+  "model_id": "us.amazon.nova-2-lite-v1:0"
  },
  "script": {
   "text": "This painting was finished in 1889, during a single week of rain. Look closely at the left corner, where the artist hid a small blue bird among the reeds.",
@@ -214,7 +214,7 @@
     "kind": "match",
     "script_index": 0,
     "syllables": 1,
-    "rate_ratio": 1.024,
+    "rate_ratio": 1.071,
     "loudness_db": 3.2,
     "pitch_st": 4.18,
     "pause_before_ms": 0,
@@ -229,7 +229,7 @@
     "kind": "match",
     "script_index": 1,
     "syllables": 2,
-    "rate_ratio": 1.024,
+    "rate_ratio": 1.071,
     "loudness_db": -0.4,
     "pitch_st": 4.43,
     "pause_before_ms": 0,
@@ -244,7 +244,7 @@
     "kind": "match",
     "script_index": 2,
     "syllables": 1,
-    "rate_ratio": 1.032,
+    "rate_ratio": 1.037,
     "loudness_db": -3.6,
     "pitch_st": -2.92,
     "pause_before_ms": 0,
@@ -259,7 +259,7 @@
     "kind": "match",
     "script_index": 3,
     "syllables": 2,
-    "rate_ratio": 0.889,
+    "rate_ratio": 0.893,
     "loudness_db": 0.3,
     "pitch_st": 6.53,
     "pause_before_ms": 0,
@@ -274,7 +274,7 @@
     "kind": "match",
     "script_index": 4,
     "syllables": 1,
-    "rate_ratio": 0.784,
+    "rate_ratio": 0.788,
     "loudness_db": -0.5,
     "pitch_st": 0.59,
     "pause_before_ms": 0,
@@ -289,7 +289,7 @@
     "kind": "match",
     "script_index": 5,
     "syllables": 2,
-    "rate_ratio": 0.738,
+    "rate_ratio": 0.742,
     "loudness_db": -2.5,
     "pitch_st": 1.55,
     "pause_before_ms": 0,
@@ -304,7 +304,7 @@
     "kind": "match",
     "script_index": 6,
     "syllables": 2,
-    "rate_ratio": 0.953,
+    "rate_ratio": 0.957,
     "loudness_db": -1.9,
     "pitch_st": 0.06,
     "pause_before_ms": 0,
@@ -319,7 +319,7 @@
     "kind": "match",
     "script_index": 7,
     "syllables": 1,
-    "rate_ratio": 1.031,
+    "rate_ratio": 1.036,
     "loudness_db": -0.2,
     "pitch_st": -0.71,
     "pause_before_ms": 0,
@@ -334,7 +334,7 @@
     "kind": "match",
     "script_index": 8,
     "syllables": 2,
-    "rate_ratio": 1.031,
+    "rate_ratio": 1.036,
     "loudness_db": 3.8,
     "pitch_st": 2.06,
     "pause_before_ms": 300,
@@ -349,11 +349,13 @@
     "kind": "match",
     "script_index": 11,
     "syllables": 1,
-    "rate_ratio": 1.428,
+    "rate_ratio": 1.434,
     "loudness_db": 0.7,
     "pitch_st": 2.28,
     "pause_before_ms": 0,
-    "finding_ids": []
+    "finding_ids": [
+     "f2"
+    ]
    },
    {
     "index": 10,
@@ -364,11 +366,13 @@
     "kind": "match",
     "script_index": 12,
     "syllables": 1,
-    "rate_ratio": 1.428,
+    "rate_ratio": 1.434,
     "loudness_db": -4.8,
     "pitch_st": -5.27,
     "pause_before_ms": 0,
-    "finding_ids": []
+    "finding_ids": [
+     "f2"
+    ]
    },
    {
     "index": 11,
@@ -379,11 +383,13 @@
     "kind": "match",
     "script_index": 13,
     "syllables": 1,
-    "rate_ratio": 1.265,
+    "rate_ratio": 1.271,
     "loudness_db": 1.5,
     "pitch_st": -3.19,
     "pause_before_ms": 0,
-    "finding_ids": []
+    "finding_ids": [
+     "f2"
+    ]
    },
    {
     "index": 12,
@@ -394,7 +400,7 @@
     "kind": "match",
     "script_index": 14,
     "syllables": 1,
-    "rate_ratio": 1.119,
+    "rate_ratio": 1.124,
     "loudness_db": 1.1,
     "pitch_st": 2.7,
     "pause_before_ms": 520,
@@ -409,7 +415,7 @@
     "kind": "match",
     "script_index": 15,
     "syllables": 3,
-    "rate_ratio": 0.939,
+    "rate_ratio": 0.944,
     "loudness_db": 1.5,
     "pitch_st": -1.07,
     "pause_before_ms": 0,
@@ -424,7 +430,7 @@
     "kind": "match",
     "script_index": 16,
     "syllables": 1,
-    "rate_ratio": 0.938,
+    "rate_ratio": 0.943,
     "loudness_db": -1.9,
     "pitch_st": -1.14,
     "pause_before_ms": 0,
@@ -439,7 +445,7 @@
     "kind": "match",
     "script_index": 17,
     "syllables": 1,
-    "rate_ratio": 0.995,
+    "rate_ratio": 1.0,
     "loudness_db": 2.5,
     "pitch_st": -1.28,
     "pause_before_ms": 0,
@@ -454,7 +460,7 @@
     "kind": "match",
     "script_index": 18,
     "syllables": 1,
-    "rate_ratio": 1.097,
+    "rate_ratio": 1.102,
     "loudness_db": 1.3,
     "pitch_st": 3.04,
     "pause_before_ms": 0,
@@ -465,11 +471,11 @@
     "text": "corner",
     "norm": "corner",
     "start": 5.61,
-    "end": 6.06,
+    "end": 6.03,
     "kind": "match",
     "script_index": 19,
     "syllables": 2,
-    "rate_ratio": 1.093,
+    "rate_ratio": 1.098,
     "loudness_db": 1.6,
     "pitch_st": 1.22,
     "pause_before_ms": 0,
@@ -484,7 +490,7 @@
     "kind": "match",
     "script_index": 20,
     "syllables": 1,
-    "rate_ratio": 1.151,
+    "rate_ratio": 1.156,
     "loudness_db": 4.8,
     "pitch_st": 3.4,
     "pause_before_ms": 300,
@@ -499,7 +505,7 @@
     "kind": "match",
     "script_index": 21,
     "syllables": 1,
-    "rate_ratio": 0.919,
+    "rate_ratio": 0.923,
     "loudness_db": 0.6,
     "pitch_st": 0.79,
     "pause_before_ms": 0,
@@ -514,7 +520,7 @@
     "kind": "match",
     "script_index": 22,
     "syllables": 2,
-    "rate_ratio": 0.844,
+    "rate_ratio": 0.848,
     "loudness_db": 1.9,
     "pitch_st": 1.0,
     "pause_before_ms": 0,
@@ -529,7 +535,7 @@
     "kind": "match",
     "script_index": 23,
     "syllables": 1,
-    "rate_ratio": 0.829,
+    "rate_ratio": 0.833,
     "loudness_db": -1.5,
     "pitch_st": -0.1,
     "pause_before_ms": 0,
@@ -544,7 +550,7 @@
     "kind": "match",
     "script_index": 24,
     "syllables": 1,
-    "rate_ratio": 0.902,
+    "rate_ratio": 0.907,
     "loudness_db": -1.7,
     "pitch_st": -3.13,
     "pause_before_ms": 0,
@@ -559,7 +565,7 @@
     "kind": "match",
     "script_index": 25,
     "syllables": 1,
-    "rate_ratio": 0.938,
+    "rate_ratio": 0.943,
     "loudness_db": 0.5,
     "pitch_st": -1.69,
     "pause_before_ms": 0,
@@ -574,7 +580,7 @@
     "kind": "match",
     "script_index": 26,
     "syllables": 1,
-    "rate_ratio": 0.942,
+    "rate_ratio": 0.946,
     "loudness_db": 1.6,
     "pitch_st": 1.86,
     "pause_before_ms": 0,
@@ -589,7 +595,7 @@
     "kind": "match",
     "script_index": 27,
     "syllables": 1,
-    "rate_ratio": 0.943,
+    "rate_ratio": 0.948,
     "loudness_db": 2.5,
     "pitch_st": -0.27,
     "pause_before_ms": 0,
@@ -604,7 +610,7 @@
     "kind": "match",
     "script_index": 28,
     "syllables": 2,
-    "rate_ratio": 0.921,
+    "rate_ratio": 0.925,
     "loudness_db": -0.2,
     "pitch_st": -2.22,
     "pause_before_ms": 0,
@@ -619,7 +625,7 @@
     "kind": "match",
     "script_index": 29,
     "syllables": 1,
-    "rate_ratio": 1.066,
+    "rate_ratio": 1.071,
     "loudness_db": -3.8,
     "pitch_st": -4.16,
     "pause_before_ms": 0,
@@ -634,7 +640,7 @@
     "kind": "sub",
     "script_index": 30,
     "syllables": 1,
-    "rate_ratio": 1.066,
+    "rate_ratio": 1.071,
     "loudness_db": -6.6,
     "pitch_st": -7.26,
     "pause_before_ms": 0,
@@ -679,7 +685,7 @@
    {
     "phrase": 2,
     "start": 4.41,
-    "end": 6.06,
+    "end": 6.03,
     "pitch_sd_st": 4.07,
     "voiced_frames": 96
    },
@@ -693,7 +699,7 @@
   ],
   "vocalizations": [],
   "syllables_per_s": 5.145,
-  "rate_ratio_global": 0.938,
+  "rate_ratio_global": 0.933,
   "pitch_median_hz": 156.4,
   "loudness_mean_db": -15.0
  },
@@ -704,7 +710,7 @@
     "index": 0,
     "text": "this",
     "norm": "this",
-    "start": 0.33,
+    "start": 0.3,
     "end": 0.54,
     "kind": "match",
     "script_index": 0,
@@ -1189,7 +1195,7 @@
   "phrases": [
    {
     "phrase": 0,
-    "start": 0.33,
+    "start": 0.3,
     "end": 2.37,
     "pitch_sd_st": 4.12,
     "voiced_frames": 152
@@ -1217,7 +1223,7 @@
    }
   ],
   "vocalizations": [],
-  "syllables_per_s": 5.556,
+  "syllables_per_s": 5.534,
   "rate_ratio_global": null,
   "pitch_median_hz": 195.8,
   "loudness_mean_db": -14.5
@@ -1399,6 +1405,29 @@
     9,
     10
    ]
+  },
+  {
+   "id": "f2",
+   "code": "RUSH",
+   "dimension": "pace",
+   "start": 3.3,
+   "end": 3.96,
+   "words": [
+    "week",
+    "of",
+    "rain"
+   ],
+   "evidence": {
+    "rate_ratio": 1.43,
+    "syllables_per_s": 4.8,
+    "reference_syllables_per_s": 3.6
+   },
+   "severity": 1,
+   "rubric_version": "1.0.0",
+   "script_span": [
+    11,
+    13
+   ]
   }
  ],
  "penalties": [
@@ -1406,16 +1435,40 @@
    "finding_id": "f1",
    "dimension": "accuracy",
    "points": 15.0
+  },
+  {
+   "finding_id": "f2",
+   "dimension": "pace",
+   "points": 8.0
   }
  ],
  "scores": {
-  "pace": 100,
+  "pace": 92,
   "pauses": 100,
   "pitch": 100,
   "volume": 100,
   "accuracy": 85,
-  "overall": 97
+  "overall": 95
  },
- "coaching": null,
+ "coaching": {
+  "source": "bedrock",
+  "model_id": "us.amazon.nova-2-lite-v1:0",
+  "items": [
+   {
+    "finding_id": "f1",
+    "headline": "Missing words in description",
+    "why": "Skipping 'a single' makes the timeframe unclear for the listener",
+    "drill": "Re-record the phrase 'a single week' to include both missing words"
+   },
+   {
+    "finding_id": "f2",
+    "headline": "Speed issue in time description",
+    "why": "The words 'week of rain' are delivered too fast compared to reference pacing, risking listener comprehension",
+    "drill": "Read 'week of rain' taking more time to match the reference syllables per second of 3.6"
+   }
+  ],
+  "attempts": 1,
+  "rejections": []
+ },
  "warnings": []
 }

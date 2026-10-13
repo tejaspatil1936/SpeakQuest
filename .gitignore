@@ -75,3 +75,4 @@ eval/reports/*.local.*
 
 # Agent tooling worktrees
 .claude/worktrees/
+terraform.tfstate.d/

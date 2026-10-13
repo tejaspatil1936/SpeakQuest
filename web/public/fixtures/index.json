@@ -4,11 +4,9 @@
       "analysisId": "demo-deadline-flawed-2",
       "challengeId": "deadline",
       "clip": "deadline__flawed-2",
-      "overall": 93,
+      "overall": 96,
       "codes": [
-        "MONO",
-        "FADE",
-        "MONO",
+        "SKIP",
         "HESITATE"
       ]
     },
@@ -16,36 +14,31 @@
       "analysisId": "demo-deadline-flawed-4",
       "challengeId": "deadline",
       "clip": "deadline__flawed-4",
-      "overall": 92,
+      "overall": 94,
       "codes": [
-        "MONO",
         "DRAG",
-        "SKIP",
-        "MONO",
-        "FILLER"
+        "FILLER",
+        "FADE"
       ]
     },
     {
       "analysisId": "demo-gallery-four-flawed-1",
       "challengeId": "gallery-four",
       "clip": "gallery-four__flawed-1",
-      "overall": 97,
+      "overall": 95,
       "codes": [
-        "SKIP"
+        "SKIP",
+        "RUSH"
       ]
     },
     {
       "analysisId": "demo-the-toast-flawed-2",
       "challengeId": "the-toast",
       "clip": "the-toast__flawed-2",
-      "overall": 79,
+      "overall": 96,
       "codes": [
-        "DRAG",
-        "MONO",
         "FILLER",
-        "MONO",
-        "MONO",
-        "MONO",
+        "FILLER",
         "MONO"
       ]
     },

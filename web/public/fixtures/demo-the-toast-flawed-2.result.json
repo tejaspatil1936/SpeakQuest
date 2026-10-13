@@ -8,7 +8,7 @@
   "worker_image_digest": "local",
   "transcribe_language": "en-US",
   "aligner": "vosk:vosk-model-small-en-us-0.15",
-  "model_id": null
+  "model_id": "us.amazon.nova-2-lite-v1:0"
  },
  "script": {
   "text": "Ten years ago, two strangers missed the same train. They waited together, argued about coffee, and never really stopped talking. Please raise your glasses to Maya and Sam.",
@@ -185,7 +185,7 @@
   "phrase_count": 6
  },
  "take": {
-  "duration_s": 14.382,
+  "duration_s": 14.428,
   "words": [
    {
     "index": 0,
@@ -196,547 +196,554 @@
     "kind": "match",
     "script_index": 0,
     "syllables": 1,
-    "rate_ratio": 0.487,
-    "loudness_db": 3.5,
-    "pitch_st": 3.17,
+    "rate_ratio": 0.77,
+    "loudness_db": 3.6,
+    "pitch_st": 2.87,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1",
-     "f2"
-    ]
+    "finding_ids": []
    },
    {
     "index": 1,
     "text": "years",
     "norm": "years",
     "start": 0.6,
-    "end": 0.99,
+    "end": 0.96,
     "kind": "match",
     "script_index": 1,
     "syllables": 1,
-    "rate_ratio": 0.487,
-    "loudness_db": 1.7,
-    "pitch_st": 2.47,
+    "rate_ratio": 0.77,
+    "loudness_db": 2.0,
+    "pitch_st": 2.65,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1",
-     "f2"
-    ]
+    "finding_ids": []
    },
    {
     "index": 2,
     "text": "ago",
     "norm": "ago",
-    "start": 1.62,
-    "end": 2.07,
+    "start": 0.96,
+    "end": 1.44,
     "kind": "match",
     "script_index": 2,
     "syllables": 2,
-    "rate_ratio": 0.414,
+    "rate_ratio": 0.682,
     "loudness_db": 0.8,
-    "pitch_st": -1.71,
+    "pitch_st": -1.8,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1",
-     "f2"
-    ]
+    "finding_ids": []
    },
    {
     "index": 3,
     "text": "to",
     "norm": "to",
-    "start": 2.31,
-    "end": 2.55,
+    "start": 1.68,
+    "end": 1.92,
     "kind": "sub",
     "script_index": 3,
     "syllables": 1,
-    "rate_ratio": 0.853,
-    "loudness_db": 2.3,
-    "pitch_st": 3.94,
-    "pause_before_ms": 300,
-    "finding_ids": [
-     "f4"
-    ]
+    "rate_ratio": 0.846,
+    "loudness_db": 2.8,
+    "pitch_st": 3.66,
+    "pause_before_ms": 320,
+    "finding_ids": []
    },
    {
     "index": 4,
     "text": "strangers",
     "norm": "strangers",
-    "start": 2.55,
-    "end": 3.3,
+    "start": 1.92,
+    "end": 2.67,
     "kind": "match",
     "script_index": 4,
     "syllables": 2,
-    "rate_ratio": 0.831,
-    "loudness_db": -1.3,
-    "pitch_st": -0.3,
+    "rate_ratio": 0.837,
+    "loudness_db": -1.1,
+    "pitch_st": -0.56,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f4"
-    ]
+    "finding_ids": []
    },
    {
     "index": 5,
     "text": "missed",
     "norm": "missed",
-    "start": 3.3,
-    "end": 3.66,
+    "start": 2.67,
+    "end": 3.03,
     "kind": "match",
     "script_index": 5,
     "syllables": 1,
     "rate_ratio": 0.89,
-    "loudness_db": -1.7,
-    "pitch_st": 1.92,
+    "loudness_db": -1.6,
+    "pitch_st": 1.65,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f4"
-    ]
+    "finding_ids": []
    },
    {
     "index": 6,
     "text": "the",
     "norm": "the",
-    "start": 3.69,
-    "end": 3.78,
+    "start": 3.06,
+    "end": 3.15,
     "kind": "match",
     "script_index": 6,
     "syllables": 1,
     "rate_ratio": 0.824,
-    "loudness_db": -0.9,
-    "pitch_st": 1.73,
+    "loudness_db": -0.5,
+    "pitch_st": 1.46,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f4"
-    ]
+    "finding_ids": []
    },
    {
     "index": 7,
     "text": "same",
     "norm": "same",
-    "start": 3.78,
-    "end": 4.2,
+    "start": 3.15,
+    "end": 3.57,
     "kind": "match",
     "script_index": 7,
     "syllables": 1,
-    "rate_ratio": 0.972,
-    "loudness_db": -0.8,
-    "pitch_st": 1.46,
+    "rate_ratio": 0.982,
+    "loudness_db": -0.6,
+    "pitch_st": 1.18,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f4"
-    ]
+    "finding_ids": []
    },
    {
     "index": 8,
     "text": "train",
     "norm": "train",
-    "start": 4.2,
-    "end": 4.68,
+    "start": 3.57,
+    "end": 4.05,
     "kind": "match",
     "script_index": 8,
     "syllables": 1,
-    "rate_ratio": 0.917,
-    "loudness_db": -2.6,
-    "pitch_st": -2.17,
+    "rate_ratio": 0.885,
+    "loudness_db": -2.3,
+    "pitch_st": -2.44,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f4"
-    ]
+    "finding_ids": []
    },
    {
     "index": 9,
     "text": "they",
     "norm": "they",
-    "start": 5.19,
-    "end": 5.43,
+    "start": 4.56,
+    "end": 4.86,
     "kind": "match",
     "script_index": 9,
     "syllables": 1,
-    "rate_ratio": 0.95,
-    "loudness_db": 3.6,
-    "pitch_st": 1.31,
-    "pause_before_ms": 560,
-    "finding_ids": [
-     "f5"
-    ]
+    "rate_ratio": 0.892,
+    "loudness_db": 3.7,
+    "pitch_st": 0.98,
+    "pause_before_ms": 580,
+    "finding_ids": []
    },
    {
     "index": 10,
-    "text": "waited",
-    "norm": "waited",
-    "start": 5.43,
-    "end": 5.85,
-    "kind": "match",
-    "script_index": 10,
-    "syllables": 2,
-    "rate_ratio": 0.908,
-    "loudness_db": -0.5,
-    "pitch_st": 0.67,
-    "pause_before_ms": 0,
+    "text": "oh",
+    "norm": "oh",
+    "start": 4.92,
+    "end": 5.37,
+    "kind": "filler",
+    "script_index": null,
+    "syllables": 1,
+    "rate_ratio": null,
+    "loudness_db": 3.1,
+    "pitch_st": 1.42,
+    "pause_before_ms": 120,
     "finding_ids": [
-     "f5"
+     "f1"
     ]
    },
    {
     "index": 11,
-    "text": "together",
-    "norm": "together",
-    "start": 5.85,
-    "end": 6.42,
-    "kind": "match",
-    "script_index": 11,
-    "syllables": 3,
-    "rate_ratio": 0.909,
-    "loudness_db": -2.7,
-    "pitch_st": -1.99,
+    "text": "wait",
+    "norm": "wait",
+    "start": 5.46,
+    "end": 5.76,
+    "kind": "sub",
+    "script_index": 10,
+    "syllables": 1,
+    "rate_ratio": 0.828,
+    "loudness_db": -0.1,
+    "pitch_st": 0.41,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f5"
-    ]
+    "finding_ids": []
    },
    {
     "index": 12,
-    "text": "argued",
-    "norm": "argued",
-    "start": 6.69,
-    "end": 7.2,
-    "kind": "match",
-    "script_index": 12,
+    "text": "it",
+    "norm": "it",
+    "start": 5.76,
+    "end": 5.88,
+    "kind": "insert",
+    "script_index": null,
     "syllables": 1,
-    "rate_ratio": 0.923,
-    "loudness_db": 2.1,
-    "pitch_st": 1.19,
-    "pause_before_ms": 320,
+    "rate_ratio": null,
+    "loudness_db": -1.2,
+    "pitch_st": -0.85,
+    "pause_before_ms": 0,
     "finding_ids": [
-     "f6"
+     "f2"
     ]
    },
    {
     "index": 13,
+    "text": "together",
+    "norm": "together",
+    "start": 5.91,
+    "end": 6.45,
+    "kind": "match",
+    "script_index": 11,
+    "syllables": 3,
+    "rate_ratio": 0.976,
+    "loudness_db": -2.9,
+    "pitch_st": -2.13,
+    "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 14,
+    "text": "argued",
+    "norm": "argued",
+    "start": 6.72,
+    "end": 7.23,
+    "kind": "match",
+    "script_index": 12,
+    "syllables": 1,
+    "rate_ratio": 0.909,
+    "loudness_db": 2.2,
+    "pitch_st": 0.88,
+    "pause_before_ms": 300,
+    "finding_ids": []
+   },
+   {
+    "index": 15,
     "text": "about",
     "norm": "about",
-    "start": 7.2,
-    "end": 7.56,
+    "start": 7.26,
+    "end": 7.62,
     "kind": "match",
     "script_index": 13,
     "syllables": 2,
     "rate_ratio": 0.919,
-    "loudness_db": 1.8,
-    "pitch_st": 0.73,
+    "loudness_db": 1.6,
+    "pitch_st": 0.37,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f6"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 14,
+    "index": 16,
     "text": "coffee",
     "norm": "coffee",
-    "start": 7.56,
-    "end": 8.19,
+    "start": 7.62,
+    "end": 8.22,
     "kind": "match",
     "script_index": 14,
     "syllables": 2,
-    "rate_ratio": 0.955,
-    "loudness_db": -1.7,
-    "pitch_st": -0.43,
+    "rate_ratio": 0.979,
+    "loudness_db": -1.6,
+    "pitch_st": -0.71,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f6"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 15,
+    "index": 17,
     "text": "and",
     "norm": "and",
-    "start": 8.49,
-    "end": 8.76,
+    "start": 8.52,
+    "end": 8.79,
     "kind": "match",
     "script_index": 15,
     "syllables": 1,
     "rate_ratio": 0.932,
-    "loudness_db": 0.8,
-    "pitch_st": -0.1,
+    "loudness_db": 2.1,
+    "pitch_st": 1.13,
     "pause_before_ms": 340,
-    "finding_ids": [
-     "f7"
-    ]
-   },
-   {
-    "index": 16,
-    "text": "never",
-    "norm": "never",
-    "start": 8.76,
-    "end": 9.15,
-    "kind": "match",
-    "script_index": 16,
-    "syllables": 2,
-    "rate_ratio": 0.891,
-    "loudness_db": 0.2,
-    "pitch_st": -0.26,
-    "pause_before_ms": 0,
-    "finding_ids": [
-     "f7"
-    ]
-   },
-   {
-    "index": 17,
-    "text": "really",
-    "norm": "really",
-    "start": 9.15,
-    "end": 9.57,
-    "kind": "match",
-    "script_index": 17,
-    "syllables": 2,
-    "rate_ratio": 0.896,
-    "loudness_db": -2.2,
-    "pitch_st": -0.39,
-    "pause_before_ms": 0,
-    "finding_ids": [
-     "f7"
-    ]
+    "finding_ids": []
    },
    {
     "index": 18,
-    "text": "stopped",
-    "norm": "stopped",
-    "start": 9.57,
-    "end": 10.02,
+    "text": "never",
+    "norm": "never",
+    "start": 8.79,
+    "end": 9.21,
     "kind": "match",
-    "script_index": 18,
-    "syllables": 1,
-    "rate_ratio": 0.888,
-    "loudness_db": 0.1,
-    "pitch_st": -0.14,
+    "script_index": 16,
+    "syllables": 2,
+    "rate_ratio": 0.899,
+    "loudness_db": 0.4,
+    "pitch_st": -0.18,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f7"
-    ]
+    "finding_ids": []
    },
    {
     "index": 19,
-    "text": "talking",
-    "norm": "talking",
-    "start": 10.05,
-    "end": 10.65,
+    "text": "really",
+    "norm": "really",
+    "start": 9.21,
+    "end": 9.6,
     "kind": "match",
-    "script_index": 19,
+    "script_index": 17,
     "syllables": 2,
-    "rate_ratio": 0.878,
-    "loudness_db": -4.2,
-    "pitch_st": -0.54,
+    "rate_ratio": 0.876,
+    "loudness_db": -1.8,
+    "pitch_st": -1.58,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f7"
-    ]
+    "finding_ids": []
    },
    {
     "index": 20,
-    "text": "please",
-    "norm": "please",
-    "start": 11.13,
-    "end": 11.55,
+    "text": "stopped",
+    "norm": "stopped",
+    "start": 9.6,
+    "end": 10.08,
     "kind": "match",
-    "script_index": 20,
+    "script_index": 18,
     "syllables": 1,
-    "rate_ratio": 0.885,
-    "loudness_db": 1.9,
-    "pitch_st": 3.85,
-    "pause_before_ms": 560,
+    "rate_ratio": 0.901,
+    "loudness_db": 0.7,
+    "pitch_st": 0.77,
+    "pause_before_ms": 0,
     "finding_ids": []
    },
    {
     "index": 21,
-    "text": "raise",
-    "norm": "raise",
-    "start": 11.55,
-    "end": 11.94,
+    "text": "talking",
+    "norm": "talking",
+    "start": 10.11,
+    "end": 10.68,
     "kind": "match",
-    "script_index": 21,
-    "syllables": 1,
-    "rate_ratio": 0.866,
-    "loudness_db": 0.9,
-    "pitch_st": -0.27,
+    "script_index": 19,
+    "syllables": 2,
+    "rate_ratio": 0.878,
+    "loudness_db": -3.7,
+    "pitch_st": -3.04,
     "pause_before_ms": 0,
     "finding_ids": []
    },
    {
     "index": 22,
-    "text": "your",
-    "norm": "your",
-    "start": 11.94,
-    "end": 12.09,
+    "text": "please",
+    "norm": "please",
+    "start": 11.19,
+    "end": 11.58,
     "kind": "match",
-    "script_index": 22,
+    "script_index": 20,
     "syllables": 1,
-    "rate_ratio": 0.898,
-    "loudness_db": 2.6,
-    "pitch_st": 3.16,
-    "pause_before_ms": 0,
-    "finding_ids": []
+    "rate_ratio": 0.905,
+    "loudness_db": 0.7,
+    "pitch_st": 0.2,
+    "pause_before_ms": 560,
+    "finding_ids": [
+     "f3"
+    ]
    },
    {
     "index": 23,
+    "text": "raise",
+    "norm": "raise",
+    "start": 11.58,
+    "end": 11.97,
+    "kind": "match",
+    "script_index": 21,
+    "syllables": 1,
+    "rate_ratio": 0.848,
+    "loudness_db": 0.7,
+    "pitch_st": -0.77,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 24,
+    "text": "your",
+    "norm": "your",
+    "start": 11.97,
+    "end": 12.15,
+    "kind": "match",
+    "script_index": 22,
+    "syllables": 1,
+    "rate_ratio": 0.875,
+    "loudness_db": 0.6,
+    "pitch_st": 0.01,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 25,
     "text": "glasses",
     "norm": "glasses",
-    "start": 12.09,
-    "end": 12.69,
+    "start": 12.15,
+    "end": 12.75,
     "kind": "match",
     "script_index": 23,
     "syllables": 2,
     "rate_ratio": 0.882,
     "loudness_db": -2.2,
-    "pitch_st": -1.85,
+    "pitch_st": -1.08,
     "pause_before_ms": 0,
-    "finding_ids": []
+    "finding_ids": [
+     "f3"
+    ]
    },
    {
-    "index": 24,
+    "index": 26,
     "text": "to",
     "norm": "to",
-    "start": 12.69,
-    "end": 12.9,
+    "start": 12.75,
+    "end": 12.93,
     "kind": "match",
     "script_index": 24,
     "syllables": 1,
     "rate_ratio": 0.971,
-    "loudness_db": 3.3,
-    "pitch_st": 4.83,
+    "loudness_db": 1.5,
+    "pitch_st": 0.49,
     "pause_before_ms": 0,
-    "finding_ids": []
-   },
-   {
-    "index": 25,
-    "text": "maya",
-    "norm": "maya",
-    "start": 12.9,
-    "end": 13.29,
-    "kind": "match",
-    "script_index": 25,
-    "syllables": 1,
-    "rate_ratio": 0.959,
-    "loudness_db": 0.3,
-    "pitch_st": -0.55,
-    "pause_before_ms": 0,
-    "finding_ids": []
-   },
-   {
-    "index": 26,
-    "text": "and",
-    "norm": "and",
-    "start": 13.313,
-    "end": 13.5,
-    "kind": "match",
-    "script_index": 26,
-    "syllables": 1,
-    "rate_ratio": 1.013,
-    "loudness_db": -2.4,
-    "pitch_st": 0.25,
-    "pause_before_ms": 0,
-    "finding_ids": []
+    "finding_ids": [
+     "f3"
+    ]
    },
    {
     "index": 27,
+    "text": "maya",
+    "norm": "maya",
+    "start": 12.93,
+    "end": 13.35,
+    "kind": "match",
+    "script_index": 25,
+    "syllables": 1,
+    "rate_ratio": 0.995,
+    "loudness_db": 0.3,
+    "pitch_st": -0.78,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 28,
+    "text": "and",
+    "norm": "and",
+    "start": 13.35,
+    "end": 13.53,
+    "kind": "match",
+    "script_index": 26,
+    "syllables": 1,
+    "rate_ratio": 0.986,
+    "loudness_db": -2.4,
+    "pitch_st": -0.65,
+    "pause_before_ms": 0,
+    "finding_ids": [
+     "f3"
+    ]
+   },
+   {
+    "index": 29,
     "text": "sam",
     "norm": "sam",
-    "start": 13.5,
-    "end": 13.98,
+    "start": 13.53,
+    "end": 14.04,
     "kind": "match",
     "script_index": 27,
     "syllables": 1,
-    "rate_ratio": 1.013,
-    "loudness_db": -2.8,
-    "pitch_st": -2.97,
+    "rate_ratio": 0.986,
+    "loudness_db": -3.1,
+    "pitch_st": -1.28,
     "pause_before_ms": 0,
-    "finding_ids": []
+    "finding_ids": [
+     "f3"
+    ]
    }
   ],
   "pauses": [
    {
-    "start": 2.04,
-    "end": 2.34,
-    "ms": 300,
+    "start": 1.4,
+    "end": 1.72,
+    "ms": 320,
     "before_word": 3
    },
    {
-    "start": 4.68,
-    "end": 5.24,
-    "ms": 560,
+    "start": 4.04,
+    "end": 4.62,
+    "ms": 580,
     "before_word": 9
    },
    {
-    "start": 6.38,
-    "end": 6.7,
-    "ms": 320,
-    "before_word": 12
+    "start": 4.82,
+    "end": 4.94,
+    "ms": 120,
+    "before_word": 10
    },
    {
-    "start": 8.16,
-    "end": 8.5,
+    "start": 6.44,
+    "end": 6.74,
+    "ms": 300,
+    "before_word": 14
+   },
+   {
+    "start": 8.2,
+    "end": 8.54,
     "ms": 340,
-    "before_word": 15
+    "before_word": 17
    },
    {
-    "start": 10.62,
-    "end": 11.18,
+    "start": 10.66,
+    "end": 11.22,
     "ms": 560,
-    "before_word": 20
+    "before_word": 22
    }
   ],
   "phrases": [
    {
     "phrase": 0,
     "start": 0.3,
-    "end": 2.07,
-    "pitch_sd_st": 1.75,
-    "voiced_frames": 128
+    "end": 1.44,
+    "pitch_sd_st": 2.1,
+    "voiced_frames": 87
    },
    {
     "phrase": 1,
-    "start": 2.31,
-    "end": 4.68,
+    "start": 1.68,
+    "end": 4.05,
     "pitch_sd_st": 1.9,
     "voiced_frames": 144
    },
    {
     "phrase": 2,
-    "start": 5.19,
-    "end": 6.42,
-    "pitch_sd_st": 1.42,
-    "voiced_frames": 87
+    "start": 4.56,
+    "end": 6.45,
+    "pitch_sd_st": 1.43,
+    "voiced_frames": 129
    },
    {
     "phrase": 3,
-    "start": 6.69,
-    "end": 8.19,
-    "pitch_sd_st": 1.05,
-    "voiced_frames": 85
+    "start": 6.72,
+    "end": 8.22,
+    "pitch_sd_st": 1.07,
+    "voiced_frames": 84
    },
    {
     "phrase": 4,
-    "start": 8.49,
-    "end": 10.65,
-    "pitch_sd_st": 0.15,
-    "voiced_frames": 147
+    "start": 8.52,
+    "end": 10.68,
+    "pitch_sd_st": 1.33,
+    "voiced_frames": 145
    },
    {
     "phrase": 5,
-    "start": 11.13,
-    "end": 13.98,
-    "pitch_sd_st": 2.22,
-    "voiced_frames": 190
+    "start": 11.19,
+    "end": 14.04,
+    "pitch_sd_st": 0.49,
+    "voiced_frames": 188
    }
   ],
-  "vocalizations": [
-   {
-    "start": 1.1,
-    "end": 1.5,
-    "ms": 400
-   }
-  ],
-  "syllables_per_s": 3.362,
-  "rate_ratio_global": 0.717,
-  "pitch_median_hz": 194.8,
+  "vocalizations": [],
+  "syllables_per_s": 3.265,
+  "rate_ratio_global": 0.757,
+  "pitch_median_hz": 197.9,
   "loudness_mean_db": -17.9
  },
  "reference": {
@@ -1297,301 +1304,220 @@
    "take_index": 9
   },
   {
-   "op": "match",
-   "script_index": 10,
+   "op": "ins",
+   "script_index": null,
    "take_index": 10
   },
   {
-   "op": "match",
-   "script_index": 11,
+   "op": "sub",
+   "script_index": 10,
    "take_index": 11
   },
   {
-   "op": "match",
-   "script_index": 12,
+   "op": "ins",
+   "script_index": null,
    "take_index": 12
   },
   {
    "op": "match",
-   "script_index": 13,
+   "script_index": 11,
    "take_index": 13
   },
   {
    "op": "match",
-   "script_index": 14,
+   "script_index": 12,
    "take_index": 14
   },
   {
    "op": "match",
-   "script_index": 15,
+   "script_index": 13,
    "take_index": 15
   },
   {
    "op": "match",
-   "script_index": 16,
+   "script_index": 14,
    "take_index": 16
   },
   {
    "op": "match",
-   "script_index": 17,
+   "script_index": 15,
    "take_index": 17
   },
   {
    "op": "match",
-   "script_index": 18,
+   "script_index": 16,
    "take_index": 18
   },
   {
    "op": "match",
-   "script_index": 19,
+   "script_index": 17,
    "take_index": 19
   },
   {
    "op": "match",
-   "script_index": 20,
+   "script_index": 18,
    "take_index": 20
   },
   {
    "op": "match",
-   "script_index": 21,
+   "script_index": 19,
    "take_index": 21
   },
   {
    "op": "match",
-   "script_index": 22,
+   "script_index": 20,
    "take_index": 22
   },
   {
    "op": "match",
-   "script_index": 23,
+   "script_index": 21,
    "take_index": 23
   },
   {
    "op": "match",
-   "script_index": 24,
+   "script_index": 22,
    "take_index": 24
   },
   {
    "op": "match",
-   "script_index": 25,
+   "script_index": 23,
    "take_index": 25
   },
   {
    "op": "match",
-   "script_index": 26,
+   "script_index": 24,
    "take_index": 26
   },
   {
    "op": "match",
-   "script_index": 27,
+   "script_index": 25,
    "take_index": 27
+  },
+  {
+   "op": "match",
+   "script_index": 26,
+   "take_index": 28
+  },
+  {
+   "op": "match",
+   "script_index": 27,
+   "take_index": 29
   }
  ],
  "findings": [
   {
    "id": "f1",
-   "code": "DRAG",
-   "dimension": "pace",
-   "start": 0.3,
-   "end": 2.07,
-   "words": [
-    "ten",
-    "years",
-    "ago"
-   ],
-   "evidence": {
-    "rate_ratio": 0.46,
-    "syllables_per_s": 2.3,
-    "reference_syllables_per_s": 5.6
-   },
-   "severity": 2,
-   "rubric_version": "1.0.0",
-   "script_span": [
-    0,
-    2
-   ]
-  },
-  {
-   "id": "f2",
-   "code": "MONO",
-   "dimension": "pitch",
-   "start": 0.3,
-   "end": 2.07,
-   "words": [
-    "ten",
-    "years",
-    "ago"
-   ],
-   "evidence": {
-    "pitch_sd_st": 1.8,
-    "reference_pitch_sd_st": 6.8,
-    "ratio": 0.26
-   },
-   "severity": 2,
-   "rubric_version": "1.0.0",
-   "script_span": [
-    0,
-    2
-   ]
-  },
-  {
-   "id": "f3",
    "code": "FILLER",
    "dimension": "accuracy",
-   "start": 1.1,
-   "end": 1.5,
-   "words": [],
+   "start": 4.92,
+   "end": 5.37,
+   "words": [
+    "oh"
+   ],
    "evidence": {
-    "vocalization_ms": 400,
-    "kind": "vocalization"
+    "count": 1,
+    "kind": "filler"
    },
    "severity": 1,
    "rubric_version": "1.0.0",
    "script_span": null
   },
   {
-   "id": "f4",
-   "code": "MONO",
-   "dimension": "pitch",
-   "start": 2.31,
-   "end": 4.68,
+   "id": "f2",
+   "code": "FILLER",
+   "dimension": "accuracy",
+   "start": 5.76,
+   "end": 5.88,
    "words": [
-    "two",
-    "strangers",
-    "missed",
-    "the",
-    "same",
-    "train"
+    "it"
    ],
    "evidence": {
-    "pitch_sd_st": 1.9,
-    "reference_pitch_sd_st": 5.0,
-    "ratio": 0.38
+    "count": 1,
+    "kind": "insert"
    },
    "severity": 1,
    "rubric_version": "1.0.0",
-   "script_span": [
-    3,
-    8
-   ]
+   "script_span": null
   },
   {
-   "id": "f5",
+   "id": "f3",
    "code": "MONO",
    "dimension": "pitch",
-   "start": 5.19,
-   "end": 6.42,
+   "start": 11.19,
+   "end": 14.04,
    "words": [
-    "they",
-    "waited",
-    "together"
-   ],
-   "evidence": {
-    "pitch_sd_st": 1.4,
-    "reference_pitch_sd_st": 3.8,
-    "ratio": 0.37
-   },
-   "severity": 1,
-   "rubric_version": "1.0.0",
-   "script_span": [
-    9,
-    11
-   ]
-  },
-  {
-   "id": "f6",
-   "code": "MONO",
-   "dimension": "pitch",
-   "start": 6.69,
-   "end": 8.19,
-   "words": [
-    "argued",
-    "about",
-    "coffee"
-   ],
-   "evidence": {
-    "pitch_sd_st": 1.1,
-    "reference_pitch_sd_st": 4.0,
-    "ratio": 0.26
-   },
-   "severity": 2,
-   "rubric_version": "1.0.0",
-   "script_span": [
-    12,
-    14
-   ]
-  },
-  {
-   "id": "f7",
-   "code": "MONO",
-   "dimension": "pitch",
-   "start": 8.49,
-   "end": 10.65,
-   "words": [
+    "please",
+    "raise",
+    "your",
+    "glasses",
+    "to",
+    "maya",
     "and",
-    "never",
-    "really",
-    "stopped",
-    "talking"
+    "sam"
    ],
    "evidence": {
-    "pitch_sd_st": 0.1,
-    "reference_pitch_sd_st": 3.7,
-    "ratio": 0.04
+    "pitch_sd_st": 0.5,
+    "reference_pitch_sd_st": 4.1,
+    "ratio": 0.36
    },
-   "severity": 3,
+   "severity": 1,
    "rubric_version": "1.0.0",
    "script_span": [
-    15,
-    19
+    20,
+    27
    ]
   }
  ],
  "penalties": [
   {
    "finding_id": "f1",
-   "dimension": "pace",
-   "points": 15.0
-  },
-  {
-   "finding_id": "f2",
-   "dimension": "pitch",
-   "points": 18.0
-  },
-  {
-   "finding_id": "f3",
    "dimension": "accuracy",
    "points": 5.0
   },
   {
-   "finding_id": "f4",
+   "finding_id": "f2",
+   "dimension": "accuracy",
+   "points": 5.0
+  },
+  {
+   "finding_id": "f3",
    "dimension": "pitch",
    "points": 10.0
-  },
-  {
-   "finding_id": "f5",
-   "dimension": "pitch",
-   "points": 10.0
-  },
-  {
-   "finding_id": "f6",
-   "dimension": "pitch",
-   "points": 18.0
-  },
-  {
-   "finding_id": "f7",
-   "dimension": "pitch",
-   "points": 28.0
   }
  ],
  "scores": {
-  "pace": 85,
+  "pace": 100,
   "pauses": 100,
-  "pitch": 16,
+  "pitch": 90,
   "volume": 100,
-  "accuracy": 95,
-  "overall": 79
+  "accuracy": 90,
+  "overall": 96
  },
- "coaching": null,
+ "coaching": {
+  "source": "bedrock",
+  "model_id": "us.amazon.nova-2-lite-v1:0",
+  "items": [
+   {
+    "finding_id": "f1",
+    "headline": "Unnecessary filler word \"oh\"",
+    "why": "The filler word \"oh\" disrupts the flow and realism of the dialogue, making it sound less natural to the listener.",
+    "drill": "Remove the filler word \"oh\" from that line."
+   },
+   {
+    "finding_id": "f2",
+    "headline": "Insertive filler word \"it\"",
+    "why": "The inserted word \"it\" adds confusion and is not part of the intended script, which can mislead the audience.",
+    "drill": "Deliver the line without the inserted word \"it\"."
+   },
+   {
+    "finding_id": "f3",
+    "headline": "Flat pitch on final toast",
+    "why": "The pitch variation across the words \"please raise your glasses to Maya and Sam\" is too low, making the delivery sound monotone and less engaging.",
+    "drill": "Add more pitch variation when saying \"please raise your glasses to Maya and Sam\"."
+   }
+  ],
+  "attempts": 1,
+  "rejections": []
+ },
  "warnings": []
 }

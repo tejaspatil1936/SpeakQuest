@@ -8,7 +8,7 @@
   "worker_image_digest": "local",
   "transcribe_language": "en-US",
   "aligner": "vosk:vosk-model-small-en-us-0.15",
-  "model_id": null
+  "model_id": "us.amazon.nova-2-lite-v1:0"
  },
  "script": {
   "text": "We ship the final build before the deadline, then we rest for a while and celebrate the launch together.",
@@ -131,7 +131,7 @@
   "phrase_count": 2
  },
  "take": {
-  "duration_s": 8.376,
+  "duration_s": 8.435,
   "words": [
    {
     "index": 0,
@@ -143,12 +143,10 @@
     "script_index": 0,
     "syllables": 1,
     "rate_ratio": 0.87,
-    "loudness_db": 3.3,
-    "pitch_st": 1.67,
+    "loudness_db": 2.4,
+    "pitch_st": 1.65,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1"
-    ]
+    "finding_ids": []
    },
    {
     "index": 1,
@@ -160,12 +158,10 @@
     "script_index": 1,
     "syllables": 1,
     "rate_ratio": 0.87,
-    "loudness_db": 1.3,
-    "pitch_st": -13.86,
+    "loudness_db": 0.4,
+    "pitch_st": -13.87,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1"
-    ]
+    "finding_ids": []
    },
    {
     "index": 2,
@@ -177,12 +173,10 @@
     "script_index": 2,
     "syllables": 1,
     "rate_ratio": 0.835,
-    "loudness_db": -2.8,
-    "pitch_st": 1.35,
+    "loudness_db": -3.7,
+    "pitch_st": 1.34,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1"
-    ]
+    "finding_ids": []
    },
    {
     "index": 3,
@@ -193,307 +187,259 @@
     "kind": "match",
     "script_index": 3,
     "syllables": 2,
-    "rate_ratio": 0.927,
-    "loudness_db": 1.4,
-    "pitch_st": 0.24,
+    "rate_ratio": 0.835,
+    "loudness_db": 0.5,
+    "pitch_st": 0.23,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1"
-    ]
+    "finding_ids": []
    },
    {
     "index": 4,
-    "text": "build",
-    "norm": "build",
-    "start": 1.44,
-    "end": 1.86,
-    "kind": "match",
-    "script_index": 4,
-    "syllables": 1,
-    "rate_ratio": 0.882,
-    "loudness_db": 2.4,
-    "pitch_st": -0.78,
-    "pause_before_ms": 0,
-    "finding_ids": [
-     "f1"
-    ]
-   },
-   {
-    "index": 5,
     "text": "before",
     "norm": "before",
-    "start": 1.89,
-    "end": 2.31,
+    "start": 1.44,
+    "end": 1.92,
     "kind": "match",
     "script_index": 5,
     "syllables": 2,
-    "rate_ratio": 0.927,
-    "loudness_db": 1.7,
-    "pitch_st": 1.07,
+    "rate_ratio": 0.882,
+    "loudness_db": 0.4,
+    "pitch_st": 0.97,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 6,
+    "index": 5,
     "text": "the",
     "norm": "the",
-    "start": 2.31,
-    "end": 2.43,
+    "start": 1.92,
+    "end": 2.04,
     "kind": "match",
     "script_index": 6,
     "syllables": 1,
-    "rate_ratio": 0.971,
-    "loudness_db": -5.0,
-    "pitch_st": 2.85,
+    "rate_ratio": 0.882,
+    "loudness_db": 1.6,
+    "pitch_st": 2.96,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1",
-     "f2"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 7,
+    "index": 6,
     "text": "deadline",
     "norm": "deadline",
-    "start": 2.43,
-    "end": 3.03,
+    "start": 2.04,
+    "end": 2.64,
     "kind": "match",
     "script_index": 7,
     "syllables": 2,
-    "rate_ratio": 0.918,
-    "loudness_db": -11.0,
-    "pitch_st": -1.78,
+    "rate_ratio": 0.874,
+    "loudness_db": 0.1,
+    "pitch_st": -1.62,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f1",
-     "f2"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 8,
+    "index": 7,
     "text": "then",
     "norm": "then",
-    "start": 3.33,
-    "end": 3.69,
+    "start": 2.91,
+    "end": 3.27,
     "kind": "match",
     "script_index": 8,
     "syllables": 1,
-    "rate_ratio": 0.916,
-    "loudness_db": 4.5,
-    "pitch_st": 2.11,
-    "pause_before_ms": 380,
-    "finding_ids": [
-     "f3"
-    ]
+    "rate_ratio": 0.859,
+    "loudness_db": 3.6,
+    "pitch_st": 2.16,
+    "pause_before_ms": 300,
+    "finding_ids": []
    },
    {
-    "index": 9,
+    "index": 8,
     "text": "we",
     "norm": "we",
-    "start": 4.53,
-    "end": 4.71,
+    "start": 3.27,
+    "end": 3.45,
     "kind": "match",
     "script_index": 9,
     "syllables": 1,
-    "rate_ratio": 0.691,
-    "loudness_db": 2.7,
-    "pitch_st": 2.58,
-    "pause_before_ms": 860,
-    "finding_ids": [
-     "f3",
-     "f4"
-    ]
+    "rate_ratio": 0.699,
+    "loudness_db": 1.2,
+    "pitch_st": 2.38,
+    "pause_before_ms": 0,
+    "finding_ids": []
    },
    {
-    "index": 10,
+    "index": 9,
     "text": "rest",
     "norm": "rest",
-    "start": 4.71,
-    "end": 5.19,
+    "start": 3.45,
+    "end": 3.9,
     "kind": "match",
     "script_index": 10,
     "syllables": 1,
-    "rate_ratio": 0.769,
-    "loudness_db": -0.2,
-    "pitch_st": -0.9,
+    "rate_ratio": 0.741,
+    "loudness_db": -1.1,
+    "pitch_st": -0.95,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f3"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 11,
+    "index": 10,
     "text": "for",
     "norm": "for",
-    "start": 5.19,
-    "end": 5.34,
+    "start": 3.9,
+    "end": 4.08,
     "kind": "match",
     "script_index": 11,
     "syllables": 1,
     "rate_ratio": 0.784,
-    "loudness_db": -4.3,
-    "pitch_st": 0.72,
+    "loudness_db": -5.3,
+    "pitch_st": 0.68,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f3"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 12,
+    "index": 11,
     "text": "a",
     "norm": "a",
-    "start": 5.34,
-    "end": 5.52,
+    "start": 4.08,
+    "end": 4.26,
     "kind": "match",
     "script_index": 12,
     "syllables": 1,
     "rate_ratio": 0.974,
-    "loudness_db": 4.7,
-    "pitch_st": 1.31,
+    "loudness_db": 4.2,
+    "pitch_st": 1.81,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f3"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 13,
+    "index": 12,
     "text": "while",
     "norm": "while",
-    "start": 5.52,
-    "end": 6.06,
+    "start": 4.26,
+    "end": 4.77,
     "kind": "match",
     "script_index": 13,
     "syllables": 2,
-    "rate_ratio": 0.911,
-    "loudness_db": 1.2,
-    "pitch_st": -1.49,
+    "rate_ratio": 0.941,
+    "loudness_db": 0.2,
+    "pitch_st": -1.57,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f3"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 14,
+    "index": 13,
     "text": "and",
     "norm": "and",
-    "start": 6.06,
-    "end": 6.27,
+    "start": 4.77,
+    "end": 4.98,
     "kind": "match",
     "script_index": 14,
     "syllables": 1,
-    "rate_ratio": 0.882,
-    "loudness_db": -1.1,
-    "pitch_st": -0.14,
+    "rate_ratio": 0.901,
+    "loudness_db": -2.0,
+    "pitch_st": -0.15,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f3"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 15,
+    "index": 14,
     "text": "celebrate",
     "norm": "celebrate",
-    "start": 6.27,
-    "end": 6.96,
+    "start": 4.98,
+    "end": 5.67,
     "kind": "match",
     "script_index": 15,
     "syllables": 3,
-    "rate_ratio": 0.82,
-    "loudness_db": 2.7,
-    "pitch_st": 1.15,
+    "rate_ratio": 0.788,
+    "loudness_db": 1.8,
+    "pitch_st": 1.12,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f3"
-    ]
+    "finding_ids": []
    },
    {
-    "index": 16,
+    "index": 15,
     "text": "the",
     "norm": "the",
-    "start": 6.96,
-    "end": 7.05,
+    "start": 5.67,
+    "end": 5.85,
     "kind": "match",
     "script_index": 16,
     "syllables": 1,
-    "rate_ratio": 0.824,
-    "loudness_db": -0.6,
-    "pitch_st": -0.09,
+    "rate_ratio": 0.803,
+    "loudness_db": -2.0,
+    "pitch_st": -0.54,
     "pause_before_ms": 0,
+    "finding_ids": []
+   },
+   {
+    "index": 16,
+    "text": "launch",
+    "norm": "launch",
+    "start": 7.11,
+    "end": 7.53,
+    "kind": "match",
+    "script_index": 17,
+    "syllables": 1,
+    "rate_ratio": 0.85,
+    "loudness_db": -0.7,
+    "pitch_st": -0.27,
+    "pause_before_ms": 1320,
     "finding_ids": [
-     "f3"
+     "f2"
     ]
    },
    {
     "index": 17,
-    "text": "launch",
-    "norm": "launch",
-    "start": 7.05,
-    "end": 7.47,
-    "kind": "match",
-    "script_index": 17,
-    "syllables": 1,
-    "rate_ratio": 0.874,
-    "loudness_db": 0.0,
-    "pitch_st": -0.26,
-    "pause_before_ms": 0,
-    "finding_ids": [
-     "f3"
-    ]
-   },
-   {
-    "index": 18,
     "text": "together",
     "norm": "together",
-    "start": 7.47,
-    "end": 8.01,
+    "start": 7.538,
+    "end": 8.07,
     "kind": "match",
     "script_index": 18,
     "syllables": 3,
-    "rate_ratio": 0.874,
-    "loudness_db": -1.0,
-    "pitch_st": -2.66,
+    "rate_ratio": 0.85,
+    "loudness_db": -1.7,
+    "pitch_st": -2.56,
     "pause_before_ms": 0,
-    "finding_ids": [
-     "f3"
-    ]
+    "finding_ids": []
    }
   ],
   "pauses": [
    {
-    "start": 2.98,
-    "end": 3.36,
-    "ms": 380,
-    "before_word": 8
+    "start": 2.64,
+    "end": 2.94,
+    "ms": 300,
+    "before_word": 7
    },
    {
-    "start": 3.7,
-    "end": 4.56,
-    "ms": 860,
-    "before_word": 9
+    "start": 5.8,
+    "end": 7.12,
+    "ms": 1320,
+    "before_word": 16
    }
   ],
   "phrases": [
    {
     "phrase": 0,
     "start": 0.3,
-    "end": 3.03,
-    "pitch_sd_st": 2.02,
-    "voiced_frames": 173
+    "end": 2.64,
+    "pitch_sd_st": 2.1,
+    "voiced_frames": 165
    },
    {
     "phrase": 1,
-    "start": 3.33,
-    "end": 8.01,
+    "start": 2.91,
+    "end": 8.07,
     "pitch_sd_st": 1.54,
-    "voiced_frames": 270
+    "voiced_frames": 272
    }
   ],
   "vocalizations": [],
-  "syllables_per_s": 4.173,
-  "rate_ratio_global": 0.742,
-  "pitch_median_hz": 191.8,
+  "syllables_per_s": 4.228,
+  "rate_ratio_global": 0.726,
+  "pitch_median_hz": 192.0,
   "loudness_mean_db": -16.5
  },
  "reference": {
@@ -837,214 +783,162 @@
    "take_index": 3
   },
   {
-   "op": "match",
+   "op": "del",
    "script_index": 4,
-   "take_index": 4
+   "take_index": null
   },
   {
    "op": "match",
    "script_index": 5,
-   "take_index": 5
+   "take_index": 4
   },
   {
    "op": "match",
    "script_index": 6,
-   "take_index": 6
+   "take_index": 5
   },
   {
    "op": "match",
    "script_index": 7,
-   "take_index": 7
+   "take_index": 6
   },
   {
    "op": "match",
    "script_index": 8,
-   "take_index": 8
+   "take_index": 7
   },
   {
    "op": "match",
    "script_index": 9,
-   "take_index": 9
+   "take_index": 8
   },
   {
    "op": "match",
    "script_index": 10,
-   "take_index": 10
+   "take_index": 9
   },
   {
    "op": "match",
    "script_index": 11,
-   "take_index": 11
+   "take_index": 10
   },
   {
    "op": "match",
    "script_index": 12,
-   "take_index": 12
+   "take_index": 11
   },
   {
    "op": "match",
    "script_index": 13,
-   "take_index": 13
+   "take_index": 12
   },
   {
    "op": "match",
    "script_index": 14,
-   "take_index": 14
+   "take_index": 13
   },
   {
    "op": "match",
    "script_index": 15,
-   "take_index": 15
+   "take_index": 14
   },
   {
    "op": "match",
    "script_index": 16,
-   "take_index": 16
+   "take_index": 15
   },
   {
    "op": "match",
    "script_index": 17,
-   "take_index": 17
+   "take_index": 16
   },
   {
    "op": "match",
    "script_index": 18,
-   "take_index": 18
+   "take_index": 17
   }
  ],
  "findings": [
   {
    "id": "f1",
-   "code": "MONO",
-   "dimension": "pitch",
-   "start": 0.3,
-   "end": 3.03,
+   "code": "SKIP",
+   "dimension": "accuracy",
+   "start": 1.44,
+   "end": 1.44,
    "words": [
-    "we",
-    "ship",
-    "the",
-    "final",
-    "build",
-    "before",
-    "the",
-    "deadline"
+    "build"
    ],
    "evidence": {
-    "pitch_sd_st": 2.0,
-    "reference_pitch_sd_st": 4.4,
-    "ratio": 0.46
+    "skipped_words": 1
    },
    "severity": 1,
    "rubric_version": "1.0.0",
    "script_span": [
-    0,
-    7
+    4,
+    4
    ]
   },
   {
    "id": "f2",
-   "code": "FADE",
-   "dimension": "volume",
-   "start": 2.31,
-   "end": 3.03,
-   "words": [
-    "the",
-    "deadline"
-   ],
-   "evidence": {
-    "drop_db": 8.0,
-    "reference_drop_db": 3.8
-   },
-   "severity": 1,
-   "rubric_version": "1.0.0",
-   "script_span": [
-    6,
-    7
-   ]
-  },
-  {
-   "id": "f3",
-   "code": "MONO",
-   "dimension": "pitch",
-   "start": 3.33,
-   "end": 8.01,
-   "words": [
-    "then",
-    "we",
-    "rest",
-    "for",
-    "a",
-    "while",
-    "and",
-    "celebrate",
-    "the",
-    "launch",
-    "together"
-   ],
-   "evidence": {
-    "pitch_sd_st": 1.5,
-    "reference_pitch_sd_st": 3.6,
-    "ratio": 0.42
-   },
-   "severity": 1,
-   "rubric_version": "1.0.0",
-   "script_span": [
-    8,
-    18
-   ]
-  },
-  {
-   "id": "f4",
    "code": "HESITATE",
    "dimension": "pauses",
-   "start": 3.7,
-   "end": 4.56,
+   "start": 5.8,
+   "end": 7.12,
    "words": [
-    "then",
-    "we"
+    "the",
+    "launch"
    ],
    "evidence": {
-    "pause_ms": 860,
+    "pause_ms": 1320,
     "reference_pause_ms": 0
    },
-   "severity": 1,
+   "severity": 2,
    "rubric_version": "1.0.0",
    "script_span": [
-    8,
-    9
+    16,
+    17
    ]
   }
  ],
  "penalties": [
   {
    "finding_id": "f1",
-   "dimension": "pitch",
-   "points": 10.0
-  },
-  {
-   "finding_id": "f2",
-   "dimension": "volume",
+   "dimension": "accuracy",
    "points": 8.0
   },
   {
-   "finding_id": "f3",
-   "dimension": "pitch",
-   "points": 10.0
-  },
-  {
-   "finding_id": "f4",
+   "finding_id": "f2",
    "dimension": "pauses",
-   "points": 7.0
+   "points": 14.0
   }
  ],
  "scores": {
   "pace": 100,
-  "pauses": 93,
-  "pitch": 80,
-  "volume": 92,
-  "accuracy": 100,
-  "overall": 93
+  "pauses": 86,
+  "pitch": 100,
+  "volume": 100,
+  "accuracy": 92,
+  "overall": 96
  },
- "coaching": null,
+ "coaching": {
+  "source": "bedrock",
+  "model_id": "us.amazon.nova-2-lite-v1:0",
+  "items": [
+   {
+    "finding_id": "f1",
+    "headline": "Missing word in delivery",
+    "why": "Skipping 'build' disrupts the flow and meaning of the sentence, leaving the listener unclear about what was shipped.",
+    "drill": "Re-record the line, ensuring the word 'build' is clearly and fully articulated."
+   },
+   {
+    "finding_id": "f2",
+    "headline": "Unnatural pause before key words",
+    "why": "A long pause before 'the launch' creates an awkward break and delays the impactful conclusion of the statement.",
+    "drill": "Try the line again, smoothing out the transition into 'the launch' without the extended pause."
+   }
+  ],
+  "attempts": 1,
+  "rejections": []
+ },
  "warnings": []
 }

@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 from pathlib import Path
 
@@ -25,6 +26,7 @@ from speakquest.normalize import load_wav
 from speakquest.pipeline import analyze_samples, prepare
 from speakquest.rubric import load_rubric
 from speakquest_eval.harness import Paths, normalized, transcript_for
+from speakquest_explain.coach import client_from_env, coach
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "web" / "public" / "fixtures"
@@ -65,6 +67,9 @@ def main() -> int:
     parser.add_argument("--aligner", default="vosk")
     args = parser.parse_args()
     rubric = load_rubric()
+    # Real coaching when AWS credentials are present (run through
+    # scripts/with-aws-env.sh); otherwise the deterministic template.
+    model = client_from_env() if os.environ.get("AWS_ACCESS_KEY_ID") else None
     paths = Paths(
         ROOT / "data" / "audio", ROOT / "data" / "annotations", ROOT / "data" / "generated"
     )
@@ -91,6 +96,13 @@ def main() -> int:
             rubric=rubric,
             created_at="2026-10-15T09:00:00Z",
         )
+        coaching = coach(result.findings, entry.script, model)
+        result = result.model_copy(
+            update={
+                "coaching": coaching,
+                "versions": result.versions.model_copy(update={"model_id": coaching.model_id}),
+            }
+        )
         (OUT / f"{result.analysis_id}.result.json").write_text(result.model_dump_json(indent=1))
         opus(paths.audio / f"{clip}.wav", OUT / f"{result.analysis_id}.ogg")
         opus(paths.audio / f"{challenge_id}__reference.wav", OUT / f"{challenge_id}.reference.ogg")
@@ -103,7 +115,7 @@ def main() -> int:
                 "codes": [f.code for f in result.findings],
             }
         )
-        print(clip, result.scores.overall, [f.code for f in result.findings])
+        print(clip, result.scores.overall, [f.code for f in result.findings], coaching.source)
     (OUT / "index.json").write_text(json.dumps({"fixtures": index}, indent=2) + "\n")
     challenges = []
     for entry in load_catalogue():
