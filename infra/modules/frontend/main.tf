@@ -27,14 +27,17 @@ resource "vercel_project_environment_variable" "build" {
   sensitive  = false # public by design: they end up in the browser bundle
 }
 
+# Absolute path on both sides so the prefix is stripped from every file key
+# (a "./../web" prefix silently failed to match "../web/..." keys, and the
+# remote `npm ci` then found no lock file at the project root).
 data "vercel_project_directory" "web" {
-  path = var.web_dir
+  path = abspath(var.web_dir)
 }
 
 resource "vercel_deployment" "production" {
   project_id  = vercel_project.web.id
   files       = data.vercel_project_directory.web.files
-  path_prefix = data.vercel_project_directory.web.path
+  path_prefix = abspath(var.web_dir)
   production  = true
   environment = local.build_env
 
