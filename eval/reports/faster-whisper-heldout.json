@@ -1,0 +1,350 @@
+{
+  "split": "heldout",
+  "aligner": "faster-whisper",
+  "rubric_version": "1.0.0",
+  "rubric_digest": "08d27bfce473",
+  "iou_threshold": 0.5,
+  "n_flawed_clips": 12,
+  "n_clean_clips": 6,
+  "per_code": {
+    "RUSH": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.667,
+      "mean_iou": 0.771
+    },
+    "DRAG": {
+      "tp": 3,
+      "fp": 2,
+      "fn": 0,
+      "precision": 0.6,
+      "recall": 1.0,
+      "mean_iou": 0.697
+    },
+    "HESITATE": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "mean_iou": 0.572
+    },
+    "MONO": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.667,
+      "mean_iou": 0.83
+    },
+    "FADE": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mean_iou": null
+    },
+    "SKIP": {
+      "tp": 0,
+      "fp": 3,
+      "fn": 1,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mean_iou": null
+    },
+    "FILLER": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mean_iou": null
+    }
+  },
+  "micro": {
+    "tp": 9,
+    "fp": 10,
+    "fn": 9,
+    "precision": 0.474,
+    "recall": 0.5,
+    "mean_iou": 0.715
+  },
+  "clean_minutes": 1.14,
+  "clean_findings": 1,
+  "clean_findings_by_code": {
+    "FILLER": 1
+  },
+  "fp_per_minute": 0.88,
+  "boundary_error": {
+    "n": 1282,
+    "median_ms": 129.0,
+    "p90_ms": 303.0,
+    "mean_ms": 158.4
+  },
+  "failures": [],
+  "clips": [
+    {
+      "clip_id": "cabin-briefing__clean-amy",
+      "role": "clean",
+      "voice": "en_US-amy-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "cabin-briefing__clean-ryan",
+      "role": "clean",
+      "voice": "en_US-ryan-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "cabin-briefing__flawed-1",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "RUSH@1.77-2.49"
+      ],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "overall": 100
+    },
+    {
+      "clip_id": "cabin-briefing__flawed-2",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "MONO@6.38-9.07",
+        "FADE@10.79-11.56"
+      ],
+      "found": [
+        "SKIP@1.30-1.30",
+        "MONO@6.16-8.90",
+        "FADE@10.52-11.22"
+      ],
+      "tp": 1,
+      "fp": 2,
+      "fn": 1,
+      "overall": 93
+    },
+    {
+      "clip_id": "cabin-briefing__flawed-3",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "FILLER@8.78-9.25"
+      ],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "overall": 100
+    },
+    {
+      "clip_id": "cabin-briefing__flawed-4",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "HESITATE@3.48-4.81",
+        "DRAG@10.66-13.01"
+      ],
+      "found": [
+        "SKIP@1.30-1.30",
+        "HESITATE@4.10-4.78",
+        "DRAG@10.90-13.34"
+      ],
+      "tp": 2,
+      "fp": 1,
+      "fn": 0,
+      "overall": 95
+    },
+    {
+      "clip_id": "the-toast__clean-amy",
+      "role": "clean",
+      "voice": "en_US-amy-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "the-toast__clean-ryan",
+      "role": "clean",
+      "voice": "en_US-ryan-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "the-toast__flawed-1",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "HESITATE@2.70-3.80"
+      ],
+      "found": [
+        "HESITATE@2.72-3.42"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "overall": 99
+    },
+    {
+      "clip_id": "the-toast__flawed-2",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "FILLER@4.95-5.37",
+        "MONO@11.24-14.02"
+      ],
+      "found": [
+        "DRAG@4.46-6.12"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "overall": 98
+    },
+    {
+      "clip_id": "the-toast__flawed-3",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "FADE@9.54-10.04"
+      ],
+      "found": [
+        "FADE@9.34-9.84"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "overall": 98
+    },
+    {
+      "clip_id": "the-toast__flawed-4",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "RUSH@7.87-8.78",
+        "DRAG@11.48-13.59"
+      ],
+      "found": [
+        "RUSH@7.92-8.66",
+        "DRAG@11.10-12.98"
+      ],
+      "tp": 2,
+      "fp": 0,
+      "fn": 0,
+      "overall": 97
+    },
+    {
+      "clip_id": "closing-argument__clean-amy",
+      "role": "clean",
+      "voice": "en_US-amy-medium",
+      "labels": [],
+      "found": [
+        "FILLER@6.64-6.84"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "overall": 99
+    },
+    {
+      "clip_id": "closing-argument__clean-ryan",
+      "role": "clean",
+      "voice": "en_US-ryan-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "closing-argument__flawed-1",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "DRAG@3.06-4.54"
+      ],
+      "found": [
+        "DRAG@3.26-4.88"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "overall": 98
+    },
+    {
+      "clip_id": "closing-argument__flawed-2",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "SKIP@1.63-1.63",
+        "FADE@4.57-5.32"
+      ],
+      "found": [
+        "SKIP@1.52-1.52",
+        "FADE@4.44-4.96",
+        "FILLER@6.28-6.48"
+      ],
+      "tp": 0,
+      "fp": 3,
+      "fn": 2,
+      "overall": 94
+    },
+    {
+      "clip_id": "closing-argument__flawed-3",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "FILLER@7.11-7.48"
+      ],
+      "found": [
+        "DRAG@6.92-8.46"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "overall": 97
+    },
+    {
+      "clip_id": "closing-argument__flawed-4",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "RUSH@1.38-2.25",
+        "MONO@6.53-8.23"
+      ],
+      "found": [
+        "RUSH@1.44-2.08",
+        "FILLER@6.00-6.20",
+        "MONO@6.40-7.98"
+      ],
+      "tp": 2,
+      "fp": 1,
+      "fn": 0,
+      "overall": 94
+    }
+  ],
+  "runtime_s": 19.3
+}

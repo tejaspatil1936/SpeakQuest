@@ -1,0 +1,532 @@
+{
+  "split": "dev",
+  "aligner": "faster-whisper",
+  "rubric_version": "1.0.0",
+  "rubric_digest": "08d27bfce473",
+  "iou_threshold": 0.5,
+  "n_flawed_clips": 20,
+  "n_clean_clips": 10,
+  "per_code": {
+    "RUSH": {
+      "tp": 0,
+      "fp": 2,
+      "fn": 5,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mean_iou": null
+    },
+    "DRAG": {
+      "tp": 3,
+      "fp": 5,
+      "fn": 1,
+      "precision": 0.375,
+      "recall": 0.75,
+      "mean_iou": 0.747
+    },
+    "HESITATE": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.75,
+      "mean_iou": 0.619
+    },
+    "MONO": {
+      "tp": 4,
+      "fp": 0,
+      "fn": 1,
+      "precision": 1.0,
+      "recall": 0.8,
+      "mean_iou": 0.831
+    },
+    "FADE": {
+      "tp": 2,
+      "fp": 3,
+      "fn": 3,
+      "precision": 0.4,
+      "recall": 0.4,
+      "mean_iou": 0.647
+    },
+    "SKIP": {
+      "tp": 0,
+      "fp": 10,
+      "fn": 4,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mean_iou": null
+    },
+    "FILLER": {
+      "tp": 0,
+      "fp": 1,
+      "fn": 3,
+      "precision": 0.0,
+      "recall": 0.0,
+      "mean_iou": null
+    }
+  },
+  "micro": {
+    "tp": 12,
+    "fp": 21,
+    "fn": 18,
+    "precision": 0.364,
+    "recall": 0.4,
+    "mean_iou": 0.726
+  },
+  "clean_minutes": 1.64,
+  "clean_findings": 4,
+  "clean_findings_by_code": {
+    "RUSH": 2,
+    "SKIP": 2
+  },
+  "fp_per_minute": 2.45,
+  "boundary_error": {
+    "n": 1776,
+    "median_ms": 142.5,
+    "p90_ms": 300.0,
+    "mean_ms": 166.1
+  },
+  "failures": [],
+  "clips": [
+    {
+      "clip_id": "deadline__clean-amy",
+      "role": "clean",
+      "voice": "en_US-amy-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "deadline__clean-ryan",
+      "role": "clean",
+      "voice": "en_US-ryan-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "deadline__flawed-1",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "RUSH@2.68-3.10"
+      ],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "overall": 100
+    },
+    {
+      "clip_id": "deadline__flawed-2",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "SKIP@1.47-1.47",
+        "HESITATE@5.77-7.17"
+      ],
+      "found": [
+        "SKIP@1.28-1.28",
+        "HESITATE@5.80-6.56"
+      ],
+      "tp": 1,
+      "fp": 1,
+      "fn": 1,
+      "overall": 97
+    },
+    {
+      "clip_id": "deadline__flawed-3",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "MONO@0.36-2.22"
+      ],
+      "found": [
+        "MONO@0.00-1.96"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "overall": 96
+    },
+    {
+      "clip_id": "deadline__flawed-4",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "FILLER@1.01-1.52",
+        "FADE@7.00-7.86"
+      ],
+      "found": [
+        "DRAG@0.00-1.70",
+        "FILLER@0.92-1.16",
+        "FADE@6.90-7.56"
+      ],
+      "tp": 1,
+      "fp": 2,
+      "fn": 1,
+      "overall": 96
+    },
+    {
+      "clip_id": "weather-desk__clean-amy",
+      "role": "clean",
+      "voice": "en_US-amy-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "weather-desk__clean-ryan",
+      "role": "clean",
+      "voice": "en_US-ryan-medium",
+      "labels": [],
+      "found": [
+        "RUSH@4.58-5.20"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "overall": 98
+    },
+    {
+      "clip_id": "weather-desk__flawed-1",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "MONO@0.36-2.19"
+      ],
+      "found": [
+        "MONO@0.00-2.14"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "overall": 96
+    },
+    {
+      "clip_id": "weather-desk__flawed-2",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "FADE@2.36-2.89",
+        "HESITATE@10.70-11.78"
+      ],
+      "found": [
+        "FADE@2.00-2.76"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 2,
+      "overall": 98
+    },
+    {
+      "clip_id": "weather-desk__flawed-3",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "RUSH@7.18-8.12"
+      ],
+      "found": [
+        "RUSH@4.58-5.20"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "overall": 98
+    },
+    {
+      "clip_id": "weather-desk__flawed-4",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "SKIP@3.97-3.97",
+        "DRAG@6.03-8.12"
+      ],
+      "found": [
+        "SKIP@3.72-3.72",
+        "DRAG@5.78-8.54"
+      ],
+      "tp": 1,
+      "fp": 1,
+      "fn": 1,
+      "overall": 97
+    },
+    {
+      "clip_id": "station-ident__clean-amy",
+      "role": "clean",
+      "voice": "en_US-amy-medium",
+      "labels": [],
+      "found": [
+        "SKIP@2.66-2.66"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "overall": 98
+    },
+    {
+      "clip_id": "station-ident__clean-ryan",
+      "role": "clean",
+      "voice": "en_US-ryan-medium",
+      "labels": [],
+      "found": [
+        "SKIP@1.70-1.70"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "overall": 98
+    },
+    {
+      "clip_id": "station-ident__flawed-1",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "FILLER@0.66-1.15"
+      ],
+      "found": [
+        "DRAG@0.48-1.80",
+        "SKIP@2.46-2.46"
+      ],
+      "tp": 0,
+      "fp": 2,
+      "fn": 1,
+      "overall": 95
+    },
+    {
+      "clip_id": "station-ident__flawed-2",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "HESITATE@4.78-6.14",
+        "RUSH@8.85-9.41"
+      ],
+      "found": [
+        "SKIP@2.66-2.66",
+        "HESITATE@4.82-5.62"
+      ],
+      "tp": 1,
+      "fp": 1,
+      "fn": 1,
+      "overall": 97
+    },
+    {
+      "clip_id": "station-ident__flawed-3",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "FADE@6.05-6.46"
+      ],
+      "found": [
+        "SKIP@1.70-1.70",
+        "FADE@5.94-6.42"
+      ],
+      "tp": 1,
+      "fp": 1,
+      "fn": 0,
+      "overall": 97
+    },
+    {
+      "clip_id": "station-ident__flawed-4",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "DRAG@0.56-2.33",
+        "MONO@6.51-10.02"
+      ],
+      "found": [
+        "DRAG@0.00-9.86",
+        "SKIP@3.42-3.42"
+      ],
+      "tp": 0,
+      "fp": 2,
+      "fn": 2,
+      "overall": 97
+    },
+    {
+      "clip_id": "product-pitch__clean-amy",
+      "role": "clean",
+      "voice": "en_US-amy-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "product-pitch__clean-ryan",
+      "role": "clean",
+      "voice": "en_US-ryan-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "product-pitch__flawed-1",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "DRAG@6.78-8.72"
+      ],
+      "found": [
+        "DRAG@6.82-8.50"
+      ],
+      "tp": 1,
+      "fp": 0,
+      "fn": 0,
+      "overall": 98
+    },
+    {
+      "clip_id": "product-pitch__flawed-2",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "SKIP@1.89-1.89",
+        "MONO@8.66-11.07"
+      ],
+      "found": [
+        "SKIP@1.38-1.38",
+        "SKIP@2.12-2.12",
+        "MONO@8.66-10.72"
+      ],
+      "tp": 1,
+      "fp": 2,
+      "fn": 1,
+      "overall": 95
+    },
+    {
+      "clip_id": "product-pitch__flawed-3",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "FILLER@9.34-9.77"
+      ],
+      "found": [
+        "DRAG@8.96-10.96"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "overall": 98
+    },
+    {
+      "clip_id": "product-pitch__flawed-4",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "RUSH@1.92-2.73",
+        "FADE@5.56-6.46"
+      ],
+      "found": [
+        "SKIP@2.22-2.22",
+        "FADE@5.40-6.02"
+      ],
+      "tp": 0,
+      "fp": 2,
+      "fn": 2,
+      "overall": 97
+    },
+    {
+      "clip_id": "gallery-four__clean-amy",
+      "role": "clean",
+      "voice": "en_US-amy-medium",
+      "labels": [],
+      "found": [],
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "overall": 100
+    },
+    {
+      "clip_id": "gallery-four__clean-ryan",
+      "role": "clean",
+      "voice": "en_US-ryan-medium",
+      "labels": [],
+      "found": [
+        "RUSH@3.66-5.02"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 0,
+      "overall": 98
+    },
+    {
+      "clip_id": "gallery-four__flawed-1",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "SKIP@3.29-3.29"
+      ],
+      "found": [
+        "SKIP@3.10-3.10"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "overall": 97
+    },
+    {
+      "clip_id": "gallery-four__flawed-2",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "HESITATE@0.61-2.00",
+        "DRAG@10.87-13.62"
+      ],
+      "found": [
+        "DRAG@0.00-14.58",
+        "HESITATE@0.86-1.86",
+        "DRAG@10.12-14.58"
+      ],
+      "tp": 2,
+      "fp": 1,
+      "fn": 0,
+      "overall": 94
+    },
+    {
+      "clip_id": "gallery-four__flawed-3",
+      "role": "flawed",
+      "voice": "en_US-ryan-medium",
+      "labels": [
+        "RUSH@2.94-3.63"
+      ],
+      "found": [
+        "RUSH@3.04-4.66"
+      ],
+      "tp": 0,
+      "fp": 1,
+      "fn": 1,
+      "overall": 98
+    },
+    {
+      "clip_id": "gallery-four__flawed-4",
+      "role": "flawed",
+      "voice": "en_US-amy-medium",
+      "labels": [
+        "FADE@5.15-5.75",
+        "MONO@8.69-12.20"
+      ],
+      "found": [
+        "FADE@4.92-5.52",
+        "MONO@8.58-12.08"
+      ],
+      "tp": 1,
+      "fp": 1,
+      "fn": 1,
+      "overall": 95
+    }
+  ],
+  "runtime_s": 33.1
+}
