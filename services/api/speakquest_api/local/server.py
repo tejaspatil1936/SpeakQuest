@@ -183,6 +183,9 @@ def main(argv: list[str] | None = None) -> int:
     sd.add_argument("--only", nargs="*", default=[])
     args = parser.parse_args(argv)
 
+    from dotenv import load_dotenv  # noqa: PLC0415
+    load_dotenv(ROOT / ".env")
+
     env = dict(os.environ)
     env.setdefault("SPEAKQUEST_BACKEND", "local")
     if args.cmd == "serve":
