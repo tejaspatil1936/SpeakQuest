@@ -12,6 +12,7 @@ wording drift, shows the measurements, and gives you a drill for each one.
   only writes the coaching, from the findings, and a validator rejects any
   number or timestamp it invents.
 - **Live demo (fixtures, clearly labelled):** https://speakquest-demo.vercel.app
+- **Dataset (56 paired clips + labels):** https://drive.google.com/file/d/1J-ZSdX-YJne9chIGnnDjjnBblf33bygO/view?usp=sharing
 
 Specification: [docs/system_design.md](docs/system_design.md) ·
 Architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) ·

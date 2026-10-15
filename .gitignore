@@ -62,6 +62,7 @@ eval/reports/*.local.*
 .local/
 .models/
 .cache/
+speakquest-dataset.zip
 
 # --- Editors / OS ---------------------------------------------------------------
 .idea/

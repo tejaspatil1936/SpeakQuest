@@ -14,6 +14,9 @@ Unlike traditional LLM wrappers that guess how someone sounds from audio or raw 
 3. **Visualizes prosody kinetically** using variable OpenType fonts where word width, weight, baseline shift, and physical spacing reflect real-time speaking rate, loudness, pitch, and pauses.
 4. **Delivers strictly grounded AI coaching** using Amazon Bedrock, bounded by a validation layer that automatically rejects hallucinated numbers or fake timestamps.
 
+- **Live Demo (fixtures, clearly labelled):** https://speakquest-demo.vercel.app
+- **Dataset (56 paired clips + labels):** https://drive.google.com/file/d/1J-ZSdX-YJne9chIGnnDjjnBblf33bygO/view?usp=sharing
+
 ---
 
 ## 2. Architecture & System Design

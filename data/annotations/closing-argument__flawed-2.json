@@ -6,7 +6,7 @@
   "split": "heldout",
   "sample_rate": 22050,
   "duration_s": 12.839,
-  "audio_sha256": "14b61a83a9a144d76b7b6e99a59fc8a24210390d08538f3079d0c54228666efb",
+  "audio_sha256": "e5da2b5e2f086e8c6141cd56cc8512f00055a30248699b4dd3a1d318fd348bca",
   "generator": {
     "name": "piper-phoneme-splice",
     "version": "3",
